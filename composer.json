@@ -1,0 +1,23 @@
+{
+    "name": "sadyluaxy/seguradora",
+    "description": "Agencia de Seguros",
+    "type": "project",
+    "license": "Academia de conhecimento algoritmo e programação, não partilhar os conteúdos existentes nesse projecto",
+    "authors": [
+        {
+            "name": "Sady Luaxy",
+            "email": "sadyluaxy123@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "slim/slim":"2.0",
+        "rain/raintpl":"3.0.0"
+
+    },
+    "autoload":{
+        "psr-4":{
+            "":"vendor\\acap\\php-classes\\src"
+        }
+    }
+}

@@ -6,5 +6,5 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    '' => array($vendorDir . '/acap/php-classes/src'),
+    'Seguradora\\' => array($vendorDir . '/src'),
 );

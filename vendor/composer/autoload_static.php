@@ -4,10 +4,20 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit7541809ca9b57bd463bc7e120b1aea0c
+class ComposerStaticInit35de3d0eb5c1ce82a9d1a1288c17af1a
 {
-    public static $fallbackDirsPsr4 = array (
-        0 => __DIR__ . '/..' . '/acap/php-classes/src',
+    public static $prefixLengthsPsr4 = array (
+        'S' => 
+        array (
+            'Seguradora\\' => 11,
+        ),
+    );
+
+    public static $prefixDirsPsr4 = array (
+        'Seguradora\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/src',
+        ),
     );
 
     public static $prefixesPsr0 = array (
@@ -30,8 +40,9 @@ class ComposerStaticInit7541809ca9b57bd463bc7e120b1aea0c
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->fallbackDirsPsr4 = ComposerStaticInit7541809ca9b57bd463bc7e120b1aea0c::$fallbackDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInit7541809ca9b57bd463bc7e120b1aea0c::$prefixesPsr0;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit35de3d0eb5c1ce82a9d1a1288c17af1a::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit35de3d0eb5c1ce82a9d1a1288c17af1a::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInit35de3d0eb5c1ce82a9d1a1288c17af1a::$prefixesPsr0;
 
         }, null, ClassLoader::class);
     }

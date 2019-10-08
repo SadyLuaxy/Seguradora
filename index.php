@@ -2,16 +2,19 @@
 
 	require_once("vendor/autoload.php");
 
+	use \Slim\slim;
+	use \Seguradora\Page;
+
 	$app = new \Slim\Slim();
 
 	$app->config('debug', true);
 
 	$app->get('/', function() {
 
-		$Sql = new Seguradora\DB\Sql();
+		$page = new Page();
 
-		$results = $Sql->select("SELECT * FROM clientes");
-		echo json_encode($results);
+		$page->setTpl("index");
+
 	});
 
 	$app->run();

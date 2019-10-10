@@ -30,7 +30,7 @@
       <div class="col s12">
         <div class="container"><div id="login-page" class="row">
           <div class="col s12 m6 l4 z-depth-4 card-panel border-radius-6 login-card bg-opacity-8">
-            <form class="login-form" action="/admin/login" method="POST">
+            <form class="login-form" action="/admin/usuario/login" method="POST">
               <div class="row">
                 <div class="input-field col s12">
                   <h5 class="ml-4">Iniciar sessão</h5>
@@ -65,13 +65,12 @@
               <div class="row">
                 <div class="input-field col s12" >
                     <input type="submit" value="Iniciar sessão" class="btn border-round col s12 waves-light gradient-45deg-purple-deep-orange">
-                 
                 </div>
               </div>
               
                 <div class="row">
                   <div class="input-field col s6 m6 l6">
-                    <p class="margin medium-small"><a href="user-cadastro.html" class="tooltipped" data-position="top" data-tooltip="Demonstração do administrador">Novo Usuário</a></p>
+                    <p class="margin medium-small"><a href="/admin/usuario/novo" class="tooltipped" data-position="top" data-tooltip="Demonstração do administrador">Novo Usuário</a></p>
                   </div>
               </div>
               <!--

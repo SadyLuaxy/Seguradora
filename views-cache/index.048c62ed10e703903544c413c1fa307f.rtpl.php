@@ -1,1 +1,11 @@
-<?php if(!class_exists('Rain\Tpl')){exit;}?><h1>Olá, Mundo</h1>
+<?php if(!class_exists('Rain\Tpl')){exit;}?><html>
+    <title>Início Seguros</title>
+    <head>
+            <script language= "JavaScript">
+                location.href="/admin"
+            </script>
+    </head>
+    <body>
+        
+    </body>
+</html>

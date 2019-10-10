@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<?php if(!class_exists('Rain\Tpl')){exit;}?><!DOCTYPE html>
 <html class="loading" lang="en" data-textdirection="ltr">
   <!-- Início: Head-->
   <head>
@@ -8,20 +8,20 @@
     <meta name="description" content="Materialize is a Material Design Admin Template,It's modern, responsive and based on Material Design by Google.">
     <meta name="keywords" content="materialize, admin template, dashboard template, flat admin template, responsive admin template, eCommerce dashboard, analytic dashboard">
     <meta name="author" content="ThemeSelect">
-    <title>Iniciar sessão | Agência de seguros</title>
-    <link rel="apple-touch-icon" href="../../res/admin/assets/images/favicon/apple-touch-icon-152x152.png">
-    <link rel="shortcut icon" type="image/x-icon" href="../../res/admin/assets/images/favicon/favicon-32x32.png">
+    <title>Cadastrar Usuário | Agência de seguros</title>
+    <link rel="apple-touch-icon" href="/res/admin/assets/images/favicon/apple-touch-icon-152x152.png">
+    <link rel="shortcut icon" type="image/x-icon" href="/res/admin/assets/images/favicon/favicon-32x32.png">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- Início: VFimOR CSS-->
-    <link rel="stylesheet" type="text/css" href="../../res/admin/assets/vendors/vendors.min.css">
+    <link rel="stylesheet" type="text/css" href="/res/admin/assets/vendors/vendors.min.css">
     <!-- Fim: VFimOR CSS-->
     <!-- Início: Page Level CSS-->
-    <link rel="stylesheet" type="text/css" href="../../res/admin/assets/css/themes/vertical-modern-menu-template/materialize.css">
-    <link rel="stylesheet" type="text/css" href="../../res/admin/assets/css/themes/vertical-modern-menu-template/style.css">
-    <link rel="stylesheet" type="text/css" href="../../res/admin/assets/css/pages/login.css">
+    <link rel="stylesheet" type="text/css" href="/res/admin/assets/css/themes/vertical-modern-menu-template/materialize.css">
+    <link rel="stylesheet" type="text/css" href="/res/admin/assets/css/themes/vertical-modern-menu-template/style.css">
+    <link rel="stylesheet" type="text/css" href="/res/admin/assets/css/pages/login.css">
     <!-- Fim: Page Level CSS-->
     <!-- Início: Custom CSS-->
-    <link rel="stylesheet" type="text/css" href="../../res/admin/assets/css/custom/custom.css">
+    <link rel="stylesheet" type="text/css" href="/res/admin/assets/css/custom/custom.css">
     <!-- Fim: Custom CSS-->
   </head>
   <!-- Fim: Head-->
@@ -30,16 +30,23 @@
       <div class="col s12">
         <div class="container"><div id="login-page" class="row">
           <div class="col s12 m6 l4 z-depth-4 card-panel border-radius-6 login-card bg-opacity-8">
-            <form class="login-form" action="/admin/usuario/login" method="POST">
+            <form class="cadastro-form" action="/admin/usuario/novo" method="post">
               <div class="row">
                 <div class="input-field col s12">
-                  <h5 class="ml-4">Iniciar sessão</h5>
+                  <h5 class="ml-4">Cadastrar admin demo</h5>
+                </div>
+              </div>
+              <div class="row margin">
+                <div class="input-field col s12">
+                  <i class="material-icons prefix pt-2">mail_outline</i>
+                  <input id="email" type="email" name="email">
+                  <label for="email" class="center-align">Email</label>
                 </div>
               </div>
               <div class="row margin">
                 <div class="input-field col s12">
                   <i class="material-icons prefix pt-2">person_outline</i>
-                  <input id="username" type="text" name="user">
+                  <input id="username" type="text" name="username">
                   <label for="username" class="center-align">Nome de usuário</label>
                 </div>
               </div>
@@ -63,16 +70,16 @@
                 </div>
               -->
               <div class="row">
-                <div class="input-field col s12" >
-                    <input type="submit" value="Iniciar sessão" class="btn border-round col s12 waves-light gradient-45deg-purple-deep-orange">
+                  <div class="input-field col s12" >
+                      <input type="submit" value="Iniciar sessão" class="btn border-round col s12 waves-light gradient-45deg-purple-deep-orange">
+                  </div>
                 </div>
-              </div>
               
                 <div class="row">
                   <div class="input-field col s6 m6 l6">
-                    <p class="margin medium-small"><a href="/admin/usuario/novo" class="tooltipped" data-position="top" data-tooltip="Demonstração do administrador">Novo Usuário</a></p>
+                    <p class="margin medium-small"><a href="/admin/usuario/login" class="tooltipped" data-position="top" data-tooltip="Demonstração do administrador">Iniciar sessão</a></p>
                   </div>
-              </div>
+                </div>
               <!--
                   <div class="input-field col s6 m6 l6">
                     <p class="margin right-align medium-small"><a href="user-forgot-password.html">Forgot password ?</a></p>
@@ -87,13 +94,13 @@
     </div>
 
     <!-- Início VFimOR JS-->
-    <script src="../../res/admin/assets/js/vendors.min.js" type="text/javascript"></script>
+    <script src="/res/admin/assets/js/vendors.min.js" type="text/javascript"></script>
     <!-- Início VFimOR JS-->
     <!-- Início PAGE VFimOR JS-->
     <!-- Fim PAGE VFimOR JS-->
     <!-- Início THEME  JS-->
-    <script src="../../res/admin/assets/js/plugins.js" type="text/javascript"></script>
-    <script src="../../res/admin/assets/js/custom/custom-script.js" type="text/javascript"></script>
+    <script src="/res/admin/assets/js/plugins.js" type="text/javascript"></script>
+    <script src="/res/admin/assets/js/custom/custom-script.js" type="text/javascript"></script>
     <!-- Fim THEME  JS-->
     <!-- Início PAGE LEVEL JS-->
     <!-- Fim PAGE LEVEL JS-->

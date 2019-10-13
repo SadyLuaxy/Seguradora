@@ -19,6 +19,11 @@
 
 	});
 
+	$app->get('/er/manutencao', function(){
+		$page = new Page();
+		$page->setTpl("manutencao");
+	});
+
 	$app->get('/admin', function() {
 
 		User::verifyLogin();
@@ -28,14 +33,14 @@
 
 	});
 
-	$app->get('/admin/usuario/login', function(){
+	$app->get('/usuario/login', function(){
 
 		$page = new PageAdmin();
 		$page->setTpl("user-login");
 
 	});
 
-	$app->post('/admin/usuario/login', function(){
+	$app->post('/usuario/login', function(){
 
 		User::login($_POST["user"], $_POST["senha"]);
 			header("Location: /admin");
@@ -43,29 +48,29 @@
 		
 	});
 
-	$app->get('/admin/usuario/logout', function(){
+	$app->get('/usuario/logout', function(){
 
 		User::logout();
 
-		header("/admin/usuario/login");
+		header("/usuario/login");
 		exit;
 
 	});
 
-	$app->get('/admin/usuario/novo', function(){
+	$app->get('/usuario/novo', function(){
 
 		$page = new PageAdmin();
 		$page->setTpl("user-cadastro");
 
 	});
 
-	$app->post('/admin/usuario/novo', function(){
+	$app->post('/usuario/novo', function(){
 		//var_dump($_POST);
 
 		$user = new User();
 		$user->setDados($_POST);
 		$user->salvar();
-		header("Location: /admin/usuario/login");
+		header("Location: /usuario/login");
 		exit;
 	});
 

@@ -6,6 +6,7 @@
 	use \Seguradora\Page;
 	use \Seguradora\PageAdmin;
 	use \Seguradora\Model\User;
+	use \Seguradora\Model\Clientes;
 	
 
 	$app = new \Slim\Slim();
@@ -20,7 +21,9 @@
 	});
 
 	$app->get('/er/manutencao', function(){
-		$page = new Page();
+		$page = new Page([
+			"footer" =>false
+		]);
 		$page->setTpl("manutencao");
 	});
 
@@ -52,7 +55,7 @@
 
 		User::logout();
 
-		header("/usuario/login");
+		header("Location: /usuario/login");
 		exit;
 
 	});
@@ -72,6 +75,18 @@
 		$user->salvar();
 		header("Location: /usuario/login");
 		exit;
+	});
+
+	$app->get('/admin/clientes', function(){
+
+		User::verifyLogin();
+		$clientes = Clientes::listAll();
+		$page = new PageAdmin();
+		$page->setTpl("app-clientes", array(
+			"clientes"=>$clientes
+		));
+
+
 	});
 
 	$app->run();

@@ -1,0 +1,138 @@
+@font-face {
+  font-family: 'core-icons';
+  src:  url('../fonts/core-icons.eot?akpnwq');
+  src:  url('../fonts/core-icons.eot?akpnwq#iefix') format('embedded-opentype'),
+    url('../fonts/core-icons.ttf?akpnwq') format('truetype'),
+    url('../fonts/core-icons.woff?akpnwq') format('woff'),
+    url('../fonts/core-icons.svg?akpnwq#core-icons') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+[class^="core-icons-"], [class*=" core-icons-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'core-icons' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.core-icons-engineer:before {
+  content: "\e900";
+}
+.core-icons-idea:before {
+  content: "\e901";
+}
+.core-icons-building:before {
+  content: "\e902";
+}
+.core-icons-houses:before {
+  content: "\e903";
+}
+.core-icons-architect:before {
+  content: "\e904";
+}
+.core-icons-house-sketch:before {
+  content: "\e905";
+}
+.core-icons-brokerage:before {
+  content: "\e906";
+}
+.core-icons-statue:before {
+  content: "\e907";
+}
+.core-icons-buildings:before {
+  content: "\e908";
+}
+.core-icons-calculation:before {
+  content: "\e909";
+}
+.core-icons-church:before {
+  content: "\e90a";
+}
+.core-icons-company:before {
+  content: "\e90b";
+}
+.core-icons-construction:before {
+  content: "\e90c";
+}
+.core-icons-house-design:before {
+  content: "\e90d";
+}
+.core-icons-engineers:before {
+  content: "\e90e";
+}
+.core-icons-factory:before {
+  content: "\e90f";
+}
+.core-icons-hospital:before {
+  content: "\e910";
+}
+.core-icons-hotel:before {
+  content: "\e911";
+}
+.core-icons-house-plan:before {
+  content: "\e912";
+}
+.core-icons-model:before {
+  content: "\e913";
+}
+.core-icons-park:before {
+  content: "\e914";
+}
+.core-icons-resort:before {
+  content: "\e915";
+}
+.core-icons-road:before {
+  content: "\e916";
+}
+.core-icons-school:before {
+  content: "\e917";
+}
+.core-icons-draft:before {
+  content: "\e918";
+}
+.core-icons-smarthome:before {
+  content: "\e919";
+}
+.core-icons-christ-the-redeemer:before {
+  content: "\e91a";
+}
+.core-icons-structure:before {
+  content: "\e91b";
+}
+.core-icons-temple:before {
+  content: "\e91c";
+}
+.core-icons-stationery:before {
+  content: "\e91d";
+}
+.core-icons-back:before {
+  content: "\e91e";
+}
+.core-icons-down-arrow:before {
+  content: "\e91f";
+}
+.core-icons-menu:before {
+  content: "\e920";
+}
+.core-icons-right-arrow:before {
+  content: "\e921";
+}
+.core-icons-cancel:before {
+  content: "\e922";
+}
+.core-icons-cross:before {
+  content: "\e923";
+}
+.core-icons-ios-search:before {
+  content: "\ea08";
+}

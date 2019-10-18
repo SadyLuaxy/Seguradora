@@ -6,8 +6,8 @@ $(function () {
   $('#date-demo1').formatter({
     'pattern': '{{9999}}-{{99}}-{{99}}',
   });
-  $('#date-demo2').formatter({
-    'pattern': '{{9999}}/{{99}}/{{99}}',
+  $('#data').formatter({
+    'pattern': '{{99}}/{{99}}/{{9999}}',
   });
   $('#time-demo').formatter({
     'pattern': '{{99}}:{{99}}',

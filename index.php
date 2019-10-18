@@ -7,6 +7,7 @@
 	use \Seguradora\PageAdmin;
 	use \Seguradora\Model\User;
 	use \Seguradora\Model\Clientes;
+	use \Seguradora\Model\Parcial;
 	
 
 	$app = new \Slim\Slim();
@@ -37,6 +38,9 @@
 	});
 
 	$app->get('/usuario/login', function(){
+
+		
+		User::verifyLogado();
 
 		$page = new PageAdmin();
 		$page->setTpl("user-login");
@@ -70,6 +74,7 @@
 	$app->post('/usuario/novo', function(){
 		//var_dump($_POST);
 
+
 		$user = new User();
 		$user->setDados($_POST);
 		$user->salvar();
@@ -81,13 +86,53 @@
 
 		User::verifyLogin();
 		$clientes = Clientes::listAll();
+		$conta = count($clientes);
+		
 		$page = new PageAdmin();
 		$page->setTpl("app-clientes", array(
-			"clientes"=>$clientes
+			"clientes"=>$clientes,
+			"contagem"=>$conta
 		));
+	});
+
+	$app->get('/admin/clientes/novo', function(){
+
+		User::verifyLogin();
+		$bairros = Parcial::bairrosList();
+		$page = new PageAdmin();
+		$page->setTpl("app-clientes-novo", array(
+			"bairros"=>$bairros
+		));
+	});
+	
+	$app->get('/admin/clientes/:id_funcionario/apagar', function($id_funcionario){
+
+		User::verifyLogin();
 
 
 	});
+
+	$app->post('/admin/clientes/editar', function($id_funcionario){
+
+		User::verifyLogin();
+		
+
+	});
+
+	$app->post('/admin/clientes/novo', function(){
+
+		User::verifyLogin();
+
+		$clientes = new Clientes();
+		$clientes->setDados($_POST);
+		$clientes->cadastrar();
+		header("Location: /admin/clientes");
+		exit;
+
+
+	});
+
+	
 
 	$app->run();
 

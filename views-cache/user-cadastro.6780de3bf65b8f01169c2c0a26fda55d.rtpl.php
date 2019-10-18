@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<?php if(!class_exists('Rain\Tpl')){exit;}?><!DOCTYPE html>
 <html class="loading" lang="en" data-textdirection="ltr">
   <!-- Início: Head-->
   <head>

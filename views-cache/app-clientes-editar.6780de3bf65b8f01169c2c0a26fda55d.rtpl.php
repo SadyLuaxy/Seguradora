@@ -196,22 +196,22 @@
               <div class="card-title">
                 <div class="row">
                   <div class="col s12 m6 l10">
-                    <h4 class="card-title">Cadastrar novo cliente</h4>
+                    <h4 class="card-title">Editar cliente</h4>
                   </div>
                   <div class="col s12 m6 l2">
                   </div>
                 </div>
               </div>
               <div id="html-view-validations">
-                <form class="formValidate0" id="formValidate0" method="post" action="/admin/clientes/novo">
+                <form class="formValidate0" id="formValidate0" method="post" action="/admin/clientes/editar/<?php echo htmlspecialchars( $clientes["id_cliente"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
                   <div class="row">
                     <div class="input-field col s12">
-                      <label for="uname0">Nome completo*</label>
-                      <input class="validate" required aria-required="true" id="nome0" name="nome_cliente" type="text">
+                      <label for="uname0">Nome completo</label>
+                      <input class="validate" required aria-required="true" value="<?php echo htmlspecialchars( $clientes["nome_cliente"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" id="nome0" name="nome_cliente" type="text">
                     </div>
                     <div class="input-field m6 col s12">
                         <select class="error validate" id="sexo" name="sexo" aria-required="true" required>
-                            <option value="" aria-required="true" disabled selected>Sexo</option>
+                            <option value="<?php echo htmlspecialchars( $clientes["sexo"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" aria-required="true" selected><?php echo htmlspecialchars( $clientes["sexo"], ENT_COMPAT, 'UTF-8', FALSE ); ?></option>
                             <option value="Masculino">Masculino</option>
                             <option value="Feminino">Feminino</option>
                           </select>
@@ -219,55 +219,55 @@
                     </div>
                     <div class="input-field m6 col s12">
                         <select class="error validate" id="estado_civil" name="estado_civil" aria-required="true" required>
-                            <option value="" required aria-required="true" disabled selected>Estado civil</option>
+                            <option value="<?php echo htmlspecialchars( $clientes["estado_civil"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" required aria-required="true" selected><?php echo htmlspecialchars( $clientes["estado_civil"], ENT_COMPAT, 'UTF-8', FALSE ); ?></option>
                             <option value="Solteiro">Solteiro</option>
                             <option value="Casado">Casado</option>
                           </select>
-                          <label>Estao civil</label>
+                          <label>Estado civil</label>
                     </div>
                     <div class="input-field col s12">
                         <textarea id="descricao" name="desc_cliente" class="materialize-textarea validate" aria-required="true"
-                        required></textarea>
-                      <label for="descricao">Descrição*</label>
+                        required><?php echo htmlspecialchars( $clientes["desc_cliente"], ENT_COMPAT, 'UTF-8', FALSE ); ?></textarea>
+                      <label for="descricao">Descrição</label>
                     </div>
                     <div class="input-field m6 col s12">
-                        <input placeholder="01/01/2019" id="data" type="text" class="" name="data_nascimento">
+                        <input placeholder="01/01/2019" id="data" type="text" class="" name="data_nascimento" value="<?php echo htmlspecialchars( $clientes["data_nascimento"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
                         <label for="date-demo1">Data de nascimento</label>
                     </div>
                     <div class="input-field m6 col s12">
-                      <label for="rua">Rua *</label>
-                      <input class="validate" required aria-required="true" id="rua" type="text" name="nome_rua">
+                      <label for="rua">Rua</label>
+                      <input class="validate" required aria-required="true" id="rua" type="text" name="nome_rua" value="<?php echo htmlspecialchars( $clientes["nome_rua"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
                     </div>
                     <div class="input-field m6 col s12">
                         <label for="n_rua">Nº Rua</label>
-                        <input type="number" name="n_rua" id="n_rua">
+                        <input type="number" name="n_rua" id="n_rua" value="<?php echo htmlspecialchars( $clientes["n_rua"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
                     </div>
                         
                     <div class="input-field m6 col s12">
                         <label for="bairro"></label>
                         <select class="error validate" id="bairro" name="bairro" aria-required="true" required>
-                            <option value="" disabled selected>Escolha o bairro</option>
+                            <option value="<?php echo htmlspecialchars( $clientes["id_bairro"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" selected><?php echo htmlspecialchars( $clientes["nome_bairro"], ENT_COMPAT, 'UTF-8', FALSE ); ?></option>
                             <?php $counter1=-1;  if( isset($bairros) && ( is_array($bairros) || $bairros instanceof Traversable ) && sizeof($bairros) ) foreach( $bairros as $key1 => $value1 ){ $counter1++; ?>
-                            <option value="<?php echo htmlspecialchars( $value1["id_bairro"], ENT_COMPAT, 'UTF-8', FALSE ); ?>"><?php echo htmlspecialchars( $value1["nome_bairro"], ENT_COMPAT, 'UTF-8', FALSE ); ?></option>
+                            <option value="<?php echo htmlspecialchars( $clientes["id_bairro"], ENT_COMPAT, 'UTF-8', FALSE ); ?>"><?php echo htmlspecialchars( $clientes["nome_bairro"], ENT_COMPAT, 'UTF-8', FALSE ); ?></option>
                             <?php } ?>
                         </select>
                     </div>
                     <div class="input-field m6 col s12">
-                        <label for="telefone"> Telefone *</label>
-                        <input class="validate" required aria-required="true" id="telefone" type="number" name="telefone">
+                        <label for="telefone"> Telefone</label>
+                        <input class="validate" required aria-required="true" id="telefone" type="number" name="telefone" value="<?php echo htmlspecialchars( $clientes["telefone"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
                     </div>
                     <div class="input-field m6 col s12">
-                        <label for="email"> Email *</label>
-                        <input class="validate" required aria-required="true" id="email" type="email" name="email">
+                        <label for="email"> Email</label>
+                        <input class="validate" required aria-required="true" id="email" type="email" name="email" value="<?php echo htmlspecialchars( $clientes["email"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
                     </div>
                     <div class="input-field m6 col s12">
                         <label for="fax"> FAX</label>
-                        <input id="fax" type="text" name="fax">
+                        <input id="fax" type="text" name="fax" value="<?php echo htmlspecialchars( $clientes["fax"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
                      </div>
                     </div>
                     <div class="input-field col s12">
-                      <button class="btn waves-effect waves-light right" type="submit">Cadastrar
-                        <i class="material-icons right">person_add</i>
+                      <button class="btn waves-effect waves-light right" type="submit">Editar
+                        <i class="material-icons right">update</i>
                       </button>
                     </div>
                   </div>

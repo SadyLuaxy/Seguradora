@@ -169,109 +169,13 @@
         <div class="content-wrapper-before gradient-45deg-indigo-purple"></div>
         <div class="col s12">
           <div class="container">
-            <!-- Add new contact popup -->
-            <div style="bottom: 54px; right: 19px;" class="fixed-action-btn direction-top">
-              <a class="btn-floating btn-large primary-text gradient-shadow modal-trigger" href="#modal1">
-                <i class="material-icons">person_add</i>
-              </a>
-            </div>
-            <!-- Add new contact popup Ends-->
+              <div style="bottom: 54px; right: 19px;" class="fixed-action-btn direction-top">
+                <a class="btn-floating btn-large primary-text gradient-shadow modal-trigger" href="/admin/clientes/novo">
+                  <i class="material-icons">person_add</i>
+                </a>
+              </div>
 
-<!-- Modal Structure -->
-<div id="modal1" class="modal border-radius-6">
-  <div class="modal-content">
-    <h5 class="mt-0">Adicionar cliente</h5>
-    <hr>
-    <div class="row">
-        <form class="col s12" method="post" href="/admin/clientes">
-          <div class="row">
-            <div class="input-field col s12">
-              <i class="material-icons prefix"> perm_identity </i>
-              <input id="first_required name" type="text" class="validate" required name="nome">
-              <label for="first_required name">Nome</label>
-            </div>
-            <div class="input-field col m6 s12">
-              <i class="material-icons prefix">wc</i>
-                <select class="validate" required name="sexo">
-                  <option value="" disabled selected>Sexo</option>
-                  <option value="Masculino">Masculino</option>
-                  <option value="Feminino">Feminino</option>
-                </select>
-                <label>Sexo</label>
-            </div>
-            <div class="input-field col m6 s12">
-                <i class="material-icons prefix">people</i>
-                  <select class="validate" required name="estado">
-                    <option value="" disabled selected>Estado civil</option>
-                    <option value="Solteiro">Solteiro</option>
-                    <option value="Casado">Casado</option>
-                  </select>
-                  <label>Estado civil</label>
-              </div>
-          </div>
-          <div class="row">
-            <div class="input-field col m6 s12">
-                <i class="material-icons prefix"> date_range </i>
-                <input id="nascimento" type="date" class="validate" required name="nascimento">
-                <label for="nascimento">Data de nascimento</label>
-            </div>
-            
-            <div class="input-field col m6 s12">
-              <i class="material-icons prefix"> call </i>
-              <input id="telefone" type="number" class="validate" required name="telefone">
-              <label for="telefone">Telefone</label>
-            </div>
-            
-          </div>
-          <div class="row">
-            <div class="input-field col m12 s12">
-              <i class="material-icons prefix">note</i>
-                <textarea id="descricao" class="materialize-textarea validate" required name="descricao"></textarea>
-                <label for="descricao">Descrição</label>
-            </div>
-          </div>
-          <div class="row">
-              <div class="input-field col m4 s12">
-                  <i class="material-icons prefix"> mode_edit </i>
-                  <input id="rua" type="text" class="validate" required name="rua">
-                  <label for="rua">Rua</label>
-              </div>
-              <div class="input-field col m4 s12">
-                  <i class="material-icons prefix"> mode_edit </i>
-                  <input id="nrua" type="number" class="validate" required name="n_rua">
-                  <label for="nrua">Nº Rua</label>
-              </div>
-              <div class="input-field col m4 s12">
-                  <i class="material-icons prefix"> mode_edit </i>
-                  <input id="bairro" type="text" class="validate" required name="bairro">
-                  <label for="bairro">Bairro</label>
-              </div>
-          </div>
-          <div class="row">
-              <div class="input-field col m6 s12">
-                  <i class="material-icons prefix"> domain </i>
-                  <input id="cidade" type="text" class="validate" required name="cidade">
-                  <label for="cidade">Cidade</label>
-              </div>
-              <div class="input-field col m6 s12">
-                  <i class="material-icons prefix">mode_edit</i>
-                    <select class="validate" required name="provincia">
-                      <option value="" disabled selected>Selecione a provincia</option>
-                      {loop="$provincias"}
-                        <option value="{$value.id_provincia}">{$value.nome_provincia}</option>
-                      {/loop}
-                    </select>
-                    <label>Estado civil</label>
-              </div>
-          </div>
-          <div class="modal-footer" >
-            <input type="submit" class="btn waves-effect waves-light mr-2" value="Adicionar">
-          </div>
-        </form>
-    </div>
-  </div>
-</div>
-<!-- Modal Structure Ends -->
+            <!-- Add new contact popup Ends-->
 
 <!-- Sidebar Area Starts -->
 <div class="sidebar-left sidebar-fixed">
@@ -324,13 +228,13 @@
                     <td>{$value1.telefone}</td>
                     <td>
                       <a class="btn-floating btn-small btn-small waves-effect waves-light blue modal-trigger btn tooltipped" data-position="top" data-tooltip="Ver mais" href="#outrasinfo{$value.id_cliente}"><i class="material-icons">info_outline</i></a>
-                      <a class="btn-floating btn-small btn-small waves-effect waves-light orange modal-trigger btn tooltipped" data-position="top" data-tooltip="Editar" href="#editar{$value.id_cliente}"><i class="material-icons">edit</i></a>
-                      <a class="btn-floating btn-small btn-small waves-effect waves-light red modal-trigger btn tooltipped" data-position="top" data-tooltip="Apagar" href="#apagar{$value.id_cliente}"><i class="material-icons">delete</i></a>
+                      <a class="btn-floating btn-small btn-small waves-effect waves-light orange modal-trigger btn tooltipped" data-position="top" data-tooltip="Editar" href="/admin/clientes/editar/{$value.id_cliente}"><i class="material-icons">edit</i></a>
+                      <a class="btn-floating btn-small btn-small waves-effect waves-light red modal-trigger btn tooltipped" onclick="return confirm('Deseja realmente excluir esse cliente?')" data-position="top" data-tooltip="Excluir" href="/admin/clientes/deletar/{$value.id_cliente}"><i class="material-icons">delete</i></a>
                     </td>
                   </tr>
 
                   <!-- Modal De Informações Adicionais -->
-                  <div id="outrasinfo{$value.id_cliente}" class="modal modal-normal border-radius-6" style="width:45% !important;">
+                  <div id="outrasinfo{$value.id_cliente}" class="modal border-radius-6" style="width:45% !important;">
                     <div class="modal-content ">
                       <h5 class="mt-0">Informações adicionais</h5>
                       <hr>
@@ -400,20 +304,20 @@
                             <li class="collection-item dismissable">
                                 <div>
                                   <span style="font-weight: bold;color:black">
-                                    Rua
+                                    Pais
                                   </span>
                                       <p  class="secondary-content" style="color: black;">
-                                          {$value.nome_rua}
+                                          {$value.nome_pais}
                                       </p>
                                 </div>
                             </li>
                             <li class="collection-item dismissable">
                                 <div>
                                   <span style="font-weight: bold;color:black">
-                                    Bairro
+                                    Provincia
                                   </span>
                                       <p  class="secondary-content" style="color: black;">
-                                          {$value.nome_bairro}
+                                          {$value.nome_provincia}
                                       </p>
                                 </div>
                             </li>
@@ -430,148 +334,69 @@
                             <li class="collection-item dismissable">
                               <div>
                                 <span style="font-weight: bold;color:black">
-                                  Provincia
+                                  Bairro
                                 </span>
                                     <p  class="secondary-content" style="color: black;">
-                                        {$value.nome_municipio}
+                                        {$value.nome_bairro}
                                     </p>
                               </div>
-                          </li>
+                            </li>
                             <li class="collection-item dismissable">
                                 <div>
                                   <span style="font-weight: bold;color:black">
-                                    Província
+                                    Rua
                                   </span>
                                       <p  class="secondary-content" style="color: black;">
-                                          {$value.nome_provincia}
+                                          {$value.nome_rua}
                                       </p>
                                 </div>
                             </li>
-
+                            <li class="collection-item dismissable">
+                                <div>
+                                  <span style="font-weight: bold;color:black">
+                                    Nº Rua
+                                  </span>
+                                      <p  class="secondary-content" style="color: black;">
+                                          {if="$value.n_rua>0"}{$value.n_rua}{else}N/Digitado{/if}
+                                      </p>
+                                </div>
+                            </li>
+                            <li class="collection-item dismissable">
+                                <div>
+                                  <span style="font-weight: bold;color:black">
+                                    Telefone
+                                  </span>
+                                      <p  class="secondary-content" style="color: black;">
+                                          {$value.telefone}
+                                      </p>
+                                </div>
+                            </li>
+                            <li class="collection-item dismissable">
+                                <div>
+                                  <span style="font-weight: bold;color:black">
+                                    Email
+                                  </span>
+                                      <p  class="secondary-content" style="color: black;">
+                                          {$value.email}
+                                      </p>
+                                </div>
+                            </li>
+                            <li class="collection-item dismissable">
+                                <div>
+                                  <span style="font-weight: bold;color:black">
+                                    Fax
+                                  </span>
+                                      <p  class="secondary-content" style="color: black;">
+                                          {$value.fax}
+                                      </p>
+                                </div>
+                            </li>
                         </ul>
 
                       </div>
                     </div>
                   </div>
                   <!-- Modal De Informações Adicionais -->
-  
-                  <!-- Modal De Editar Informações -->
-                  <div id="editar{$value.id_cliente}" class="modal border-radius-6">
-                    <div class="modal-content">
-                      <h5 class="mt-0">Editar dados do cliente</h5>
-                      <hr>
-                      <div class="row">
-                        <form class="col s12" method="post" href="/admin/clientes/{$value.id_cliente}/editar">
-                          <div class="row">
-                            <div class="input-field col s12">
-                              <i class="material-icons prefix"> perm_identity </i>
-                              <input id="first_required name" type="text" class="validate" value="{$value.nome_cliente}" required name="nome">
-                              <label for="first_required name">Nome</label>
-                            </div>
-                            <div class="input-field col m6 s12">
-                              <i class="material-icons prefix">wc</i>
-                                <select class="validate" required name="sexo">
-                                  <option value="{$value.sexo}" disabled selected>{$value.sexo}</option>
-                                  <option value="Masculino">Masculino</option>
-                                  <option value="Feminino">Feminino</option>
-                                </select>
-                                <label>Sexo</label>
-                            </div>
-                            <div class="input-field col m6 s12">
-                                <i class="material-icons prefix">people</i>
-                                  <select class="validate" required name="estado">
-                                    <option value="{$value.estado_civil}" disabled selected>{$value.estado_civil}</option>
-                                    <option value="Masculino">Solteiro</option>
-                                    <option value="Feminino">Casado</option>
-                                  </select>
-                                  <label>Estado civil</label>
-                              </div>
-                          </div>
-                          <div class="row">
-                            <div class="input-field col m6 s12">
-                                <i class="material-icons prefix"> date_range </i>
-                                <input id="nascimento" type="date" class="validate" value="{$value.data_nascimento}" required name="nascimento">
-                                <label for="nascimento">Data de nascimento</label>
-                            </div>
-                            
-                            <div class="input-field col m6 s12">
-                                <i class="material-icons prefix"> date_range </i>
-                                <input id="data_inicio" type="date" class="validate" value="{$value.data_inicio}" required name="nascimento">
-                                <label for="data_inicio">Data de Início</label>
-                              </div>
-                          </div>
-                          <div class="row">
-                            <div class="input-field col m6 s12">
-                              <i class="material-icons prefix">note</i>
-                                <textarea id="descricao" class="materialize-textarea validate" required name="descricao">{$value.desc_cliente}</textarea>
-                                <label for="descricao">Descrição</label>
-                            </div>
-                            <div class="input-field col m6 s12">
-                              <i class="material-icons prefix"> call </i>
-                              <input id="telefone" type="number" class="validate" required name="telefone" value="{$value.telefone}">
-                              <label for="telefone">Telefone</label>
-                            </div>
-                          </div>
-                          <div class="row">
-                              <div class="input-field col m4 s12">
-                                  <i class="material-icons prefix"> mode_edit </i>
-                                  <input id="rua" type="text" class="validate" required name="rua" value="{$value.nome_rua}">
-                                  <label for="rua">Rua</label>
-                              </div>
-                              <div class="input-field col m4 s12">
-                                  <i class="material-icons prefix"> mode_edit </i>
-                                  <input id="nrua" type="number" class="validate" required name="n_rua" value="{$value.n_rua}">
-                                  <label for="nrua">Nº Rua</label>
-                              </div>
-                              <div class="input-field col m4 s12">
-                                  <i class="material-icons prefix"> mode_edit </i>
-                                  <input id="bairro" type="text" class="validate" required name="bairro" value="{$value.nome_bairro}">
-                                  <label for="bairro">Bairro</label>
-                              </div>
-                          </div>
-                          <div class="row">
-                              <div class="input-field col m6 s12">
-                                  <i class="material-icons prefix"> domain </i>
-                                  <input id="cidade" type="text" class="validate" required name="cidade" value="">
-                                  <label for="cidade">Cidade</label>
-                              </div>
-                              <div class="input-field col m6 s12">
-                                  <i class="material-icons prefix"> mode_edit </i>
-                                  <input id="provincia" type="text" class="validate" required name="provincia" value="{$value.nome_provincia}">
-                                  <label for="provincia">Provincia</label>
-                              </div>
-                          </div>
-                      </div>
-                    </div>
-                    <div class="modal-footer">
-                      <a class="btn modal-close waves-effect waves-light mr-2">Editar</a>
-                    </div>
-                  </form>
-                  </div>
-                  <!-- Modal De Editar Informações -->
-
-                  <!-- Modal De Confirmação de deleção -->
-                  <div id="apagar{$value.id_cliente}" class="modal modal-danger modal-normal border-radius-6 deep-orange" style="width:36% !important;">
-                      <div class="modal-content">
-                        <h5 class="mt-0" style="color:#ffffff">Tem certeza de que pretende eliminar o cliente:</h5>
-                        <hr>
-                        <div class="row">
-                          <!-- Dados -->
-
-                          <h6 style="padding-left: 10px;color:#ffffff">{$value.nome_cliente}?</h6>
-  
-                        </div>
-                        <div class="row" style="padding-top: 10px;">
-                            <div class="modal-footer col m6 s12"  style="background-color: #ff5722 !important;">
-                                <a class="btn modal-close waves-effect  mr-2 red">Não</a>
-                            </div>
-                            <div class="modal-footer col m6 s12"  style="background-color: #ff5722 !important;">
-                                  <a class="btn waves-effect  mr-2 green" href="/admin/funcionario/{$value.id_cliente}/apagar">Eliminar</a>
-                            </div>
-                        </div>
-                      </div>
-                    </div>
-                    <!-- Modal De Confirmação de deleção -->
 
                   {/loop}
                 </tbody>

@@ -11,7 +11,8 @@
     "minimum-stability": "dev",
     "require": {
         "slim/slim":"2.0",
-        "rain/raintpl":"3.0.0"
+        "rain/raintpl":"3.0.0",
+        "mpdf/mpdf":"8.0.2"
     },
     "autoload": {
         "psr-4": {

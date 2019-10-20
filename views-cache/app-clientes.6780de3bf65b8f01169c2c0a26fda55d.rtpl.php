@@ -170,111 +170,13 @@
         <div class="content-wrapper-before gradient-45deg-indigo-purple"></div>
         <div class="col s12">
           <div class="container">
-            <!-- Add new contact popup -->
-            <div style="bottom: 54px; right: 19px;" class="fixed-action-btn direction-top">
-              <a class="btn-floating btn-large primary-text gradient-shadow modal-trigger" href="#modal1">
-                <i class="material-icons">person_add</i>
-              </a>
-            </div>
+              <div style="bottom: 54px; right: 19px;" class="fixed-action-btn direction-top">
+                <a class="btn-floating btn-large primary-text gradient-shadow modal-trigger" href="/admin/clientes/novo">
+                  <i class="material-icons">person_add</i>
+                </a>
+              </div>
+
             <!-- Add new contact popup Ends-->
-
-<!-- Modal Structure -->
-<div id="modal1" class="modal border-radius-6">
-  <div class="modal-content">
-    <h5 class="mt-0">Adicionar cliente</h5>
-    <hr>
-    <div class="row">
-        <form class="col s12" method="post" href="/admin/clientes">
-          <div class="row">
-            <div class="input-field col s12">
-              <i class="material-icons prefix"> perm_identity </i>
-              <input id="first_required name" type="text" class="validate" required name="nome">
-              <label for="first_required name">Nome</label>
-            </div>
-            <div class="input-field col m6 s12">
-              <i class="material-icons prefix">wc</i>
-                <select class="validate" required name="sexo">
-                  <option value="" disabled selected>Sexo</option>
-                  <option value="Masculino">Masculino</option>
-                  <option value="Feminino">Feminino</option>
-                </select>
-                <label>Sexo</label>
-            </div>
-            <div class="input-field col m6 s12">
-                <i class="material-icons prefix">people</i>
-                  <select class="validate" required name="estado">
-                    <option value="" disabled selected>Estado civil</option>
-                    <option value="Solteiro">Solteiro</option>
-                    <option value="Casado">Casado</option>
-                  </select>
-                  <label>Estado civil</label>
-              </div>
-          </div>
-          <div class="row">
-            <div class="input-field col m6 s12">
-                <i class="material-icons prefix"> date_range </i>
-                <input id="nascimento" type="date" class="validate" required name="nascimento">
-                <label for="nascimento">Data de nascimento</label>
-            </div>
-            
-            <div class="input-field col m6 s12">
-              <i class="material-icons prefix"> call </i>
-              <input id="telefone" type="number" class="validate" required name="telefone">
-              <label for="telefone">Telefone</label>
-            </div>
-            
-          </div>
-          <div class="row">
-            <div class="input-field col m12 s12">
-              <i class="material-icons prefix">note</i>
-                <textarea id="descricao" class="materialize-textarea validate" required name="descricao"></textarea>
-                <label for="descricao">Descrição</label>
-            </div>
-          </div>
-          <div class="row">
-              <div class="input-field col m4 s12">
-                  <i class="material-icons prefix"> mode_edit </i>
-                  <input id="rua" type="text" class="validate" required name="rua">
-                  <label for="rua">Rua</label>
-              </div>
-              <div class="input-field col m4 s12">
-                  <i class="material-icons prefix"> mode_edit </i>
-                  <input id="nrua" type="number" class="validate" required name="n_rua">
-                  <label for="nrua">Nº Rua</label>
-              </div>
-              <div class="input-field col m4 s12">
-                  <i class="material-icons prefix"> mode_edit </i>
-                  <input id="bairro" type="text" class="validate" required name="bairro">
-                  <label for="bairro">Bairro</label>
-              </div>
-          </div>
-          <div class="row">
-              <div class="input-field col m6 s12">
-                  <i class="material-icons prefix"> domain </i>
-                  <input id="cidade" type="text" class="validate" required name="cidade">
-                  <label for="cidade">Cidade</label>
-              </div>
-              <div class="input-field col m6 s12">
-                  <i class="material-icons prefix">mode_edit</i>
-                    <select class="validate" required name="provincia">
-                      <option value="" disabled selected>Selecione a provincia</option>
-                      <?php $counter1=-1;  if( isset($provincias) && ( is_array($provincias) || $provincias instanceof Traversable ) && sizeof($provincias) ) foreach( $provincias as $key1 => $value1 ){ $counter1++; ?>
-
-                        <option value="<?php echo htmlspecialchars( $value1["id_provincia"], ENT_COMPAT, 'UTF-8', FALSE ); ?>"><?php echo htmlspecialchars( $value1["nome_provincia"], ENT_COMPAT, 'UTF-8', FALSE ); ?></option>
-                      <?php } ?>
-
-                    </select>
-                    <label>Estado civil</label>
-              </div>
-          </div>
-          <div class="modal-footer" >
-            <input type="submit" class="btn waves-effect waves-light mr-2" value="Adicionar">
-          </div>
-        </form>
-    </div>
-  </div>
-</div>
-<!-- Modal Structure Ends -->
 
 <!-- Sidebar Area Starts -->
 <div class="sidebar-left sidebar-fixed">
@@ -328,13 +230,13 @@
                     <td><?php echo htmlspecialchars( $value1["telefone"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
                     <td>
                       <a class="btn-floating btn-small btn-small waves-effect waves-light blue modal-trigger btn tooltipped" data-position="top" data-tooltip="Ver mais" href="#outrasinfo<?php echo htmlspecialchars( $value1["id_cliente"], ENT_COMPAT, 'UTF-8', FALSE ); ?>"><i class="material-icons">info_outline</i></a>
-                      <a class="btn-floating btn-small btn-small waves-effect waves-light orange modal-trigger btn tooltipped" data-position="top" data-tooltip="Editar" href="#editar<?php echo htmlspecialchars( $value1["id_cliente"], ENT_COMPAT, 'UTF-8', FALSE ); ?>"><i class="material-icons">edit</i></a>
-                      <a class="btn-floating btn-small btn-small waves-effect waves-light red modal-trigger btn tooltipped" data-position="top" data-tooltip="Apagar" href="#apagar<?php echo htmlspecialchars( $value1["id_cliente"], ENT_COMPAT, 'UTF-8', FALSE ); ?>"><i class="material-icons">delete</i></a>
+                      <a class="btn-floating btn-small btn-small waves-effect waves-light orange modal-trigger btn tooltipped" data-position="top" data-tooltip="Editar" href="/admin/clientes/editar/<?php echo htmlspecialchars( $value1["id_cliente"], ENT_COMPAT, 'UTF-8', FALSE ); ?>"><i class="material-icons">edit</i></a>
+                      <a class="btn-floating btn-small btn-small waves-effect waves-light red modal-trigger btn tooltipped" onclick="return confirm('Deseja realmente excluir esse cliente?')" data-position="top" data-tooltip="Excluir" href="/admin/clientes/deletar/<?php echo htmlspecialchars( $value1["id_cliente"], ENT_COMPAT, 'UTF-8', FALSE ); ?>"><i class="material-icons">delete</i></a>
                     </td>
                   </tr>
 
                   <!-- Modal De Informações Adicionais -->
-                  <div id="outrasinfo<?php echo htmlspecialchars( $value1["id_cliente"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" class="modal modal-normal border-radius-6" style="width:45% !important;">
+                  <div id="outrasinfo<?php echo htmlspecialchars( $value1["id_cliente"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" class="modal border-radius-6" style="width:45% !important;">
                     <div class="modal-content ">
                       <h5 class="mt-0">Informações adicionais</h5>
                       <hr>
@@ -410,10 +312,10 @@
                             <li class="collection-item dismissable">
                                 <div>
                                   <span style="font-weight: bold;color:black">
-                                    Rua
+                                    Pais
                                   </span>
                                       <p  class="secondary-content" style="color: black;">
-                                          <?php echo htmlspecialchars( $value1["nome_rua"], ENT_COMPAT, 'UTF-8', FALSE ); ?>
+                                          <?php echo htmlspecialchars( $value1["nome_pais"], ENT_COMPAT, 'UTF-8', FALSE ); ?>
 
                                       </p>
                                 </div>
@@ -421,10 +323,10 @@
                             <li class="collection-item dismissable">
                                 <div>
                                   <span style="font-weight: bold;color:black">
-                                    Bairro
+                                    Provincia
                                   </span>
                                       <p  class="secondary-content" style="color: black;">
-                                          <?php echo htmlspecialchars( $value1["nome_bairro"], ENT_COMPAT, 'UTF-8', FALSE ); ?>
+                                          <?php echo htmlspecialchars( $value1["nome_provincia"], ENT_COMPAT, 'UTF-8', FALSE ); ?>
 
                                       </p>
                                 </div>
@@ -443,150 +345,75 @@
                             <li class="collection-item dismissable">
                               <div>
                                 <span style="font-weight: bold;color:black">
-                                  Provincia
+                                  Bairro
                                 </span>
                                     <p  class="secondary-content" style="color: black;">
-                                        <?php echo htmlspecialchars( $value1["nome_municipio"], ENT_COMPAT, 'UTF-8', FALSE ); ?>
+                                        <?php echo htmlspecialchars( $value1["nome_bairro"], ENT_COMPAT, 'UTF-8', FALSE ); ?>
 
                                     </p>
                               </div>
-                          </li>
+                            </li>
                             <li class="collection-item dismissable">
                                 <div>
                                   <span style="font-weight: bold;color:black">
-                                    Província
+                                    Rua
                                   </span>
                                       <p  class="secondary-content" style="color: black;">
-                                          <?php echo htmlspecialchars( $value1["nome_provincia"], ENT_COMPAT, 'UTF-8', FALSE ); ?>
+                                          <?php echo htmlspecialchars( $value1["nome_rua"], ENT_COMPAT, 'UTF-8', FALSE ); ?>
 
                                       </p>
                                 </div>
                             </li>
+                            <li class="collection-item dismissable">
+                                <div>
+                                  <span style="font-weight: bold;color:black">
+                                    Nº Rua
+                                  </span>
+                                      <p  class="secondary-content" style="color: black;">
+                                          <?php if( $value1["n_rua"]>0 ){ ?><?php echo htmlspecialchars( $value1["n_rua"], ENT_COMPAT, 'UTF-8', FALSE ); ?><?php }else{ ?>N/Digitado<?php } ?>
 
+                                      </p>
+                                </div>
+                            </li>
+                            <li class="collection-item dismissable">
+                                <div>
+                                  <span style="font-weight: bold;color:black">
+                                    Telefone
+                                  </span>
+                                      <p  class="secondary-content" style="color: black;">
+                                          <?php echo htmlspecialchars( $value1["telefone"], ENT_COMPAT, 'UTF-8', FALSE ); ?>
+
+                                      </p>
+                                </div>
+                            </li>
+                            <li class="collection-item dismissable">
+                                <div>
+                                  <span style="font-weight: bold;color:black">
+                                    Email
+                                  </span>
+                                      <p  class="secondary-content" style="color: black;">
+                                          <?php echo htmlspecialchars( $value1["email"], ENT_COMPAT, 'UTF-8', FALSE ); ?>
+
+                                      </p>
+                                </div>
+                            </li>
+                            <li class="collection-item dismissable">
+                                <div>
+                                  <span style="font-weight: bold;color:black">
+                                    Fax
+                                  </span>
+                                      <p  class="secondary-content" style="color: black;">
+                                          <?php echo htmlspecialchars( $value1["fax"], ENT_COMPAT, 'UTF-8', FALSE ); ?>
+
+                                      </p>
+                                </div>
+                            </li>
                         </ul>
 
                       </div>
                     </div>
                   </div>
                   <!-- Modal De Informações Adicionais -->
-  
-                  <!-- Modal De Editar Informações -->
-                  <div id="editar<?php echo htmlspecialchars( $value1["id_cliente"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" class="modal border-radius-6">
-                    <div class="modal-content">
-                      <h5 class="mt-0">Editar dados do cliente</h5>
-                      <hr>
-                      <div class="row">
-                        <form class="col s12" method="post" href="/admin/clientes/<?php echo htmlspecialchars( $value1["id_cliente"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/editar">
-                          <div class="row">
-                            <div class="input-field col s12">
-                              <i class="material-icons prefix"> perm_identity </i>
-                              <input id="first_required name" type="text" class="validate" value="<?php echo htmlspecialchars( $value1["nome_cliente"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" required name="nome">
-                              <label for="first_required name">Nome</label>
-                            </div>
-                            <div class="input-field col m6 s12">
-                              <i class="material-icons prefix">wc</i>
-                                <select class="validate" required name="sexo">
-                                  <option value="<?php echo htmlspecialchars( $value1["sexo"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" disabled selected><?php echo htmlspecialchars( $value1["sexo"], ENT_COMPAT, 'UTF-8', FALSE ); ?></option>
-                                  <option value="Masculino">Masculino</option>
-                                  <option value="Feminino">Feminino</option>
-                                </select>
-                                <label>Sexo</label>
-                            </div>
-                            <div class="input-field col m6 s12">
-                                <i class="material-icons prefix">people</i>
-                                  <select class="validate" required name="estado">
-                                    <option value="<?php echo htmlspecialchars( $value1["estado_civil"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" disabled selected><?php echo htmlspecialchars( $value1["estado_civil"], ENT_COMPAT, 'UTF-8', FALSE ); ?></option>
-                                    <option value="Masculino">Solteiro</option>
-                                    <option value="Feminino">Casado</option>
-                                  </select>
-                                  <label>Estado civil</label>
-                              </div>
-                          </div>
-                          <div class="row">
-                            <div class="input-field col m6 s12">
-                                <i class="material-icons prefix"> date_range </i>
-                                <input id="nascimento" type="date" class="validate" value="<?php echo htmlspecialchars( $value1["data_nascimento"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" required name="nascimento">
-                                <label for="nascimento">Data de nascimento</label>
-                            </div>
-                            
-                            <div class="input-field col m6 s12">
-                                <i class="material-icons prefix"> date_range </i>
-                                <input id="data_inicio" type="date" class="validate" value="<?php echo htmlspecialchars( $value1["data_inicio"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" required name="nascimento">
-                                <label for="data_inicio">Data de Início</label>
-                              </div>
-                          </div>
-                          <div class="row">
-                            <div class="input-field col m6 s12">
-                              <i class="material-icons prefix">note</i>
-                                <textarea id="descricao" class="materialize-textarea validate" required name="descricao"><?php echo htmlspecialchars( $value1["desc_cliente"], ENT_COMPAT, 'UTF-8', FALSE ); ?></textarea>
-                                <label for="descricao">Descrição</label>
-                            </div>
-                            <div class="input-field col m6 s12">
-                              <i class="material-icons prefix"> call </i>
-                              <input id="telefone" type="number" class="validate" required name="telefone" value="<?php echo htmlspecialchars( $value1["telefone"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
-                              <label for="telefone">Telefone</label>
-                            </div>
-                          </div>
-                          <div class="row">
-                              <div class="input-field col m4 s12">
-                                  <i class="material-icons prefix"> mode_edit </i>
-                                  <input id="rua" type="text" class="validate" required name="rua" value="<?php echo htmlspecialchars( $value1["nome_rua"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
-                                  <label for="rua">Rua</label>
-                              </div>
-                              <div class="input-field col m4 s12">
-                                  <i class="material-icons prefix"> mode_edit </i>
-                                  <input id="nrua" type="number" class="validate" required name="n_rua" value="<?php echo htmlspecialchars( $value1["n_rua"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
-                                  <label for="nrua">Nº Rua</label>
-                              </div>
-                              <div class="input-field col m4 s12">
-                                  <i class="material-icons prefix"> mode_edit </i>
-                                  <input id="bairro" type="text" class="validate" required name="bairro" value="<?php echo htmlspecialchars( $value1["nome_bairro"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
-                                  <label for="bairro">Bairro</label>
-                              </div>
-                          </div>
-                          <div class="row">
-                              <div class="input-field col m6 s12">
-                                  <i class="material-icons prefix"> domain </i>
-                                  <input id="cidade" type="text" class="validate" required name="cidade" value="">
-                                  <label for="cidade">Cidade</label>
-                              </div>
-                              <div class="input-field col m6 s12">
-                                  <i class="material-icons prefix"> mode_edit </i>
-                                  <input id="provincia" type="text" class="validate" required name="provincia" value="<?php echo htmlspecialchars( $value1["nome_provincia"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
-                                  <label for="provincia">Provincia</label>
-                              </div>
-                          </div>
-                      </div>
-                    </div>
-                    <div class="modal-footer">
-                      <a class="btn modal-close waves-effect waves-light mr-2">Editar</a>
-                    </div>
-                  </form>
-                  </div>
-                  <!-- Modal De Editar Informações -->
-
-                  <!-- Modal De Confirmação de deleção -->
-                  <div id="apagar<?php echo htmlspecialchars( $value1["id_cliente"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" class="modal modal-danger modal-normal border-radius-6 deep-orange" style="width:36% !important;">
-                      <div class="modal-content">
-                        <h5 class="mt-0" style="color:#ffffff">Tem certeza de que pretende eliminar o cliente:</h5>
-                        <hr>
-                        <div class="row">
-                          <!-- Dados -->
-
-                          <h6 style="padding-left: 10px;color:#ffffff"><?php echo htmlspecialchars( $value1["nome_cliente"], ENT_COMPAT, 'UTF-8', FALSE ); ?>?</h6>
-  
-                        </div>
-                        <div class="row" style="padding-top: 10px;">
-                            <div class="modal-footer col m6 s12"  style="background-color: #ff5722 !important;">
-                                <a class="btn modal-close waves-effect  mr-2 red">Não</a>
-                            </div>
-                            <div class="modal-footer col m6 s12"  style="background-color: #ff5722 !important;">
-                                  <a class="btn waves-effect  mr-2 green" href="/admin/funcionario/<?php echo htmlspecialchars( $value1["id_cliente"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/apagar">Eliminar</a>
-                            </div>
-                        </div>
-                      </div>
-                    </div>
-                    <!-- Modal De Confirmação de deleção -->
 
                   <?php } ?>
 

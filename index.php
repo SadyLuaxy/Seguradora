@@ -88,6 +88,8 @@
 		$clientes = Clientes::listAll();
 		$conta = count($clientes);
 		
+		$imprimir = Clientes::imprimir();
+
 		$page = new PageAdmin();
 		$page->setTpl("app-clientes", array(
 			"clientes"=>$clientes,
@@ -104,19 +106,32 @@
 			"bairros"=>$bairros
 		));
 	});
-	
-	$app->get('/admin/clientes/:id_funcionario/apagar', function($id_funcionario){
+
+	$app->get('/admin/clientes/editar/:id_cliente', function($id_cliente){
 
 		User::verifyLogin();
+		$clientes = new Clientes();
+		$clientes->get((int)$id_cliente);
+		
+		$bairros = Parcial::bairrosList();
 
-
+		$page = new PageAdmin();
+		$page->setTpl("app-clientes-editar", array(
+			"clientes"=>$clientes->getValues(),
+			"bairros"=>$bairros
+		));
 	});
 
-	$app->post('/admin/clientes/editar', function($id_funcionario){
+	$app->get('/admin/clientes/deletar/:id_cliente', function($id_cliente){
 
 		User::verifyLogin();
-		
+		$cliente = new Clientes();
 
+		$cliente->get((int)$id_cliente);
+
+		$cliente->deletar();
+		header("Location: /admin/clientes");
+		exit;
 	});
 
 	$app->post('/admin/clientes/novo', function(){
@@ -132,7 +147,21 @@
 
 	});
 
-	
+	$app->post('/admin/clientes/editar/:id_cliente', function($id_cliente){
+
+		User::verifyLogin();
+		$clientes = new Clientes();
+		$clientes->get((int)$id_cliente);
+		$clientes->setDados($_POST);
+		$clientes->editar();
+		header("Location: /admin/clientes");
+		exit;
+	});
+
+	$app->get('/admin/despesas', function(){
+		$page = new PageAdmin();
+		$page->setTpl('app-despesas');
+	});
 
 	$app->run();
 

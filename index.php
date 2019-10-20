@@ -160,7 +160,7 @@
 
 	$app->get('/admin/despesas', function(){
 		$page = new PageAdmin();
-		$page->setTpl('app-despesas');
+		$page->setTpl("app-despesas");
 	});
 
 	$app->run();

@@ -129,35 +129,35 @@
     <!-- Início: SideNav-->
     <aside class="sidenav-main nav-expanded nav-lock nav-collapsible sidenav-light sidenav-active-square">
       <div class="brand-sidebar">
-        <h1 class="logo-wrapper"><a class="brand-logo darken-1" href="index.html"><span class="logo-text hide-on-med-and-down">Agência Seguros</span></a></h1>
+        <h1 class="logo-wrapper"><a class="brand-logo darken-1" href="/admin"><span class="logo-text hide-on-med-and-down">Agência Seguros</span></a></h1>
       </div>
       <ul class="sidenav sidenav-collapsible leftside-navigation collapsible sidenav-fixed menu-shadow" id="slide-out" data-menu="menu-navigation" data-collapsible="menu-accordion">
         <li class="bold">
-          <a class="waves-effect waves-cyan" href="#">
+          <a class="waves-effect waves-cyan" href="/admin">
             <i class="material-icons">home</i>
             <span class="menu-title">Início</span>
           </a>
         </li>
         <li class="navigation-header"><a class="navigation-header-text">Aplicação</a><i class="navigation-header-icon material-icons">more_horiz</i>
         </li>
-        <li class="bold"><a class="waves-effect waves-cyan" href="app-clientes.html"><i class="material-icons">group</i><span class="menu-title" data-i18n="">Clientes</span></a>
+        <li class="bold"><a class="waves-effect waves-cyan" href="/admin/clientes"><i class="material-icons">group</i><span class="menu-title" data-i18n="">Clientes</span></a>
         </li>
-        <li class="active bold"><a class="waves-effect waves-cyan active red" href="app-calendar.html"><i class="material-icons">money_off</i><span class="menu-title" data-i18n="">Despesas</span></a>
+        <li class="active bold"><a class="waves-effect waves-cyan active red" href="/admin/despesas"><i class="material-icons">money_off</i><span class="menu-title" data-i18n="">Despesas</span></a>
         </li>
-        <li class="bold"><a class="waves-effect waves-cyan " href="app-facturas.html"><i class="material-icons">chrome_reader_mode</i><span class="menu-title" data-i18n="">Facturamento</span></a>
+        <li class="bold"><a class="waves-effect waves-cyan " href="/admin/facturas"><i class="material-icons">chrome_reader_mode</i><span class="menu-title" data-i18n="">Facturamento</span></a>
         </li>
         <li class="bold"><a class="collapsible-header waves-effect waves-cyan " href="#"><i class="material-icons">add_shopping_cart</i><span class="menu-title" data-i18n="">Seguros</span></a>
           <div class="collapsible-body">
             <ul class="collapsible collapsible-sub" data-collapsible="accordion">
-              <li><a class="collapsible-body" href="app-seguro-auto.html" data-i18n=""><i class="material-icons">radio_button_unchecked</i><span>Automóvel</span></a>
-              <li><a class="collapsible-body" href="app-seguro-emp.html" data-i18n=""><i class="material-icons">radio_button_unchecked</i><span>Empresarial</span></a>
+              <li><a class="collapsible-body" href="/admin/seguros/automovel" data-i18n=""><i class="material-icons">radio_button_unchecked</i><span>Automóvel</span></a>
+              <li><a class="collapsible-body" href="/admin/seguros/empresarial" data-i18n=""><i class="material-icons">radio_button_unchecked</i><span>Empresarial</span></a>
               </li>
-              <li><a class="collapsible-body" href="app-seguro-vida.html" data-i18n=""><i class="material-icons">radio_button_unchecked</i><span>Vida</span></a>
+              <li><a class="collapsible-body" href="/admin/seguros/vida" data-i18n=""><i class="material-icons">radio_button_unchecked</i><span>Vida</span></a>
               </li>
             </ul>
           </div>
         </li>
-        <li class="bold"><a class="waves-effect waves-cyan " href="app-financeiro.html"><i class="material-icons">account_balance</i><span class="menu-title" data-i18n="">Resultado financeiro</span></a>
+        <li class="bold"><a class="waves-effect waves-cyan " href="/admin/relatorios/financeiros"><i class="material-icons">account_balance</i><span class="menu-title" data-i18n="">Resultado financeiro</span></a>
         </li>
       </ul>
       <div class="navigation-background"></div><a class="sidenav-trigger btn-sidenav-toggle btn-floating btn-medium waves-effect waves-light hide-on-large-only" href="#" data-target="slide-out"><i class="material-icons">menu</i></a>
@@ -170,69 +170,8 @@
         <div class="content-wrapper-before gradient-45deg-indigo-purple"></div>
         <div class="col s12">
           <div class="container">
-            <!-- Add new contact popup -->
-<div style="bottom: 54px; right: 19px;" class="fixed-action-btn direction-top">
-  <a class="btn-floating btn-large primary-text gradient-shadow modal-trigger" href="#modal1">
-    <i class="material-icons">add</i>
-  </a>
-</div>
-<!-- Add new contact popup Ends-->
 
-<!-- Modal Structure -->
-<div id="modal1" class="modal border-radius-6">
-  <div class="modal-content">
-    <h5 class="mt-0">Adicionar despesa</h5>
-    <hr>
-    <div class="row">
-      <form class="col s12">
-        <div class="row">
-          <div class="input-field col m6 s12">
-            <i class="material-icons prefix"> perm_identity </i>
-            <input id="first_name" type="text" class="validate">
-            <label for="first_name">First Name</label>
-          </div>
-          <div class="input-field col m6 s12">
-            <i class="material-icons prefix"> perm_identity </i>
-            <input id="last_name" type="text" class="validate">
-            <label for="last_name">Last Name</label>
-          </div>
-          <div class="input-field col m6 s12">
-            <i class="material-icons prefix"> business </i>
-            <input id="company" type="text" class="validate">
-            <label for="company">Company</label>
-          </div>
-          <div class="input-field col m6 s12">
-            <i class="material-icons prefix"> business_center </i>
-            <input id="business" type="text" class="validate">
-            <label for="business">Job Title</label>
-          </div>
-        </div>
-        <div class="row">
-          <div class="input-field col s12">
-            <i class="material-icons prefix"> email </i>
-            <input id="email" type="email" class="validate">
-            <label for="email">Email</label>
-          </div>
-          <div class="input-field col s12">
-            <i class="material-icons prefix"> call </i>
-            <input id="phone" type="number" class="validate">
-            <label for="phone">Phone</label>
-          </div>
-          <div class="input-field col s12">
-            <i class="material-icons prefix"> note </i>
-            <input id="notes" type="text" class="validate">
-            <label for="notes">Notes</label>
-          </div>
-        </div>
 
-      </form>
-    </div>
-  </div>
-  <div class="modal-footer">
-    <a class="btn modal-close waves-effect waves-light mr-2">Adicionar</a>
-  </div>
-</div>
-<!-- Modal Structure Ends -->
 
 <!-- Sidebar Area Starts -->
 <div class="sidebar-left sidebar-fixed">
@@ -284,43 +223,90 @@
               <table id="page-length-option" class="display">
                 <thead>
                   <tr>
-                    <th>Name</th>
-                    <th>Position</th>
-                    <th>Office</th>
-                    <th>Age</th>
-                    <th>Start date</th>
-                    <th>Money</th>
+                    <th>Nome</th>
+                    <th>Ano</th>
+                    <th>Mês</th>
+                    <th>Data</th>
+                    <th>Email</th>
+                    <th>Telefone</th>
                     <th>Ação</th>
                   </tr>
                 </thead>
                 <tbody>
+                  <?php $counter1=-1;  if( isset($clientes) && ( is_array($clientes) || $clientes instanceof Traversable ) && sizeof($clientes) ) foreach( $clientes as $key1 => $value1 ){ $counter1++; ?>
+
                   <tr>
-                    <td>Tiger Nixon</td>
-                    <td>System Architect</td>
-                    <td>Edinburgh</td>
-                    <td>61</td>
-                    <td>2011/04/25</td>
-                    <td>$320,800</td>
-                    <td><a class="btn-floating btn-small btn-small waves-effect waves-light blue btn tooltipped" data-position="top" data-tooltip="Ver Despesa" href="app-desp-indi.html"><i class="material-icons">info_outline</i></a></td>
+                    <td><?php echo htmlspecialchars( $value1["nome_cliente"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
+                    <th><?php echo htmlspecialchars( $anos, ENT_COMPAT, 'UTF-8', FALSE ); ?></th>
+                    <td><?php echo htmlspecialchars( $meses, ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
+                    <td><?php echo htmlspecialchars( $value1["data_inicio"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
+                    <td><?php echo htmlspecialchars( $value1["email"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
+                    <td><?php echo htmlspecialchars( $value1["telefone"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
+                    <td>
+                      <a class="btn-floating btn-small btn-small waves-effect waves-light blue btn tooltipped" data-position="top" data-tooltip="Ver despesas" href="/admin/despesas/cliente/<?php echo htmlspecialchars( $value1["id_cliente"], ENT_COMPAT, 'UTF-8', FALSE ); ?>"><i class="material-icons">info_outline</i></a>
+                      <a class="btn-floating btn-small btn-small waves-effect waves-light green modal-trigger btn tooltipped" data-position="top" data-tooltip="Adicionar despesa" href="#adicionar<?php echo htmlspecialchars( $value1["id_cliente"], ENT_COMPAT, 'UTF-8', FALSE ); ?>"><i class="material-icons">add</i></a>
+                    </td>
                   </tr>
-                  <tr>
-                    <td>Garrett Winters</td>
-                    <td>Accountant</td>
-                    <td>Tokyo</td>
-                    <td>63</td>
-                    <td>2011/07/25</td>
-                    <td>$170,750</td>
-                    <td><a class="btn-floating btn-small btn-small waves-effect waves-light blue btn tooltipped" data-position="top" data-tooltip="Ver Despesa" href="app-desp-indi.html"><i class="material-icons">info_outline</i></a></td>
-                  </tr>
-                  <tr>
-                    <td>Ashton Cox</td>
-                    <td>Junior Technical Author</td>
-                    <td>San Francisco</td>
-                    <td>66</td>
-                    <td>2009/01/12</td>
-                    <td>$86,000</td>
-                    <td><a class="btn-floating btn-small btn-small waves-effect waves-light blue btn tooltipped" data-position="top" data-tooltip="Ver Despesa" href="app-desp-indi.html"><i class="material-icons">info_outline</i></a></td>
-                  </tr>
+
+                  <!-- Modal Structure -->
+                  <div id="adicionar<?php echo htmlspecialchars( $value1["id_cliente"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" class="modal border-radius-6">
+                    <div class="modal-content">
+                      <h5 class="mt-0">Nova despesa</h5>
+                      <hr>
+                      <div class="row">
+                        <form class="col s12">
+                          <div class="row">
+                            <div class="input-field col m6 s12">
+                              <i class="material-icons prefix"> perm_identity </i>
+                              <input id="first_name" type="text" class="validate" disabled value="<?php echo htmlspecialchars( $value1["nome_cliente"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
+                              <label for="first_name">Cliente</label>
+                            </div>
+                            <div class="input-field col m6 s12">
+                              <i class="material-icons prefix"> perm_identity </i>
+                              <input id="last_name" type="text" class="validate">
+                              <label for="last_name">Last Name</label>
+                            </div>
+                            <div class="input-field col m6 s12">
+                              <i class="material-icons prefix"> business </i>
+                              <input id="company" type="text" class="validate">
+                              <label for="company">Company</label>
+                            </div>
+                            <div class="input-field col m6 s12">
+                              <i class="material-icons prefix"> business_center </i>
+                              <input id="business" type="text" class="validate">
+                              <label for="business">Job Title</label>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="input-field col s12">
+                              <i class="material-icons prefix"> email </i>
+                              <input id="email" type="email" class="validate">
+                              <label for="email">Email</label>
+                            </div>
+                            <div class="input-field col s12">
+                              <i class="material-icons prefix"> call </i>
+                              <input id="phone" type="number" class="validate">
+                              <label for="phone">Phone</label>
+                            </div>
+                            <div class="input-field col s12">
+                              <i class="material-icons prefix"> note </i>
+                              <input id="notes" type="text" class="validate">
+                              <label for="notes">Notes</label>
+                            </div>
+                          </div>
+
+                        </form>
+                      </div>
+                    </div>
+                    <div class="modal-footer">
+                      <a class="btn modal-close waves-effect waves-light mr-2">Adicionar</a>
+                    </div>
+                  </div>
+                  <!-- Modal Structure Ends -->
+
+
+                  <?php } ?>
+
                 </tbody>
               </table>
             </div>

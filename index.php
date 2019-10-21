@@ -8,6 +8,7 @@
 	use \Seguradora\Model\User;
 	use \Seguradora\Model\Clientes;
 	use \Seguradora\Model\Parcial;
+	use \Seguradora\Model\Despesas;
 	
 
 	$app = new \Slim\Slim();
@@ -87,8 +88,6 @@
 		User::verifyLogin();
 		$clientes = Clientes::listAll();
 		$conta = count($clientes);
-		
-		$imprimir = Clientes::imprimir();
 
 		$page = new PageAdmin();
 		$page->setTpl("app-clientes", array(
@@ -159,8 +158,30 @@
 	});
 
 	$app->get('/admin/despesas', function(){
+		
+		User::verifyLogin();
+		$clientes = Clientes::listAll();
+		//$conta = count($despesas);
+
+		$parcial = new Parcial();
+		$meses = $parcial->meses($clientes);
+		$anos = $parcial->anos($clientes);
+
 		$page = new PageAdmin();
-		$page->setTpl("app-despesas");
+		$page->setTpl("app-despesas", array(
+			"clientes"=>$clientes,
+			"meses"=>$meses,
+			"anos"=>$anos
+		));
+		
+	});
+
+	$app->get('/admin/despesas/cliente/:id_cliente', function($id_cliente){
+
+
+		$page = new PageAdmin();
+		$page->setTpl("app-desp-indi");
+
 	});
 
 	$app->run();

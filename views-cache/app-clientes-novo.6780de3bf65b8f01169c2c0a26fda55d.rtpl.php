@@ -141,22 +141,22 @@
         </li>
         <li class="active bold"><a class="waves-effect waves-cyan active red" href="/admin/clientes"><i class="material-icons">group</i><span class="menu-title" data-i18n="">Clientes</span></a>
         </li>
-        <li class="bold"><a class="waves-effect waves-cyan " href="app-despesas.html"><i class="material-icons">money_off</i><span class="menu-title" data-i18n="">Despesas</span></a>
+        <li class="bold"><a class="waves-effect waves-cyan " href="/admin/despesas"><i class="material-icons">money_off</i><span class="menu-title" data-i18n="">Despesas</span></a>
         </li>
-        <li class="bold"><a class="waves-effect waves-cyan " href="app-facturas.html"><i class="material-icons">chrome_reader_mode</i><span class="menu-title" data-i18n="">Facturamento</span></a>
+        <li class="bold"><a class="waves-effect waves-cyan " href="/admin/facturas"><i class="material-icons">chrome_reader_mode</i><span class="menu-title" data-i18n="">Facturamento</span></a>
         </li>
         <li class="bold"><a class="collapsible-header waves-effect waves-cyan " href="#"><i class="material-icons">add_shopping_cart</i><span class="menu-title" data-i18n="">Seguros</span></a>
           <div class="collapsible-body">
             <ul class="collapsible collapsible-sub" data-collapsible="accordion">
-              <li><a class="collapsible-body" href="app-seguro-auto.html" data-i18n=""><i class="material-icons">radio_button_unchecked</i><span>Automóvel</span></a>
-              <li><a class="collapsible-body" href="app-seguro-emp.html" data-i18n=""><i class="material-icons">radio_button_unchecked</i><span>Empresarial</span></a>
+              <li><a class="collapsible-body" href="/admin/seguros/automovel" data-i18n=""><i class="material-icons">radio_button_unchecked</i><span>Automóvel</span></a>
+              <li><a class="collapsible-body" href="/admin/seguros/empresarial" data-i18n=""><i class="material-icons">radio_button_unchecked</i><span>Empresarial</span></a>
               </li>
-              <li><a class="collapsible-body" href="app-seguro-vida.html" data-i18n=""><i class="material-icons">radio_button_unchecked</i><span>Vida</span></a>
+              <li><a class="collapsible-body" href="/admin/seguros/vida" data-i18n=""><i class="material-icons">radio_button_unchecked</i><span>Vida</span></a>
               </li>
             </ul>
           </div>
         </li>
-        <li class="bold"><a class="waves-effect waves-cyan " href="app-financeiro.html"><i class="material-icons">account_balance</i><span class="menu-title" data-i18n="">Resultado financeiro</span></a>
+        <li class="bold"><a class="waves-effect waves-cyan " href="/admin/reltaorios/financeiros"><i class="material-icons">account_balance</i><span class="menu-title" data-i18n="">Resultado financeiro</span></a>
         </li>
       </ul>
       <div class="navigation-background"></div><a class="sidenav-trigger btn-sidenav-toggle btn-floating btn-medium waves-effect waves-light hide-on-large-only" href="#" data-target="slide-out"><i class="material-icons">menu</i></a>

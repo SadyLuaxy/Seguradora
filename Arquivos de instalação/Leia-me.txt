@@ -1,0 +1,33 @@
+Primeiro Deve-se Criar A Base De Dados Que Está Localizado Nesta Pasta
+
+Em Seguida criar um host virtual, indo em c:\xampp\apache\conf\extra\httpd-vhosts.conf
+e colar sem alterar nada:
+
+<VirtualHost *:80>
+    ServerAdmin webmaster@ddf.com
+    DocumentRoot "C:/xampp/htdocs/Seguradora"
+    ServerName www.seguradora.com
+    ServerAlias www.dummy-host.example.com
+    ErrorLog "logs/dummy-host.example.com-error.log"
+    CustomLog "logs/dummy-host.example.com-access.log" common
+    <Directory "C:/xampp/htdocs/Seguradora">
+        Require all granted
+
+        RewriteEngine On
+
+        RewriteCond %{REQUEST_FILENAME} !-d
+        RewriteCond %{REQUEST_FILENAME} !-f
+        RewriteRule ^ index.php [QSA,L]
+
+    </Directory>
+</VirtualHost>
+
+Agora vai em C:\Windows\System32\drivers\etc\hosts 
+e cola o seguinte comando
+
+127.0.0.1       www.seguradora.com
+
+Caso Não Resulte Por Permissão Negada, Podes Copiar O Aqruivo Hosts No AMbiente De Trabalho, Editar Lá O Aqruivo E Depois Copiar E Colar No Directório Do Windows.
+
+Depois De Ter Feito Tudo, Podes Ir No Navegador E Digitar O Seguinte Endereço:
+www.seguradora.com

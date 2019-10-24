@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 22-Out-2019 às 21:31
+-- Tempo de geração: 24-Out-2019 às 13:59
 -- Versão do servidor: 10.3.16-MariaDB
 -- versão do PHP: 7.3.7
 
@@ -58,6 +58,24 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_clientes_save` (`pd_nome_cliente
     Select * from cliente a INNER JOIN endereco b using(id_endereco) WHERE a.id_cliente = last_insert_id();
 END$$
 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_despesas_save` (IN `pd_data_despesa` DATE, IN `pd_qtde_despesa` INT, IN `pd_v_unit_desp` DECIMAL(10,2), IN `pd_parcelas_desp` INT, IN `pd_cliente` INT, IN `pd_forma_pagmento` INT, IN `pd_tipo_despesa` INT)  BEGIN
+    
+    INSERT INTO despesas(data_despesa, qtde_despesa, v_unit_desp, parcelas_desp, cliente, forma_pagamento, tipo_despesa) VALUES (pd_data_despesa, pd_qtde_despesa, pd_v_unit_desp, pd_parcelas_desp, pd_cliente, pd_forma_pagmento, pd_tipo_despesa);
+
+    SELECT * FROM despesas WHERE id_despesa = last_insert_id();
+    
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_seguradoras_save` (`pd_id_seguradora` INT, `pd_nome_seguradora` VARCHAR(45), `pd_site_seguradora` VARCHAR(60), `pd_desc_seguradora` VARCHAR(60), `pd_nome_rua` VARCHAR(45), `pd_n_rua` BIGINT, `pd_id_bairro` INT, `pd_telefone` BIGINT, `pd_email` VARCHAR(64), `pd_fax` VARCHAR(64))  BEGIN
+          
+    Declare idseguradora INT;
+    INSERT INTO seguradoras(nome_seguradora, desc_seguradora, site_seguradora) VALUES (pd_nome_seguradora, pd_desc_seguradora, pd_site_seguradora);
+        SET idseguradora = last_insert_id();
+    INSERT INTO endereco(nome_rua, n_rua, id_bairro, telefone, email, fax, id_seguradora) VALUES (pd_nome_rua, pd_n_rua, pd_id_bairro, pd_telefone, pd_email, pd_fax, idseguradora);
+    
+    Select * from seguradoras a WHERE a.id_seguradora = last_insert_id();
+END$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_usuario_save` (`pd_nome_funcionario` VARCHAR(45), `pd_email_funcionario` VARCHAR(45), `pd_usuario` VARCHAR(45), `pd_senha` VARCHAR(256), `pd_nivel` INT, `pd_desc_usuario` VARCHAR(45))  BEGIN
 	Declare idfuncionario INT;
     
@@ -79,7 +97,7 @@ CREATE TABLE `bairro` (
   `id_bairro` int(11) NOT NULL,
   `nome_bairro` varchar(64) NOT NULL,
   `id_municipio` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Extraindo dados da tabela `bairro`
@@ -104,7 +122,7 @@ CREATE TABLE `classe_bonus` (
   `n_classe` int(11) NOT NULL,
   `seguro_auto` int(11) DEFAULT NULL,
   `seguros` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -120,14 +138,15 @@ CREATE TABLE `cliente` (
   `data_nascimento` date DEFAULT NULL,
   `estado_civil` varchar(20) NOT NULL,
   `desc_cliente` varchar(60) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Extraindo dados da tabela `cliente`
 --
 
 INSERT INTO `cliente` (`id_cliente`, `nome_cliente`, `data_inicio`, `sexo`, `data_nascimento`, `estado_civil`, `desc_cliente`) VALUES
-(1, 'Sady Luaxy Luis Eduardo', '2019-10-19', 'Masculino', '1970-01-01', 'Solteiro', 'csafcsafsafsafas');
+(1, 'Sady Luaxy Luis Eduardo', '2019-10-19', 'Masculino', '1970-01-01', 'Solteiro', 'csafcsafsafsafas'),
+(3, 'Kindieco Luvumbo', '2019-10-23', 'Masculino', '1970-01-01', 'Solteiro', 'Novo Cliente');
 
 -- --------------------------------------------------------
 
@@ -140,7 +159,7 @@ CREATE TABLE `comissao` (
   `valor_comissao` decimal(2,0) NOT NULL,
   `seguro_auto` int(11) DEFAULT NULL,
   `seguros` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -155,7 +174,7 @@ CREATE TABLE `contacto` (
   `fax` varchar(45) DEFAULT NULL,
   `celular` varchar(45) DEFAULT NULL,
   `seguradora` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -165,14 +184,21 @@ CREATE TABLE `contacto` (
 
 CREATE TABLE `despesas` (
   `id_despesas` int(11) NOT NULL,
-  `data_despesa` varchar(45) NOT NULL,
-  `qtde_despesa` int(11) NOT NULL,
-  `v_unit_desp` decimal(2,0) NOT NULL,
+  `data_despesa` date NOT NULL,
+  `qtde_despesa` int(11) NOT NULL DEFAULT 1,
+  `v_unit_desp` decimal(10,2) NOT NULL,
   `parcelas_desp` int(11) DEFAULT NULL,
   `cliente` int(11) NOT NULL,
   `forma_pagamento` int(11) NOT NULL,
   `tipo_despesa` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Extraindo dados da tabela `despesas`
+--
+
+INSERT INTO `despesas` (`id_despesas`, `data_despesa`, `qtde_despesa`, `v_unit_desp`, `parcelas_desp`, `cliente`, `forma_pagamento`, `tipo_despesa`) VALUES
+(15, '2019-10-24', 3, '400.00', 1, 1, 2, 3);
 
 -- --------------------------------------------------------
 
@@ -188,15 +214,20 @@ CREATE TABLE `endereco` (
   `telefone` bigint(20) NOT NULL,
   `email` varchar(64) NOT NULL,
   `fax` varchar(64) DEFAULT NULL,
-  `id_cliente` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `id_cliente` int(11) DEFAULT NULL,
+  `id_seguradora` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Extraindo dados da tabela `endereco`
 --
 
-INSERT INTO `endereco` (`id_endereco`, `nome_rua`, `n_rua`, `id_bairro`, `telefone`, `email`, `fax`, `id_cliente`) VALUES
-(1, 'Av. Pedro De Castro Van DÃºnem Loy', 12, 4, 936268603, 'eduardosmithpitxo@gmail.com', 'fax@fx.com', 1);
+INSERT INTO `endereco` (`id_endereco`, `nome_rua`, `n_rua`, `id_bairro`, `telefone`, `email`, `fax`, `id_cliente`, `id_seguradora`) VALUES
+(1, 'Av. Pedro De Castro Van DÃºnem Loy', 12, 4, 936268603, 'eduardosmithpitxo@gmail.com', 'fax@fx.com', 1, NULL),
+(3, 'Antiga PraÃ§a', 7, 2, 936268603, 'eduardosmithpitxo@gmail.com', 'fax@fx.com', 3, NULL),
+(5, 'Rua', 12, 1, 9998, 'eduars', 'ss', 1, NULL),
+(6, 'safsa', 2, 1, 222222, 'dasdfas', 'dsadas', 0, 2),
+(7, 'nome_rua', 2, 1, 2222, 'email', 'fax', NULL, 3);
 
 -- --------------------------------------------------------
 
@@ -207,14 +238,12 @@ INSERT INTO `endereco` (`id_endereco`, `nome_rua`, `n_rua`, `id_bairro`, `telefo
 CREATE TABLE `facturamento` (
   `id_facturamento` int(11) NOT NULL,
   `qtde_facturamento` int(11) NOT NULL,
-  `v_unitario` decimal(10,0) NOT NULL,
-  `v_total` decimal(10,0) DEFAULT NULL,
-  `facturamentocol` varchar(45) DEFAULT NULL,
-  `facturamentocol1` varchar(45) DEFAULT NULL,
-  `facturamentocol2` varchar(45) CHARACTER SET latin1 COLLATE latin1_bin DEFAULT NULL,
+  `v_unit` decimal(10,0) NOT NULL,
+  `v_parcelar` decimal(10,0) DEFAULT NULL,
   `seguradora` int(11) NOT NULL,
-  `cliente` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `cliente` int(11) NOT NULL,
+  `forma_pagamento` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -226,7 +255,15 @@ CREATE TABLE `forma_pagamento` (
   `id_forma_pagamento` int(11) NOT NULL,
   `nome_forma` varchar(45) NOT NULL,
   `desc_forma` varchar(45) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Extraindo dados da tabela `forma_pagamento`
+--
+
+INSERT INTO `forma_pagamento` (`id_forma_pagamento`, `nome_forma`, `desc_forma`) VALUES
+(1, 'Dinheiro', 'Pagamento em cash'),
+(2, 'Multicaixa', 'Pagamento em multicaixa');
 
 -- --------------------------------------------------------
 
@@ -238,7 +275,7 @@ CREATE TABLE `funcao` (
   `id_funcao` int(11) NOT NULL,
   `nome_funcao` varchar(45) NOT NULL,
   `desc_funcao` varchar(45) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -250,7 +287,7 @@ CREATE TABLE `funcionarios` (
   `id_funcionario` int(11) NOT NULL,
   `nome_funcionario` varchar(45) NOT NULL,
   `email` varchar(45) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Extraindo dados da tabela `funcionarios`
@@ -289,7 +326,7 @@ CREATE TABLE `municipio` (
   `id_municipio` int(11) NOT NULL,
   `nome_municipio` varchar(64) NOT NULL,
   `id_provincia` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Extraindo dados da tabela `municipio`
@@ -310,7 +347,7 @@ INSERT INTO `municipio` (`id_municipio`, `nome_municipio`, `id_provincia`) VALUE
 CREATE TABLE `pais` (
   `id_pais` int(11) NOT NULL,
   `nome_pais` varchar(64) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Extraindo dados da tabela `pais`
@@ -330,7 +367,7 @@ CREATE TABLE `premio` (
   `valor_premio` decimal(2,0) NOT NULL,
   `seguro_auto` int(11) DEFAULT NULL,
   `seguros` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -342,7 +379,7 @@ CREATE TABLE `provincia` (
   `id_provincia` int(11) NOT NULL,
   `nome_provincia` varchar(45) DEFAULT NULL,
   `id_pais` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Extraindo dados da tabela `provincia`
@@ -351,18 +388,6 @@ CREATE TABLE `provincia` (
 INSERT INTO `provincia` (`id_provincia`, `nome_provincia`, `id_pais`) VALUES
 (3, 'Luanda', 1),
 (4, 'Malanje', 1);
-
--- --------------------------------------------------------
-
---
--- Estrutura da tabela `seguradora`
---
-
-CREATE TABLE `seguradora` (
-  `id_seguradora` int(11) NOT NULL,
-  `nome_seguradora` varchar(45) NOT NULL,
-  `obs_seguradora` varchar(45) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -379,7 +404,7 @@ CREATE TABLE `seguros` (
   `tipo_cliente_seguros` int(11) NOT NULL,
   `data_vigencia_seguros` date NOT NULL,
   `cliente` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -393,17 +418,17 @@ CREATE TABLE `seguro_auto` (
   `desc_seguro_auto` varchar(45) NOT NULL,
   `ano_fabri` year(4) NOT NULL,
   `ano_modelo` year(4) NOT NULL,
-  `img_automovel` text DEFAULT NULL,
+  `img_automovel` mediumtext DEFAULT NULL,
   `cor_automovel` varchar(45) NOT NULL,
   `placa_automovel` varchar(45) NOT NULL,
-  `chassi_automovel` text NOT NULL,
+  `chassi_automovel` mediumtext NOT NULL,
   `rastreador_automovel` varchar(10) NOT NULL,
   `sinistro_automovel` varchar(10) NOT NULL,
   `tipo_cliente_automovel` varchar(20) NOT NULL,
   `data_vigência` date NOT NULL,
   `seguradora` int(11) NOT NULL,
   `cliente` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -413,9 +438,18 @@ CREATE TABLE `seguro_auto` (
 
 CREATE TABLE `tipo_despesa` (
   `id_tipo_despesa` int(11) NOT NULL,
-  `nome_tipo_desp` varchar(45) NOT NULL,
+  `nome_tipo_desp` varchar(60) NOT NULL,
   `desc_tipo_desp` varchar(45) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Extraindo dados da tabela `tipo_despesa`
+--
+
+INSERT INTO `tipo_despesa` (`id_tipo_despesa`, `nome_tipo_desp`, `desc_tipo_desp`) VALUES
+(1, 'Alimentacao', 'Alimentos'),
+(2, 'Bebidas', 'Bebida Água'),
+(3, 'Vestuario', 'Roupas');
 
 -- --------------------------------------------------------
 
@@ -426,13 +460,13 @@ CREATE TABLE `tipo_despesa` (
 CREATE TABLE `usuario` (
   `id_usuario` int(11) NOT NULL,
   `username` varchar(45) NOT NULL,
-  `senha` varchar(256) CHARACTER SET utf8 NOT NULL,
+  `senha` varchar(256) NOT NULL,
   `create_time` timestamp NULL DEFAULT current_timestamp(),
   `modified` timestamp NULL DEFAULT NULL,
   `nivel` int(11) NOT NULL,
   `desc_usuario` varchar(45) DEFAULT NULL,
   `funcionario` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Extraindo dados da tabela `usuario`
@@ -497,7 +531,6 @@ ALTER TABLE `despesas`
 --
 ALTER TABLE `endereco`
   ADD PRIMARY KEY (`id_endereco`),
-  ADD KEY `cliente` (`id_cliente`),
   ADD KEY `endereco_ bairro` (`id_bairro`);
 
 --
@@ -506,7 +539,8 @@ ALTER TABLE `endereco`
 ALTER TABLE `facturamento`
   ADD PRIMARY KEY (`id_facturamento`),
   ADD KEY `fk_facturamento_seguradora1` (`seguradora`),
-  ADD KEY `fk_facturamento_cliente1` (`cliente`);
+  ADD KEY `fk_facturamento_cliente1` (`cliente`),
+  ADD KEY `forma_pagamento` (`forma_pagamento`);
 
 --
 -- Índices para tabela `forma_pagamento`
@@ -555,12 +589,6 @@ ALTER TABLE `provincia`
   ADD KEY `pais` (`id_pais`);
 
 --
--- Índices para tabela `seguradora`
---
-ALTER TABLE `seguradora`
-  ADD PRIMARY KEY (`id_seguradora`);
-
---
 -- Índices para tabela `seguros`
 --
 ALTER TABLE `seguros`
@@ -602,7 +630,7 @@ ALTER TABLE `bairro`
 -- AUTO_INCREMENT de tabela `cliente`
 --
 ALTER TABLE `cliente`
-  MODIFY `id_cliente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_cliente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de tabela `comissao`
@@ -620,13 +648,13 @@ ALTER TABLE `contacto`
 -- AUTO_INCREMENT de tabela `despesas`
 --
 ALTER TABLE `despesas`
-  MODIFY `id_despesas` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_despesas` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT de tabela `endereco`
 --
 ALTER TABLE `endereco`
-  MODIFY `id_endereco` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_endereco` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de tabela `facturamento`
@@ -638,7 +666,7 @@ ALTER TABLE `facturamento`
 -- AUTO_INCREMENT de tabela `forma_pagamento`
 --
 ALTER TABLE `forma_pagamento`
-  MODIFY `id_forma_pagamento` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_forma_pagamento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de tabela `funcao`
@@ -677,12 +705,6 @@ ALTER TABLE `provincia`
   MODIFY `id_provincia` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT de tabela `seguradora`
---
-ALTER TABLE `seguradora`
-  MODIFY `id_seguradora` int(11) NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT de tabela `seguros`
 --
 ALTER TABLE `seguros`
@@ -698,7 +720,7 @@ ALTER TABLE `seguro_auto`
 -- AUTO_INCREMENT de tabela `tipo_despesa`
 --
 ALTER TABLE `tipo_despesa`
-  MODIFY `id_tipo_despesa` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_tipo_despesa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de tabela `usuario`
@@ -734,7 +756,7 @@ ALTER TABLE `comissao`
 -- Limitadores para a tabela `contacto`
 --
 ALTER TABLE `contacto`
-  ADD CONSTRAINT `fk_contacto_seguradora1` FOREIGN KEY (`seguradora`) REFERENCES `seguradora` (`id_seguradora`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_contacto_seguradora1` FOREIGN KEY (`seguradora`) REFERENCES `seguradoras` (`id_seguradora`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Limitadores para a tabela `despesas`
@@ -748,7 +770,6 @@ ALTER TABLE `despesas`
 -- Limitadores para a tabela `endereco`
 --
 ALTER TABLE `endereco`
-  ADD CONSTRAINT `cliente` FOREIGN KEY (`id_cliente`) REFERENCES `cliente` (`id_cliente`),
   ADD CONSTRAINT `endereco_ bairro` FOREIGN KEY (`id_bairro`) REFERENCES `bairro` (`id_bairro`);
 
 --
@@ -756,7 +777,8 @@ ALTER TABLE `endereco`
 --
 ALTER TABLE `facturamento`
   ADD CONSTRAINT `fk_facturamento_cliente1` FOREIGN KEY (`cliente`) REFERENCES `cliente` (`id_cliente`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_facturamento_seguradora1` FOREIGN KEY (`seguradora`) REFERENCES `seguradora` (`id_seguradora`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_facturamento_seguradora1` FOREIGN KEY (`seguradora`) REFERENCES `seguradoras` (`id_seguradora`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `forma_pagamento` FOREIGN KEY (`forma_pagamento`) REFERENCES `forma_pagamento` (`id_forma_pagamento`);
 
 --
 -- Limitadores para a tabela `municipio`
@@ -788,7 +810,7 @@ ALTER TABLE `seguros`
 --
 ALTER TABLE `seguro_auto`
   ADD CONSTRAINT `fk_seguro_auto_cliente1` FOREIGN KEY (`cliente`) REFERENCES `cliente` (`id_cliente`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_seguro_auto_seguradora1` FOREIGN KEY (`seguradora`) REFERENCES `seguradora` (`id_seguradora`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_seguro_auto_seguradora1` FOREIGN KEY (`seguradora`) REFERENCES `seguradoras` (`id_seguradora`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Limitadores para a tabela `usuario`

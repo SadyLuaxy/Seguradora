@@ -1,3 +1,4 @@
+<?php if(!class_exists('Rain\Tpl')){exit;}?>
 
     <title>Agência de Seguros Admin | Home</title>
     <link rel="apple-touch-icon" href="/res/admin/assetsimages/favicon/apple-touch-icon-152x152.png">

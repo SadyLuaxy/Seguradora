@@ -145,6 +145,8 @@
         </li>
         <li class="bold"><a class="waves-effect waves-cyan " href="/admin/facturas"><i class="material-icons">chrome_reader_mode</i><span class="menu-title" data-i18n="">Facturamento</span></a>
         </li>
+        <li class="bold"><a class="waves-effect waves-cyan " href="/admin/seguradoras"><i class="material-icons">home</i><span class="menu-title" data-i18n="">Seguradora</span></a>
+        </li>
         <li class="bold"><a class="collapsible-header waves-effect waves-cyan " href="#"><i class="material-icons">add_shopping_cart</i><span class="menu-title" data-i18n="">Seguros</span></a>
           <div class="collapsible-body">
             <ul class="collapsible collapsible-sub" data-collapsible="accordion">
@@ -180,7 +182,7 @@
           <div class="sidebar-details">
             <h6 class="m-0 sidebar-title"><i class="material-icons app-header-icon text-top">person</i> Cliente: {$value.nome_cliente}
             </h6>
-            <a class="btn btn-small cyan" href="/admin/despesas/cliente/{$value.id_cliente}">Ver cliente</a>
+            <a class="btn btn-small cyan" href="/admin/despesas/cliente/{$value.id_cliente}">Ver despesas</a>
           </div>
         </div>
       </div>
@@ -195,18 +197,16 @@
     <div class="col s12">
       <div id="html-validations" class="card card-tabs">
         <div class="card-content">
-                <div class="card-title">
-                        <div class="row">
-                          <div class="col s12 m6 l10">
-                            <h4 class="card-title">Editar despesa</h4>
-                          </div>
-                          <div class="col s12 m6 l2">
-                          </div>
-                        </div>
-                      </div>
+            <div class="card-title">
+               <div class="row">
+                     <div class="col s12 m6 l10">
+                        <h4 class="card-title">Editar despesa</h4>
+                     </div>
+               </div>
+            </div>
           <div id="html-view-validations">
              {loop="$cliente"}
-            <form class="formValidate0" id="formValidate0" method="post" action="/admin/despesas/novo">
+            <form class="formValidate0" id="formValidate0" method="post" action="/admin/despesas/editar/{$value.id_despesas}">
                 <input id="first_name" type="hidden" class="validate" value="{$value.id_cliente}" name="cliente">
                 <div class="row">
                   <div class="input-field col s12">
@@ -218,7 +218,7 @@
                   <div class="input-field m6 col s12">
                       <i class="material-icons prefix"> money_off </i>
                     <select class="error validate" id="despesas" name="tipo_despesa" aria-required="true" required>
-                        <option value="{$value.id_tipo_despesa}"  disabled selected>{$value.nome_tipo_desp}</option>
+                        <option value="{$value.id_tipo_despesa}"  selected>{$value.nome_tipo_desp}</option>
                         {loop="$tipo_despesa"}
                         <option value="{$value.id_tipo_despesa}">{$value.nome_tipo_desp}</option>
                         {/loop}
@@ -228,7 +228,7 @@
                   <div class="input-field m6 col s12">
                     <i class="material-icons prefix"> account_balance_wallet </i>
                     <select class="error validate" id="forma_pagamento" name="forma_pagamento" aria-required="true" required>
-                      <option value="{$value.id_forma_pagamento}" disabled selected>{$value.nome_forma}</option>
+                      <option value="{$value.id_forma_pagamento}" selected>{$value.nome_forma}</option>
                       {loop="$forma_pagamento"}
                         <option value="{$value.id_forma_pagamento}">{$value.nome_forma}</option>
                       {/loop}
@@ -249,7 +249,7 @@
                   </div>
                   <div class="input-field col m4 s12">
                     <i class="material-icons prefix"> reorder </i>
-                    <input id="parcelas" type="number" class="validate" required aria-required="true" name="parcelas" value="{$value.parcelas}">
+                    <input id="parcelas" type="number" class="validate" required aria-required="true" name="parcelas" value="{$value.parcelas_desp}">
                     <label for="parcelas">Parcelas</label>
                   </div>
                   </div>

@@ -1,4 +1,4 @@
-
+<?php if(!class_exists('Rain\Tpl')){exit;}?>
     <title> Clientes | Agência de Seguros Admin</title>
     <link rel="apple-touch-icon" href="/res/admin/assets/images/favicon/apple-touch-icon-152x152.png">
     <link rel="shortcut icon" type="image/x-icon" href="/res/admin/assets/images/favicon/favicon-32x32.png">
@@ -139,13 +139,13 @@
         </li>
         <li class="navigation-header"><a class="navigation-header-text">Aplicação</a><i class="navigation-header-icon material-icons">more_horiz</i>
         </li>
-        <li class="active bold"><a class="waves-effect waves-cyan active red" href="/admin/clientes"><i class="material-icons">group</i><span class="menu-title" data-i18n="">Clientes</span></a>
+        <li class="bold"><a class="waves-effect waves-cyan" href="/admin/clientes"><i class="material-icons">group</i><span class="menu-title" data-i18n="">Clientes</span></a>
         </li>
-        <li class="bold"><a class="waves-effect waves-cyan " href="/admin/despesas"><i class="material-icons">money_off</i><span class="menu-title" data-i18n="">Despesas</span></a>
+        <li class="bold"><a class="waves-effect waves-cyan" href="/admin/despesas"><i class="material-icons">money_off</i><span class="menu-title" data-i18n="">Despesas</span></a>
         </li>
-        <li class="bold"><a class="waves-effect waves-cyan " href="/admin/facturas"><i class="material-icons">chrome_reader_mode</i><span class="menu-title" data-i18n="">Facturamento</span></a>
+        <li class="bold"><a class="waves-effect waves-cyan" href="/admin/facturas"><i class="material-icons">chrome_reader_mode</i><span class="menu-title" data-i18n="">Facturamento</span></a>
         </li>
-        <li class="bold"><a class="waves-effect waves-cyan " href="/admin/seguradoras"><i class="material-icons">home</i><span class="menu-title" data-i18n="">Seguradora</span></a>
+        <li class="active bold"><a class="waves-effect waves-cyan active red" href="/admin/seguradoras"><i class="material-icons">home</i><span class="menu-title" data-i18n="">Seguradora</span></a>
         </li>
         <li class="bold"><a class="collapsible-header waves-effect waves-cyan " href="#"><i class="material-icons">add_shopping_cart</i><span class="menu-title" data-i18n="">Seguros</span></a>
           <div class="collapsible-body">
@@ -178,7 +178,7 @@
     <div class="sidebar-content">
       <div class="sidebar-header">
         <div class="sidebar-details">
-          <h5 class="m-0 sidebar-title"><i class="material-icons app-header-icon text-top">group</i> Adicionar clientes
+          <h5 class="m-0 sidebar-title"><i class="material-icons app-header-icon text-top">group</i> Adicionar seguradoras
           </h5>
         </div>
       </div>
@@ -198,47 +198,32 @@
               <div class="card-title">
                 <div class="row">
                   <div class="col s12 m6 l10">
-                    <h4 class="card-title">Cadastrar novo cliente</h4>
+                    <h4 class="card-title">Cadastrar seguradora</h4>
                   </div>
                   <div class="col s12 m6 l2">
                   </div>
                 </div>
               </div>
               <div id="html-view-validations">
-                <form class="formValidate0" id="formValidate0" method="post" action="/admin/clientes/novo">
+                <form class="formValidate0" id="formValidate0" method="post" action="/admin/seguradora/novo">
                   <div class="row">
-                    <div class="input-field col s12">
-                      <label for="uname0">Nome completo*</label>
-                      <input class="validate" required aria-required="true" id="nome0" name="nome_cliente" type="text">
+                    <div class="input-field col m6 s12">
+                      <label for="uname0">Nome*</label>
+                      <input class="validate" required aria-required="true" id="nome0" name="nome_seguradora" type="text">
                     </div>
-                    <div class="input-field m6 col s12">
-                        <select class="error validate" id="sexo" name="sexo" aria-required="true" required>
-                            <option value="" aria-required="true" disabled selected>Sexo</option>
-                            <option value="Masculino">Masculino</option>
-                            <option value="Feminino">Feminino</option>
-                          </select>
-                          <label>Sexo</label>
-                    </div>
-                    <div class="input-field m6 col s12">
-                        <select class="error validate" id="estado_civil" name="estado_civil" aria-required="true" required>
-                            <option value="" required aria-required="true" disabled selected>Estado civil</option>
-                            <option value="Solteiro">Solteiro</option>
-                            <option value="Casado">Casado</option>
-                          </select>
-                          <label>Estao civil</label>
-                    </div>
-                    <div class="input-field col s12">
-                        <textarea id="descricao" name="desc_cliente" class="materialize-textarea validate" aria-required="true"
+                    <div class="input-field col m6 s12">
+                        <textarea id="descricao" name="desc_seguradora" class="materialize-textarea validate" aria-required="true"
                         required></textarea>
                       <label for="descricao">Descrição*</label>
                     </div>
                     <div class="input-field m6 col s12">
-                        <input placeholder="01/01/2019" id="data" type="text" class="" name="data_nascimento">
-                        <label for="date-demo1">Data de nascimento</label>
+                      <label for="rua">Site</label>
+                      <input class="validate" required aria-required="true" id="rua" type="text" name="site">
                     </div>
                     <div class="input-field m6 col s12">
-                      <label for="rua">Rua *</label>
-                      <input class="validate" required aria-required="true" id="rua" type="text" name="nome_rua">
+                            <label for="nome_rua">Rua*</label>
+                            <input type="text" name="nome_rua" id="nome_rua">
+                        
                     </div>
                     <div class="input-field m6 col s12">
                         <label for="n_rua">Nº Rua</label>
@@ -249,9 +234,9 @@
                         <label for="bairro"></label>
                         <select class="error validate" id="bairro" name="bairro" aria-required="true" required>
                             <option value="" disabled selected>Escolha o bairro</option>
-                            {loop="$bairros"}
-                            <option value="{$value.id_bairro}">{$value.nome_bairro}</option>
-                            {/loop}
+                            <?php $counter1=-1;  if( isset($bairros) && ( is_array($bairros) || $bairros instanceof Traversable ) && sizeof($bairros) ) foreach( $bairros as $key1 => $value1 ){ $counter1++; ?>
+                            <option value="<?php echo htmlspecialchars( $value1["id_bairro"], ENT_COMPAT, 'UTF-8', FALSE ); ?>"><?php echo htmlspecialchars( $value1["nome_bairro"], ENT_COMPAT, 'UTF-8', FALSE ); ?></option>
+                            <?php } ?>
                         </select>
                     </div>
                     <div class="input-field m6 col s12">
@@ -269,7 +254,7 @@
                     </div>
                     <div class="input-field col s12">
                       <button class="btn waves-effect waves-light right" type="submit">Cadastrar
-                        <i class="material-icons right">person_add</i>
+                        <i class="material-icons right">home</i>
                       </button>
                     </div>
                   </div>

@@ -1,5 +1,5 @@
 <?php if(!class_exists('Rain\Tpl')){exit;}?>
-    <title>Despesas | Agência de Seguros Admin </title>
+    <title> Clientes | Agência de Seguros Admin</title>
     <link rel="apple-touch-icon" href="/res/admin/assets/images/favicon/apple-touch-icon-152x152.png">
     <link rel="shortcut icon" type="image/x-icon" href="/res/admin/assets/images/favicon/favicon-32x32.png">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -36,7 +36,7 @@
           <div class="nav-wrapper">
             <div class="header-search-wrapper hide-on-med-and-down">
               <i class="material-icons">search</i>
-              <input class="header-search-input z-depth-2" type="text" name="Search" placeholder="Pesquisar">
+              <input class="header-search-input z-depth-2" type="text" required name="Search" placeholder="Pesquisar">
             </div>
             <ul class="navbar-list right">
               <!-- Tradutor 
@@ -106,7 +106,7 @@
               <li><a class="grey-text text-darken-1" href="page-faq.html"><i class="material-icons">help_outline</i> Ajuda</a></li>
               <li class="divider"></li>
               <li><a class="grey-text text-darken-1" href="user-lock-screen.html"><i class="material-icons">lock_outline</i> Bloquear</a></li>
-              <li><a class="grey-text text-darken-1" href="user-login.html"><i class="material-icons">keyboard_tab</i> Sair</a></li>
+              <li><a class="grey-text text-darken-1" href="/usuario/logout"><i class="material-icons">keyboard_tab</i> Sair</a></li>
             </ul>
             <!-- Fim Perfil do dropdown-->
           </div>
@@ -139,11 +139,13 @@
         </li>
         <li class="navigation-header"><a class="navigation-header-text">Aplicação</a><i class="navigation-header-icon material-icons">more_horiz</i>
         </li>
-        <li class="bold"><a class="waves-effect waves-cyan" href="/admin/clientes"><i class="material-icons">group</i><span class="menu-title" data-i18n="">Clientes</span></a>
+        <li class="bold"><a class="waves-effect waves-cyan " href="/admin/clientes"><i class="material-icons">group</i><span class="menu-title" data-i18n="">Clientes</span></a>
         </li>
-        <li class="active bold"><a class="waves-effect waves-cyan active red" href="/admin/despesas"><i class="material-icons">money_off</i><span class="menu-title" data-i18n="">Despesas</span></a>
+        <li class="bold"><a class="waves-effect waves-cyan " href="/admin/despesas"><i class="material-icons">money_off</i><span class="menu-title" data-i18n="">Despesas</span></a>
         </li>
         <li class="bold"><a class="waves-effect waves-cyan " href="/admin/facturas"><i class="material-icons">chrome_reader_mode</i><span class="menu-title" data-i18n="">Facturamento</span></a>
+        </li>
+        <li class="active bold"><a class="waves-effect waves-cyan active red" href="/admin/seguradoras"><i class="material-icons">home</i><span class="menu-title" data-i18n="">Seguradora</span></a>
         </li>
         <li class="bold"><a class="collapsible-header waves-effect waves-cyan " href="#"><i class="material-icons">add_shopping_cart</i><span class="menu-title" data-i18n="">Seguros</span></a>
           <div class="collapsible-body">
@@ -156,7 +158,7 @@
             </ul>
           </div>
         </li>
-        <li class="bold"><a class="waves-effect waves-cyan " href="/admin/relatorios/financeiros"><i class="material-icons">account_balance</i><span class="menu-title" data-i18n="">Resultado financeiro</span></a>
+        <li class="bold"><a class="waves-effect waves-cyan " href="/admin/reltaorios/financeiros"><i class="material-icons">account_balance</i><span class="menu-title" data-i18n="">Resultado financeiro</span></a>
         </li>
       </ul>
       <div class="navigation-background"></div><a class="sidenav-trigger btn-sidenav-toggle btn-floating btn-medium waves-effect waves-light hide-on-large-only" href="#" data-target="slide-out"><i class="material-icons">menu</i></a>
@@ -169,104 +171,213 @@
         <div class="content-wrapper-before gradient-45deg-indigo-purple"></div>
         <div class="col s12">
           <div class="container">
+              <div style="bottom: 54px; right: 19px;" class="fixed-action-btn direction-top">
+                <a class="btn-floating btn-large primary-text gradient-shadow modal-trigger" href="/admin/seguradoras/novo">
+                  <i class="material-icons">person_add</i>
+                </a>
+              </div>
 
+            <!-- Add new contact popup Ends-->
 
-<?php $counter1=-1;  if( isset($cliente) && ( is_array($cliente) || $cliente instanceof Traversable ) && sizeof($cliente) ) foreach( $cliente as $key1 => $value1 ){ $counter1++; ?>
 <!-- Sidebar Area Starts -->
 <div class="sidebar-left sidebar-fixed">
-    <div class="sidebar col s12">
-      <div class="sidebar-content">
-        <div class="sidebar-header">
-          <div class="sidebar-details">
-            <h6 class="m-0 sidebar-title"><i class="material-icons app-header-icon text-top">person</i> Cliente: <?php echo htmlspecialchars( $value1["nome_cliente"], ENT_COMPAT, 'UTF-8', FALSE ); ?>
-            </h6>
-            <a class="btn btn-small cyan" href="/admin/despesas/cliente/<?php echo htmlspecialchars( $value1["id_cliente"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">Ver cliente</a>
+  <div class="sidebar">
+    <div class="sidebar-content">
+      <div class="sidebar-header">
+        <div class="sidebar-details">
+          <h5 class="m-0 sidebar-title"><i class="material-icons app-header-icon text-top">group</i> Seguradoras
+          </h5>
+          <div class="mt-10 pt-2">
+            <p class="m-0 subtitle font-weight-700">Total de seguradoras registradas:</p>
+            <p class="m-0 text-muted"><?php if( $rows>0 ){ ?><?php echo htmlspecialchars( $rows, ENT_COMPAT, 'UTF-8', FALSE ); ?> Seguradoras <?php }else{ ?>Nenhuma Seguradora Regitada<?php } ?></p>
           </div>
         </div>
       </div>
     </div>
   </div>
-  
-  <?php } ?>
+</div>
 <!-- Sidebar Area Ends -->
 
 <!-- Início: Tabela de Clientes -->
-<div class="row">
+
+<div class="section section-data-tables">
+  <!-- Page Length Options -->
+  <div class="row">
     <div class="col s12">
-      <div id="html-validations" class="card card-tabs">
+      <div class="card">
         <div class="card-content">
-                <div class="card-title">
-                        <div class="row">
-                          <div class="col s12 m6 l10">
-                            <h4 class="card-title">Adicionar despesa</h4>
-                          </div>
-                          <div class="col s12 m6 l2">
-                          </div>
-                        </div>
+          <a class="btn-floating btn-small btn-small waves-effect waves-light orange btn tooltipped right" data-position="top" data-tooltip="Imprimir" href="#"><i class="material-icons">print</i></a>
+          <div class="row">
+            <div class="col s12">
+              <table id="page-length-option" class="display">
+                <thead>
+                  <tr>
+                    <th>Nome</th>
+                    <th>Telefone</th>
+                    <th>Email</th>
+                    <th>Site</th>
+                    <th>Ação</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <?php $counter1=-1;  if( isset($Seguradoras) && ( is_array($Seguradoras) || $Seguradoras instanceof Traversable ) && sizeof($Seguradoras) ) foreach( $Seguradoras as $key1 => $value1 ){ $counter1++; ?>
+                  <tr>
+                    <td><?php echo htmlspecialchars( $value1["nome_seguradora"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
+                    <th><?php echo htmlspecialchars( $value1["telefone"], ENT_COMPAT, 'UTF-8', FALSE ); ?></th>
+                    <td><?php echo htmlspecialchars( $value1["email"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
+                    <td><?php if( $value1["site_seguradora"]>0 ){ ?><?php echo htmlspecialchars( $value1["site_seguradora"], ENT_COMPAT, 'UTF-8', FALSE ); ?><?php }else{ ?>N/Digitado<?php } ?></td>
+                    <td>
+                      <a class="btn-floating btn-small btn-small waves-effect waves-light blue modal-trigger btn tooltipped" data-position="top" data-tooltip="Ver mais" href="#outrasinfo<?php echo htmlspecialchars( $value1["id_seguradora"], ENT_COMPAT, 'UTF-8', FALSE ); ?>"><i class="material-icons">info_outline</i></a>
+                      <a class="btn-floating btn-small btn-small waves-effect waves-light orange modal-trigger btn tooltipped" data-position="top" data-tooltip="Editar" href="/admin/seguradoras/editar/<?php echo htmlspecialchars( $value1["id_seguradora"], ENT_COMPAT, 'UTF-8', FALSE ); ?>"><i class="material-icons">edit</i></a>
+                      <a class="btn-floating btn-small btn-small waves-effect waves-light red modal-trigger btn tooltipped" onclick="return confirm('Deseja realmente excluir essa seguradora?')" data-position="top" data-tooltip="Excluir" href="/admin/seguradora/apagar/<?php echo htmlspecialchars( $value1["id_seguradora"], ENT_COMPAT, 'UTF-8', FALSE ); ?>"><i class="material-icons">delete</i></a>
+                      
+                    </td>
+                  </tr>
+
+                  <!-- Modal De Informações Adicionais -->
+                  <div id="outrasinfo<?php echo htmlspecialchars( $value1["id_seguradora"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" class="modal border-radius-6" style="width:45% !important;">
+                    <div class="modal-content ">
+                      <h5 class="mt-0">Informações adicionais</h5>
+                      <hr>
+                      <div class="row">
+                        <!-- Lista De Outras Informações Que Não Serão Citadas -->
+                        <ul class="collection">
+                          <li class="collection-item dismissable">
+                            <div>
+                              <span style="font-weight: bold;color:black">
+                                Nome
+                              </span>
+                              <p  class="secondary-content" style="color: black">
+                                  <?php echo htmlspecialchars( $value1["nome_seguradora"], ENT_COMPAT, 'UTF-8', FALSE ); ?>
+                              </p>
+                              </div>
+                            </li>
+                            <li class="collection-item dismissable">
+                                <div>
+                                  <span style="font-weight: bold;color:black">
+                                    Descrição
+                                  </span>
+                                  <p  class="secondary-content" style="color: black">
+                                      <?php echo htmlspecialchars( $value1["desc_seguradora"], ENT_COMPAT, 'UTF-8', FALSE ); ?>
+                                  </p>
+                                  </div>
+                            </li>
+                            <li class="collection-item dismissable">
+                                <div>
+                                  <span style="font-weight: bold;color:black">
+                                    Site
+                                  </span>
+                                  <p  class="secondary-content" style="color: black">
+                                      <?php echo htmlspecialchars( $value1["site_seguradora"], ENT_COMPAT, 'UTF-8', FALSE ); ?>
+                                  </p>
+                                </div>
+                            </li>
+                            <li class="collection-item dismissable">
+                                <div>
+                                  <span style="font-weight: bold;color:black">
+                                    Pais
+                                  </span>
+                                      <p  class="secondary-content" style="color: black;">
+                                          <?php echo htmlspecialchars( $value1["nome_pais"], ENT_COMPAT, 'UTF-8', FALSE ); ?>
+                                      </p>
+                                </div>
+                            </li>
+                            <li class="collection-item dismissable">
+                                <div>
+                                  <span style="font-weight: bold;color:black">
+                                    Provincia
+                                  </span>
+                                      <p  class="secondary-content" style="color: black;">
+                                          <?php echo htmlspecialchars( $value1["nome_provincia"], ENT_COMPAT, 'UTF-8', FALSE ); ?>
+                                      </p>
+                                </div>
+                            </li>
+                            <li class="collection-item dismissable">
+                                <div>
+                                  <span style="font-weight: bold;color:black">
+                                    Município
+                                  </span>
+                                      <p  class="secondary-content" style="color: black;">
+                                          <?php echo htmlspecialchars( $value1["nome_municipio"], ENT_COMPAT, 'UTF-8', FALSE ); ?>
+                                      </p>
+                                </div>
+                            </li>
+                            <li class="collection-item dismissable">
+                              <div>
+                                <span style="font-weight: bold;color:black">
+                                  Bairro
+                                </span>
+                                    <p  class="secondary-content" style="color: black;">
+                                        <?php echo htmlspecialchars( $value1["nome_bairro"], ENT_COMPAT, 'UTF-8', FALSE ); ?>
+                                    </p>
+                              </div>
+                            </li>
+                            <li class="collection-item dismissable">
+                                <div>
+                                  <span style="font-weight: bold;color:black">
+                                    Rua
+                                  </span>
+                                      <p  class="secondary-content" style="color: black;">
+                                          <?php echo htmlspecialchars( $value1["nome_rua"], ENT_COMPAT, 'UTF-8', FALSE ); ?>
+                                      </p>
+                                </div>
+                            </li>
+                            <li class="collection-item dismissable">
+                                <div>
+                                  <span style="font-weight: bold;color:black">
+                                    Nº Rua
+                                  </span>
+                                      <p  class="secondary-content" style="color: black;">
+                                          <?php if( $value1["n_rua"]>0 ){ ?><?php echo htmlspecialchars( $value1["n_rua"], ENT_COMPAT, 'UTF-8', FALSE ); ?><?php }else{ ?>N/Digitado<?php } ?>
+                                      </p>
+                                </div>
+                            </li>
+                            <li class="collection-item dismissable">
+                                <div>
+                                  <span style="font-weight: bold;color:black">
+                                    Telefone
+                                  </span>
+                                      <p  class="secondary-content" style="color: black;">
+                                          <?php echo htmlspecialchars( $value1["telefone"], ENT_COMPAT, 'UTF-8', FALSE ); ?>
+                                      </p>
+                                </div>
+                            </li>
+                            <li class="collection-item dismissable">
+                                <div>
+                                  <span style="font-weight: bold;color:black">
+                                    Email
+                                  </span>
+                                      <p  class="secondary-content" style="color: black;">
+                                          <?php echo htmlspecialchars( $value1["email"], ENT_COMPAT, 'UTF-8', FALSE ); ?>
+                                      </p>
+                                </div>
+                            </li>
+                            <li class="collection-item dismissable">
+                                <div>
+                                  <span style="font-weight: bold;color:black">
+                                    Fax
+                                  </span>
+                                      <p  class="secondary-content" style="color: black;">
+                                          <?php echo htmlspecialchars( $value1["fax"], ENT_COMPAT, 'UTF-8', FALSE ); ?>
+                                      </p>
+                                </div>
+                            </li>
+                        </ul>
+
                       </div>
-          <div id="html-view-validations">
-            <form class="formValidate0" id="formValidate0" method="post" action="/admin/despesas/novo">
-                <?php $counter1=-1;  if( isset($cliente) && ( is_array($cliente) || $cliente instanceof Traversable ) && sizeof($cliente) ) foreach( $cliente as $key1 => $value1 ){ $counter1++; ?>
-                <input id="first_name" type="hidden" class="validate" value="<?php echo htmlspecialchars( $value1["id_cliente"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" name="cliente">
-                <div class="row">
-                  <div class="input-field col s12">
-                    <i class="material-icons prefix"> perm_identity </i>
-                    <input id="first_name" type="text" class="validate" disabled value="<?php echo htmlspecialchars( $value1["nome_cliente"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
-                    <label for="first_name">Cliente</label>
+                    </div>
                   </div>
+                  <!-- Modal De Informações Adicionais -->
+
                   <?php } ?>
-                  <div class="input-field m6 col s12">
-                      <i class="material-icons prefix"> money_off </i>
-                    <select class="error validate" id="despesas" name="tipo_despesa" aria-required="true" required>
-                        <option value=""  disabled selected>DESPESA</option>
-                        <?php $counter1=-1;  if( isset($tipo_despesa) && ( is_array($tipo_despesa) || $tipo_despesa instanceof Traversable ) && sizeof($tipo_despesa) ) foreach( $tipo_despesa as $key1 => $value1 ){ $counter1++; ?>
-                        <option value="<?php echo htmlspecialchars( $value1["id_tipo_despesa"], ENT_COMPAT, 'UTF-8', FALSE ); ?>"><?php echo htmlspecialchars( $value1["nome_tipo_desp"], ENT_COMPAT, 'UTF-8', FALSE ); ?></option>
-                        <?php } ?>
-                    </select>
-                    <label>DESPESA</label>
-                  </div>
-                  <div class="input-field m6 col s12">
-                    <i class="material-icons prefix"> account_balance_wallet </i>
-                    <select class="error validate" id="forma_pagamento" name="forma_pagamento" aria-required="true" required>
-                      <option value="" disabled selected>Forma de pagamento</option>
-                      <?php $counter1=-1;  if( isset($forma_pagamento) && ( is_array($forma_pagamento) || $forma_pagamento instanceof Traversable ) && sizeof($forma_pagamento) ) foreach( $forma_pagamento as $key1 => $value1 ){ $counter1++; ?>
-                        <option value="<?php echo htmlspecialchars( $value1["id_forma_pagamento"], ENT_COMPAT, 'UTF-8', FALSE ); ?>"><?php echo htmlspecialchars( $value1["nome_forma"], ENT_COMPAT, 'UTF-8', FALSE ); ?></option>
-                      <?php } ?>
-                    </select>
-                    <label>Forma de pagamento</label>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="input-field col m4 s12">
-                    <i class="material-icons prefix"> equalizer </i>
-                    <input id="quantidade" type="number" class="validate" required aria-required="true" name="qtde_despesa">
-                    <label for="quantidade">Quantidade</label>
-                  </div>
-                  <div class="input-field col m4 s12">
-                    <i class="material-icons prefix"> monetization_on </i>
-                    <input id="v_unit" type="number" class="validate" required aria-required="true" name="v_unit_depesa">
-                    <label for="v_unit">Valor Unitário</label>
-                  </div>
-                  <div class="input-field col m4 s12">
-                    <i class="material-icons prefix"> reorder </i>
-                    <input id="parcelas" type="number" class="validate" required aria-required="true" name="parcelas">
-                    <label for="parcelas">Parcelas</label>
-                  </div>
-                  </div>
+                </tbody>
+              </table>
             </div>
-            </div>
-            <div class="input-field col s12">
-                <button class="btn waves-effect waves-light right" type="submit" name="action">Adicionar
-                </button>
-              </div>
-              </div>
-            </form>
-            
           </div>
         </div>
       </div>
     </div>
-  </div>
+</div>
 
 <!-- Fim: Tabela de Clientes -->
 
@@ -300,7 +411,7 @@
            <div class="slide-out-right-body">
               <div id="messages" class="col s12">
                  <div class="collection border-none">
-                    <input class="header-search-input mt-4 mb-2" type="text" name="Search" placeholder="Procurar Mensagens" />
+                    <input class="header-search-input mt-4 mb-2" type="text" required name="Search" placeholder="Procurar Mensagens" />
                     <ul class="collection p-0">
                        <li class="collection-item sidenav-trigger display-flex avatar pl-5 pb-0" data-target="slide-out-chat">
                           <span class="avatar-status avatar-online avatar-50"

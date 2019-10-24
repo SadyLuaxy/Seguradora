@@ -9,6 +9,7 @@
 	use \Seguradora\Model\Clientes;
 	use \Seguradora\Model\Parcial;
 	use \Seguradora\Model\Despesas;
+	use \Seguradora\Model\Seguradoras;
 	
 
 	$app = new \Slim\Slim();
@@ -201,6 +202,19 @@
 		
 	});
 
+	$app->get('/admin/despesas/:id_cliente/apagar/:id_despesas', function($id_cliente,$id_despesas){
+		
+		User::verifyLogin();
+		$despesa = new Despesas();
+		$despesa->get((int)$id_despesas);
+
+		$despesa->apagar();
+		header("Location: /admin/despesas/cliente/$id_cliente");
+		exit;
+
+		
+	});
+
 	$app->get('/admin/despesas/editar/:id_despesa', function($id_despesa){
 		
 		User::verifyLogin();
@@ -250,14 +264,67 @@
 		exit;
 	});
 
-	$app->post('/admin/despesas/editar', function(){
+	$app->post('/admin/despesas/editar/:id_despesa', function($id_despesa){
 
 		$despesas = new Despesas();
 		User::verifyLogin();
 		$despesas->setDados($_POST);
-		$id_cliente = $despesas->editar();
+		$id_cliente = $despesas->editar($id_despesa);
 		header("Location: /admin/despesas/cliente/$id_cliente");
 		exit;
+	});
+
+	
+	$app->get('/admin/seguradoras', function(){
+		
+		User::verifyLogin();
+		$Seguradora = new Seguradoras();
+		$Seguradoras = $Seguradora->listAll();
+		$rows = $Seguradora->rows();	
+
+		$page = new PageAdmin();
+		$page->setTpl("app-seguradoras", array(
+			"Seguradoras"=>$Seguradoras,
+			"rows"=>$rows
+		));
+		exit;
+	});
+
+	$app->get('/admin/seguradoras/novo', function(){
+		
+		User::verifyLogin();	
+
+		$page = new PageAdmin();
+		$bairros = Parcial::bairrosList();
+		$page->setTpl("app-seguradoras-novo", array(
+			"bairros"=>$bairros
+		));
+		exit;
+	});
+
+	$app->get('/admin/seguradoras/editar/:id_seguradora', function($id_seguradora){
+		
+		User::verifyLogin();	
+
+		$page = new PageAdmin();
+		$bairros = Parcial::bairrosList();
+		$page->setTpl("app-seguradoras-editar", array(
+			"bairros"=>$bairros
+		));
+		exit;
+	});
+
+	$app->post('/admin/seguradora/novo', function(){
+
+		User::verifyLogin();
+
+		$clientes = new Seguradoras();
+		$clientes->setDados($_POST);
+		$clientes->cadastrar();
+		header("Location: /admin/seguradoras");
+		exit;
+
+
 	});
 
 	$app->run();

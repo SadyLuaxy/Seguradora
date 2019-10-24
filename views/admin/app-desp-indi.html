@@ -145,6 +145,8 @@
           </li>
           <li class="bold"><a class="waves-effect waves-cyan " href="/admin/facturas"><i class="material-icons">chrome_reader_mode</i><span class="menu-title" data-i18n="">Facturamento</span></a>
           </li>
+          <li class="bold"><a class="waves-effect waves-cyan " href="/admin/seguradoras"><i class="material-icons">home</i><span class="menu-title" data-i18n="">Seguradora</span></a>
+          </li>
           <li class="bold"><a class="collapsible-header waves-effect waves-cyan " href="#"><i class="material-icons">add_shopping_cart</i><span class="menu-title" data-i18n="">Seguros</span></a>
             <div class="collapsible-body">
               <ul class="collapsible collapsible-sub" data-collapsible="accordion">
@@ -169,7 +171,6 @@
         <div class="content-wrapper-before gradient-45deg-indigo-purple"></div>
         <div class="col s12">
           <div class="container">
-
 <!-- Sidebar Area Starts -->
 <div class="sidebar-left sidebar-fixed">
   <div class="sidebar col s12">
@@ -177,6 +178,14 @@
       <div class="sidebar-header">
         <div class="sidebar-details">
           {loop="$cliente"}
+          
+            <!-- Add new contact popup -->
+            <div style="bottom: 54px; right: 19px;" class="fixed-action-btn direction-top">
+                  <a class="btn-floating btn-large primary-text gradient-shadow modal-trigger" href="/admin/despesas/novo/{$value.id_cliente}">
+                  <i class="material-icons">add</i>
+                  </a>
+            </div>
+             <!-- Add new contact popup Ends-->
           <h6 class="m-0 sidebar-title"><i class="material-icons app-header-icon text-top">person</i>Cliente: {$value.nome_cliente}
           </h6>
           <h6 class="m-0 sidebar-title"><i class="material-icons app-header-icon text-top">info</i> Seguradora: SOTECMA
@@ -243,7 +252,7 @@
                         <td>{$value.nome_forma}</td>
                         <td>
                           <a class="btn-floating btn-small btn-small waves-effect waves-light orange btn tooltipped" data-position="top" data-tooltip="Editar" href="/admin/despesas/editar/{$value.id_despesas}"><i class="material-icons">info_outline</i></a>
-                          <a class="btn-floating btn-small btn-small waves-effect waves-light red btn tooltipped" data-position="top" data-tooltip="Apagar" href="/admin/despesas/apagar/{$value.id_despesas}"><i class="material-icons">delete</i></a>
+                          <a class="btn-floating btn-small btn-small waves-effect waves-light red btn tooltipped" data-position="top" data-tooltip="Apagar" onclick="return confirm('Deseja realmente excluir essa despesa?')" href="/admin/despesas/{$value.cliente}/apagar/{$value.id_despesas}"><i class="material-icons">delete</i></a>
                         </td>
                       </tr>
                       

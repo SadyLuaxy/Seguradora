@@ -1,5 +1,5 @@
 <?php if(!class_exists('Rain\Tpl')){exit;}?>
-    <title> Clientes | Agência de Seguros Admin</title>
+    <title>Despesas | Agência de Seguros Admin </title>
     <link rel="apple-touch-icon" href="/res/admin/assets/images/favicon/apple-touch-icon-152x152.png">
     <link rel="shortcut icon" type="image/x-icon" href="/res/admin/assets/images/favicon/favicon-32x32.png">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -36,7 +36,7 @@
           <div class="nav-wrapper">
             <div class="header-search-wrapper hide-on-med-and-down">
               <i class="material-icons">search</i>
-              <input class="header-search-input z-depth-2" type="text" required name="Search" placeholder="Pesquisar">
+              <input class="header-search-input z-depth-2" type="text" name="Search" placeholder="Pesquisar">
             </div>
             <ul class="navbar-list right">
               <!-- Tradutor 
@@ -106,7 +106,7 @@
               <li><a class="grey-text text-darken-1" href="page-faq.html"><i class="material-icons">help_outline</i> Ajuda</a></li>
               <li class="divider"></li>
               <li><a class="grey-text text-darken-1" href="user-lock-screen.html"><i class="material-icons">lock_outline</i> Bloquear</a></li>
-              <li><a class="grey-text text-darken-1" href="/usuario/logout"><i class="material-icons">keyboard_tab</i> Sair</a></li>
+              <li><a class="grey-text text-darken-1" href="user-login.html"><i class="material-icons">keyboard_tab</i> Sair</a></li>
             </ul>
             <!-- Fim Perfil do dropdown-->
           </div>
@@ -139,9 +139,9 @@
         </li>
         <li class="navigation-header"><a class="navigation-header-text">Aplicação</a><i class="navigation-header-icon material-icons">more_horiz</i>
         </li>
-        <li class="active bold"><a class="waves-effect waves-cyan active red" href="/admin/clientes"><i class="material-icons">group</i><span class="menu-title" data-i18n="">Clientes</span></a>
+        <li class="bold"><a class="waves-effect waves-cyan" href="/admin/clientes"><i class="material-icons">group</i><span class="menu-title" data-i18n="">Clientes</span></a>
         </li>
-        <li class="bold"><a class="waves-effect waves-cyan " href="/admin/despesas"><i class="material-icons">money_off</i><span class="menu-title" data-i18n="">Despesas</span></a>
+        <li class="active bold"><a class="waves-effect waves-cyan active red" href="/admin/despesas"><i class="material-icons">money_off</i><span class="menu-title" data-i18n="">Despesas</span></a>
         </li>
         <li class="bold"><a class="waves-effect waves-cyan " href="/admin/facturas"><i class="material-icons">chrome_reader_mode</i><span class="menu-title" data-i18n="">Facturamento</span></a>
         </li>
@@ -156,7 +156,7 @@
             </ul>
           </div>
         </li>
-        <li class="bold"><a class="waves-effect waves-cyan " href="/admin/reltaorios/financeiros"><i class="material-icons">account_balance</i><span class="menu-title" data-i18n="">Resultado financeiro</span></a>
+        <li class="bold"><a class="waves-effect waves-cyan " href="/admin/relatorios/financeiros"><i class="material-icons">account_balance</i><span class="menu-title" data-i18n="">Resultado financeiro</span></a>
         </li>
       </ul>
       <div class="navigation-background"></div><a class="sidenav-trigger btn-sidenav-toggle btn-floating btn-medium waves-effect waves-light hide-on-large-only" href="#" data-target="slide-out"><i class="material-icons">menu</i></a>
@@ -170,113 +170,103 @@
         <div class="col s12">
           <div class="container">
 
+
+<?php $counter1=-1;  if( isset($cliente) && ( is_array($cliente) || $cliente instanceof Traversable ) && sizeof($cliente) ) foreach( $cliente as $key1 => $value1 ){ $counter1++; ?>
 <!-- Sidebar Area Starts -->
 <div class="sidebar-left sidebar-fixed">
-  <div class="sidebar">
-    <div class="sidebar-content">
-      <div class="sidebar-header">
-        <div class="sidebar-details">
-          <h5 class="m-0 sidebar-title"><i class="material-icons app-header-icon text-top">group</i> Adicionar clientes
-          </h5>
+    <div class="sidebar col s12">
+      <div class="sidebar-content">
+        <div class="sidebar-header">
+          <div class="sidebar-details">
+            <h6 class="m-0 sidebar-title"><i class="material-icons app-header-icon text-top">person</i> Cliente: <?php echo htmlspecialchars( $value1["nome_cliente"], ENT_COMPAT, 'UTF-8', FALSE ); ?>
+            </h6>
+            <a class="btn btn-small cyan" href="/admin/despesas/cliente/<?php echo htmlspecialchars( $value1["id_cliente"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">Ver cliente</a>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
+  
+  <?php } ?>
 <!-- Sidebar Area Ends -->
 
 <!-- Início: Tabela de Clientes -->
-
-<div class="section">
-
-    <div class="row">
-        <div class="col s12">
-          <div id="html-validations" class="card card-tabs">
-            <div class="card-content">
-              <div class="card-title">
+<div class="row">
+    <div class="col s12">
+      <div id="html-validations" class="card card-tabs">
+        <div class="card-content">
+                <div class="card-title">
+                        <div class="row">
+                          <div class="col s12 m6 l10">
+                            <h4 class="card-title">Adicionar despesa</h4>
+                          </div>
+                          <div class="col s12 m6 l2">
+                          </div>
+                        </div>
+                      </div>
+          <div id="html-view-validations">
+            <form class="formValidate0" id="formValidate0" method="post" action="/admin/despesas/novo">
+                <?php $counter1=-1;  if( isset($cliente) && ( is_array($cliente) || $cliente instanceof Traversable ) && sizeof($cliente) ) foreach( $cliente as $key1 => $value1 ){ $counter1++; ?>
+                <input id="first_name" type="hidden" class="validate" value="<?php echo htmlspecialchars( $value1["id_cliente"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" name="cliente">
                 <div class="row">
-                  <div class="col s12 m6 l10">
-                    <h4 class="card-title">Cadastrar novo cliente</h4>
+                  <div class="input-field col s12">
+                    <i class="material-icons prefix"> perm_identity </i>
+                    <input id="first_name" type="text" class="validate" disabled value="<?php echo htmlspecialchars( $value1["nome_cliente"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
+                    <label for="first_name">Cliente</label>
                   </div>
-                  <div class="col s12 m6 l2">
+                  <?php } ?>
+                  <div class="input-field m6 col s12">
+                      <i class="material-icons prefix"> money_off </i>
+                    <select class="error validate" id="despesas" name="tipo_despesa" aria-required="true" required>
+                        <option value=""  disabled selected>DESPESA</option>
+                        <?php $counter1=-1;  if( isset($tipo_despesa) && ( is_array($tipo_despesa) || $tipo_despesa instanceof Traversable ) && sizeof($tipo_despesa) ) foreach( $tipo_despesa as $key1 => $value1 ){ $counter1++; ?>
+                        <option value="<?php echo htmlspecialchars( $value1["id_tipo_despesa"], ENT_COMPAT, 'UTF-8', FALSE ); ?>"><?php echo htmlspecialchars( $value1["nome_tipo_desp"], ENT_COMPAT, 'UTF-8', FALSE ); ?></option>
+                        <?php } ?>
+                    </select>
+                    <label>DESPESA</label>
+                  </div>
+                  <div class="input-field m6 col s12">
+                    <i class="material-icons prefix"> account_balance_wallet </i>
+                    <select class="error validate" id="forma_pagamento" name="forma_pagamento" aria-required="true" required>
+                      <option value="" disabled selected>Forma de pagamento</option>
+                      <?php $counter1=-1;  if( isset($forma_pagamento) && ( is_array($forma_pagamento) || $forma_pagamento instanceof Traversable ) && sizeof($forma_pagamento) ) foreach( $forma_pagamento as $key1 => $value1 ){ $counter1++; ?>
+                        <option value="<?php echo htmlspecialchars( $value1["id_forma_pagamento"], ENT_COMPAT, 'UTF-8', FALSE ); ?>"><?php echo htmlspecialchars( $value1["nome_forma"], ENT_COMPAT, 'UTF-8', FALSE ); ?></option>
+                      <?php } ?>
+                    </select>
+                    <label>Forma de pagamento</label>
                   </div>
                 </div>
-              </div>
-              <div id="html-view-validations">
-                <form class="formValidate0" id="formValidate0" method="post" action="/admin/clientes/novo">
-                  <div class="row">
-                    <div class="input-field col s12">
-                      <label for="uname0">Nome completo*</label>
-                      <input class="validate" required aria-required="true" id="nome0" name="nome_cliente" type="text">
-                    </div>
-                    <div class="input-field m6 col s12">
-                        <select class="error validate" id="sexo" name="sexo" aria-required="true" required>
-                            <option value="" aria-required="true" disabled selected>Sexo</option>
-                            <option value="Masculino">Masculino</option>
-                            <option value="Feminino">Feminino</option>
-                          </select>
-                          <label>Sexo</label>
-                    </div>
-                    <div class="input-field m6 col s12">
-                        <select class="error validate" id="estado_civil" name="estado_civil" aria-required="true" required>
-                            <option value="" required aria-required="true" disabled selected>Estado civil</option>
-                            <option value="Solteiro">Solteiro</option>
-                            <option value="Casado">Casado</option>
-                          </select>
-                          <label>Estao civil</label>
-                    </div>
-                    <div class="input-field col s12">
-                        <textarea id="descricao" name="desc_cliente" class="materialize-textarea validate" aria-required="true"
-                        required></textarea>
-                      <label for="descricao">Descrição*</label>
-                    </div>
-                    <div class="input-field m6 col s12">
-                        <input placeholder="01/01/2019" id="data" type="text" class="" name="data_nascimento">
-                        <label for="date-demo1">Data de nascimento</label>
-                    </div>
-                    <div class="input-field m6 col s12">
-                      <label for="rua">Rua *</label>
-                      <input class="validate" required aria-required="true" id="rua" type="text" name="nome_rua">
-                    </div>
-                    <div class="input-field m6 col s12">
-                        <label for="n_rua">Nº Rua</label>
-                        <input type="number" name="n_rua" id="n_rua">
-                    </div>
-                        
-                    <div class="input-field m6 col s12">
-                        <label for="bairro"></label>
-                        <select class="error validate" id="bairro" name="bairro" aria-required="true" required>
-                            <option value="" disabled selected>Escolha o bairro</option>
-                            <?php $counter1=-1;  if( isset($bairros) && ( is_array($bairros) || $bairros instanceof Traversable ) && sizeof($bairros) ) foreach( $bairros as $key1 => $value1 ){ $counter1++; ?>
-                            <option value="<?php echo htmlspecialchars( $value1["id_bairro"], ENT_COMPAT, 'UTF-8', FALSE ); ?>"><?php echo htmlspecialchars( $value1["nome_bairro"], ENT_COMPAT, 'UTF-8', FALSE ); ?></option>
-                            <?php } ?>
-                        </select>
-                    </div>
-                    <div class="input-field m6 col s12">
-                        <label for="telefone"> Telefone *</label>
-                        <input class="validate" required aria-required="true" id="telefone" type="number" name="telefone">
-                    </div>
-                    <div class="input-field m6 col s12">
-                        <label for="email"> Email *</label>
-                        <input class="validate" required aria-required="true" id="email" type="email" name="email">
-                    </div>
-                    <div class="input-field m6 col s12">
-                        <label for="fax"> FAX</label>
-                        <input id="fax" type="text" name="fax">
-                     </div>
-                    </div>
-                    <div class="input-field col s12">
-                      <button class="btn waves-effect waves-light right" type="submit">Cadastrar
-                        <i class="material-icons right">person_add</i>
-                      </button>
-                    </div>
+                <div class="row">
+                  <div class="input-field col m4 s12">
+                    <i class="material-icons prefix"> equalizer </i>
+                    <input id="quantidade" type="number" class="validate" required aria-required="true" name="qtde_despesa">
+                    <label for="quantidade">Quantidade</label>
                   </div>
-                </form>
-              </div>
+                  <div class="input-field col m4 s12">
+                    <i class="material-icons prefix"> monetization_on </i>
+                    <input id="v_unit" type="number" class="validate" required aria-required="true" name="v_unit_depesa">
+                    <label for="v_unit">Valor Unitário</label>
+                  </div>
+                  <div class="input-field col m4 s12">
+                    <i class="material-icons prefix"> reorder </i>
+                    <input id="parcelas" type="number" class="validate" required aria-required="true" name="parcelas">
+                    <label for="parcelas">Parcelas</label>
+                  </div>
+                  </div>
             </div>
+            </div>
+            <div class="input-field col s12">
+                <button class="btn waves-effect waves-light right" type="submit" name="action">Adicionar
+                </button>
+              </div>
+              </div>
+            </form>
+            
           </div>
         </div>
       </div>
+    </div>
+  </div>
 
 <!-- Fim: Tabela de Clientes -->
 
@@ -310,7 +300,7 @@
            <div class="slide-out-right-body">
               <div id="messages" class="col s12">
                  <div class="collection border-none">
-                    <input class="header-search-input mt-4 mb-2" type="text" required name="Search" placeholder="Procurar Mensagens" />
+                    <input class="header-search-input mt-4 mb-2" type="text" name="Search" placeholder="Procurar Mensagens" />
                     <ul class="collection p-0">
                        <li class="collection-item sidenav-trigger display-flex avatar pl-5 pb-0" data-target="slide-out-chat">
                           <span class="avatar-status avatar-online avatar-50"
@@ -526,7 +516,7 @@
     </footer>
 
     <!-- Fim: Footer-->
-    
+
     <!-- BEGIN VENDOR JS-->
     <script src="/res/admin/assets/js/app-email/vendors.min.js" type="text/javascript"></script>
     <!-- BEGIN VENDOR JS-->
@@ -544,6 +534,10 @@
     <!-- END PAGE LEVEL JS-->
 
     <script src="/res/admin/assets/js/app-email/vendors.min.js" type="text/javascript"></script>
+    <!-- BEGIN VENDOR JS-->
+    <!-- BEGIN PAGE VENDOR JS-->
+    <script src="/res/admin/assets/vendors/data-tables/js/jquery.dataTables.min.js" type="text/javascript"></script>
+    <script src="/res/admin/assets/vendors/data-tables/extensions/responsive/js/dataTables.responsive.min.js" type="text/javascript"></script>
     <!-- END PAGE VENDOR JS-->
     <!-- BEGIN THEME  JS-->
     <script src="/res/admin/assets/js/plugins.js" type="text/javascript"></script>
@@ -551,5 +545,3 @@
     <!-- BEGIN PAGE LEVEL JS-->
     <script src="/res/admin/assets/js/scripts/data-tables.js" type="text/javascript"></script>
     <!-- END PAGE LEVEL JS-->
-    <script src="/res/admin/assets/js/scripts/form-masks.js" type="text/javascript"></script>
-    <script src="/res/admin/assets/vendors/formatter/jquery.formatter.min.js"></script>

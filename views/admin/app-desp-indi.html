@@ -127,41 +127,41 @@
 
     <!-- Início: SideNav-->
     <aside class="sidenav-main nav-expanded nav-lock nav-collapsible sidenav-light sidenav-active-square">
-      <div class="brand-sidebar">
-        <h1 class="logo-wrapper"><a class="brand-logo darken-1" href="index.html"><span class="logo-text hide-on-med-and-down">Agência Seguros</span></a></h1>
-      </div>
-      <ul class="sidenav sidenav-collapsible leftside-navigation collapsible sidenav-fixed menu-shadow" id="slide-out" data-menu="menu-navigation" data-collapsible="menu-accordion">
-        <li class="bold">
-          <a class="waves-effect waves-cyan" href="#">
-            <i class="material-icons">home</i>
-            <span class="menu-title">Início</span>
-          </a>
-        </li>
-        <li class="navigation-header"><a class="navigation-header-text">Aplicação</a><i class="navigation-header-icon material-icons">more_horiz</i>
-        </li>
-        <li class="bold"><a class="waves-effect waves-cyan" href="app-clientes.html"><i class="material-icons">group</i><span class="menu-title" data-i18n="">Clientes</span></a>
-        </li>
-        <li class="active bold"><a class="waves-effect waves-cyan active red" href="app-despesas.html"><i class="material-icons">money_off</i><span class="menu-title" data-i18n="">Despesas</span></a>
-        </li>
-        <li class="bold"><a class="waves-effect waves-cyan " href="app-facturas.html"><i class="material-icons">chrome_reader_mode</i><span class="menu-title" data-i18n="">Facturamento</span></a>
-        </li>
-        <li class="bold"><a class="collapsible-header waves-effect waves-cyan " href="#"><i class="material-icons">add_shopping_cart</i><span class="menu-title" data-i18n="">Seguros</span></a>
-          <div class="collapsible-body">
-            <ul class="collapsible collapsible-sub" data-collapsible="accordion">
-              <li><a class="collapsible-body" href="app-seguro-auto.html" data-i18n=""><i class="material-icons">radio_button_unchecked</i><span>Automóvel</span></a>
-              <li><a class="collapsible-body" href="app-seguro-emp.html" data-i18n=""><i class="material-icons">radio_button_unchecked</i><span>Empresarial</span></a>
-              </li>
-              <li><a class="collapsible-body" href="app-seguro-vida.html" data-i18n=""><i class="material-icons">radio_button_unchecked</i><span>Vida</span></a>
-              </li>
-            </ul>
-          </div>
-        </li>
-        <li class="bold"><a class="waves-effect waves-cyan " href="app-financeiro.html"><i class="material-icons">account_balance</i><span class="menu-title" data-i18n="">Resultado financeiro</span></a>
-        </li>
-      </ul>
-      <div class="navigation-background"></div><a class="sidenav-trigger btn-sidenav-toggle btn-floating btn-medium waves-effect waves-light hide-on-large-only" href="#" data-target="slide-out"><i class="material-icons">menu</i></a>
-    </aside>
-    <!-- Fim: SideNav-->
+        <div class="brand-sidebar">
+          <h1 class="logo-wrapper"><a class="brand-logo darken-1" href="/admin"><span class="logo-text hide-on-med-and-down">Agência Seguros</span></a></h1>
+        </div>
+        <ul class="sidenav sidenav-collapsible leftside-navigation collapsible sidenav-fixed menu-shadow" id="slide-out" data-menu="menu-navigation" data-collapsible="menu-accordion">
+          <li class="bold">
+            <a class="waves-effect waves-cyan" href="/admin">
+              <i class="material-icons">home</i>
+              <span class="menu-title">Início</span>
+            </a>
+          </li>
+          <li class="navigation-header"><a class="navigation-header-text">Aplicação</a><i class="navigation-header-icon material-icons">more_horiz</i>
+          </li>
+          <li class="bold"><a class="waves-effect waves-cyan" href="/admin/clientes"><i class="material-icons">group</i><span class="menu-title" data-i18n="">Clientes</span></a>
+          </li>
+          <li class="active bold"><a class="waves-effect waves-cyan active red" href="/admin/despesas"><i class="material-icons">money_off</i><span class="menu-title" data-i18n="">Despesas</span></a>
+          </li>
+          <li class="bold"><a class="waves-effect waves-cyan " href="/admin/facturas"><i class="material-icons">chrome_reader_mode</i><span class="menu-title" data-i18n="">Facturamento</span></a>
+          </li>
+          <li class="bold"><a class="collapsible-header waves-effect waves-cyan " href="#"><i class="material-icons">add_shopping_cart</i><span class="menu-title" data-i18n="">Seguros</span></a>
+            <div class="collapsible-body">
+              <ul class="collapsible collapsible-sub" data-collapsible="accordion">
+                <li><a class="collapsible-body" href="/admin/seguros/automovel" data-i18n=""><i class="material-icons">radio_button_unchecked</i><span>Automóvel</span></a>
+                <li><a class="collapsible-body" href="/admin/seguros/empresarial" data-i18n=""><i class="material-icons">radio_button_unchecked</i><span>Empresarial</span></a>
+                </li>
+                <li><a class="collapsible-body" href="/admin/seguros/vida" data-i18n=""><i class="material-icons">radio_button_unchecked</i><span>Vida</span></a>
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li class="bold"><a class="waves-effect waves-cyan " href="/admin/relatorios/financeiros"><i class="material-icons">account_balance</i><span class="menu-title" data-i18n="">Resultado financeiro</span></a>
+          </li>
+        </ul>
+        <div class="navigation-background"></div><a class="sidenav-trigger btn-sidenav-toggle btn-floating btn-medium waves-effect waves-light hide-on-large-only" href="#" data-target="slide-out"><i class="material-icons">menu</i></a>
+      </aside>
+      <!-- Fim: SideNav-->
 
     <!-- BEGIN: Page Main-->
     <div id="main">
@@ -169,69 +169,6 @@
         <div class="content-wrapper-before gradient-45deg-indigo-purple"></div>
         <div class="col s12">
           <div class="container">
-            <!-- Add new contact popup -->
-<div style="bottom: 54px; right: 19px;" class="fixed-action-btn direction-top">
-  <a class="btn-floating btn-large primary-text gradient-shadow modal-trigger" href="#modal1">
-    <i class="material-icons">add</i>
-  </a>
-</div>
-<!-- Add new contact popup Ends-->
-
-<!-- Modal Structure -->
-<div id="modal1" class="modal border-radius-6">
-  <div class="modal-content">
-    <h5 class="mt-0">Adicionar despesa</h5>
-    <hr>
-    <div class="row">
-      <form class="col s12">
-        <div class="row">
-          <div class="input-field col m6 s12">
-            <i class="material-icons prefix"> perm_identity </i>
-            <input id="first_name" type="text" class="validate">
-            <label for="first_name">First Name</label>
-          </div>
-          <div class="input-field col m6 s12">
-            <i class="material-icons prefix"> perm_identity </i>
-            <input id="last_name" type="text" class="validate">
-            <label for="last_name">Last Name</label>
-          </div>
-          <div class="input-field col m6 s12">
-            <i class="material-icons prefix"> business </i>
-            <input id="company" type="text" class="validate">
-            <label for="company">Company</label>
-          </div>
-          <div class="input-field col m6 s12">
-            <i class="material-icons prefix"> business_center </i>
-            <input id="business" type="text" class="validate">
-            <label for="business">Job Title</label>
-          </div>
-        </div>
-        <div class="row">
-          <div class="input-field col s12">
-            <i class="material-icons prefix"> email </i>
-            <input id="email" type="email" class="validate">
-            <label for="email">Email</label>
-          </div>
-          <div class="input-field col s12">
-            <i class="material-icons prefix"> call </i>
-            <input id="phone" type="number" class="validate">
-            <label for="phone">Phone</label>
-          </div>
-          <div class="input-field col s12">
-            <i class="material-icons prefix"> note </i>
-            <input id="notes" type="text" class="validate">
-            <label for="notes">Notes</label>
-          </div>
-        </div>
-
-      </form>
-    </div>
-  </div>
-  <div class="modal-footer">
-    <a class="btn modal-close waves-effect waves-light mr-2">Adicionar</a>
-  </div>
-</div>
-<!-- Modal Structure Ends -->
 
 <!-- Sidebar Area Starts -->
 <div class="sidebar-left sidebar-fixed">
@@ -239,14 +176,15 @@
     <div class="sidebar-content">
       <div class="sidebar-header">
         <div class="sidebar-details">
-          <h6 class="m-0 sidebar-title"><i class="material-icons app-header-icon text-top">person</i> Despesas de: Sady Luaxy Luis Eduardo
+          {loop="$cliente"}
+          <h6 class="m-0 sidebar-title"><i class="material-icons app-header-icon text-top">person</i>Cliente: {$value.nome_cliente}
           </h6>
-          <h6 class="m-0 sidebar-title"><i class="material-icons app-header-icon text-top">info</i> NIF:
-            8976624623
+          <h6 class="m-0 sidebar-title"><i class="material-icons app-header-icon text-top">info</i> Seguradora: SOTECMA
           </h6>
+          {/loop}
           <div class="mt-5">
             <p class="m-0 subtitle font-weight-700">Total de despesas registradas</p>
-            <p class="m-0 text-muted">1457 Despesas</p>
+            <p class="m-0 text-muted">{loop="$rowsCliente"}{$value.num_result}{/loop} Despesas</p>
           </div>
         </div>
       </div>
@@ -262,7 +200,7 @@
             Valor Total
           </h5>
           <div class="mt-1 pt-0">
-            <p class="m-0 subtitle ">100.000.00Kz</p>
+            <p class="m-0 subtitle ">{$total}Kz</p>
           </div>
         </div>
       </div>
@@ -283,43 +221,33 @@
           <div class="row">
             <div class="col s12">
               <table id="page-length-option" class="display">
-                <thead>
-                  <tr>
-                    <th>Name</th>
-                    <th>Position</th>
-                    <th>Office</th>
-                    <th>Age</th>
-                    <th>Start date</th>
-                    <th>Salary</th>
-                    <th>Ação</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>Michael Bruce</td>
-                    <td>Javascript Developer</td>
-                    <td>Singapore</td>
-                    <td>29</td>
-                    <td>2011/06/27</td>
-                    <td>$183,000</td>
-                    <td>
-                      <a class="btn-floating btn-small btn-small waves-effect waves-light blue modal-trigger btn tooltipped" data-position="top" data-tooltip="Ver mais" href="#outrasinfo"><i class="material-icons">info_outline</i></a>
-                      <a class="btn-floating btn-small btn-small waves-effect waves-light red btn tooltipped" data-position="top" data-tooltip="Apagar" href="#"><i class="material-icons">delete</i></a>
-                    </td>
-
-                  </tr>
-                  <tr>
-                    <td>Donna Snider</td>
-                    <td>Customer Support</td>
-                    <td>New York</td>
-                    <td>27</td>
-                    <td>2011/01/25</td>
-                    <td>$112,000</td>
-                    <td>
-                      <a class="btn-floating btn-small btn-small waves-effect waves-light blue modal-trigger btn tooltipped" data-position="top" data-tooltip="Ver mais" href="#outrasinfo"><i class="material-icons">info_outline</i></a>
-                      <a class="btn-floating btn-small btn-small waves-effect waves-light red btn tooltipped" data-position="top" data-tooltip="Apagar" href="#"><i class="material-icons">delete</i></a>
-                    </td>
-                  </tr>
+                  <thead>
+                      <tr>
+                        <th>Despesa</th>
+                        <th>Data</th>
+                        <th>Qtde</th>
+                        <th>Valor Unitário</th>
+                        <th>Parcelas</th>
+                        <th>Pagamento</th>
+                        <th>Ação</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {loop="$despesas"}
+                      <tr>
+                        <td>{$value.nome_tipo_desp}</td>
+                        <td>{$value.data_despesa}</td>
+                        <td>{$value.qtde_despesa}</td>
+                        <td>{$value.v_unit_desp}</td>
+                        <td>{$value.parcelas_desp}</td>
+                        <td>{$value.nome_forma}</td>
+                        <td>
+                          <a class="btn-floating btn-small btn-small waves-effect waves-light orange btn tooltipped" data-position="top" data-tooltip="Editar" href="/admin/despesas/editar/{$value.id_despesas}"><i class="material-icons">info_outline</i></a>
+                          <a class="btn-floating btn-small btn-small waves-effect waves-light red btn tooltipped" data-position="top" data-tooltip="Apagar" href="/admin/despesas/apagar/{$value.id_despesas}"><i class="material-icons">delete</i></a>
+                        </td>
+                      </tr>
+                      
+                    {/loop}
                 </tbody>
 
                 <!-- Modal De Informações Adicionais -->

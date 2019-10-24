@@ -183,7 +183,7 @@
           </h5>
           <div class="mt-10 pt-2">
             <p class="m-0 subtitle font-weight-700">Total de despesas registradas</p>
-            <p class="m-0 text-muted">1457 Despesas</p>
+            <p class="m-0 text-muted"><?php $counter1=-1;  if( isset($rows) && ( is_array($rows) || $rows instanceof Traversable ) && sizeof($rows) ) foreach( $rows as $key1 => $value1 ){ $counter1++; ?><?php echo htmlspecialchars( $value1["num_result"], ENT_COMPAT, 'UTF-8', FALSE ); ?><?php } ?> Despesas</p>
           </div>
         </div>
       </div>
@@ -199,7 +199,7 @@
             Valor Total
           </h5>
           <div class="mt-1 pt-0">
-            <p class="m-0 subtitle ">100.000.00Kz</p>
+            <p class="m-0 subtitle "><?php echo htmlspecialchars( $total, ENT_COMPAT, 'UTF-8', FALSE ); ?>Kz</p>
           </div>
         </div>
       </div>
@@ -244,67 +244,9 @@
                     <td><?php echo htmlspecialchars( $value1["telefone"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
                     <td>
                       <a class="btn-floating btn-small btn-small waves-effect waves-light blue btn tooltipped" data-position="top" data-tooltip="Ver despesas" href="/admin/despesas/cliente/<?php echo htmlspecialchars( $value1["id_cliente"], ENT_COMPAT, 'UTF-8', FALSE ); ?>"><i class="material-icons">info_outline</i></a>
-                      <a class="btn-floating btn-small btn-small waves-effect waves-light green modal-trigger btn tooltipped" data-position="top" data-tooltip="Adicionar despesa" href="#adicionar<?php echo htmlspecialchars( $value1["id_cliente"], ENT_COMPAT, 'UTF-8', FALSE ); ?>"><i class="material-icons">add</i></a>
+                      <a class="btn-floating btn-small btn-small waves-effect waves-light green modal-trigger btn tooltipped" data-position="top" data-tooltip="Adicionar despesa" href="/admin/despesas/novo/<?php echo htmlspecialchars( $value1["id_cliente"], ENT_COMPAT, 'UTF-8', FALSE ); ?>"><i class="material-icons">add</i></a>
                     </td>
                   </tr>
-
-                  <!-- Modal Structure -->
-                  <div id="adicionar<?php echo htmlspecialchars( $value1["id_cliente"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" class="modal border-radius-6">
-                    <div class="modal-content">
-                      <h5 class="mt-0">Nova despesa</h5>
-                      <hr>
-                      <div class="row">
-                        <form class="col s12">
-                          <div class="row">
-                            <div class="input-field col m6 s12">
-                              <i class="material-icons prefix"> perm_identity </i>
-                              <input id="first_name" type="text" class="validate" disabled value="<?php echo htmlspecialchars( $value1["nome_cliente"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
-                              <label for="first_name">Cliente</label>
-                            </div>
-                            <div class="input-field col m6 s12">
-                              <i class="material-icons prefix"> perm_identity </i>
-                              <input id="last_name" type="text" class="validate">
-                              <label for="last_name">Last Name</label>
-                            </div>
-                            <div class="input-field col m6 s12">
-                              <i class="material-icons prefix"> business </i>
-                              <input id="company" type="text" class="validate">
-                              <label for="company">Company</label>
-                            </div>
-                            <div class="input-field col m6 s12">
-                              <i class="material-icons prefix"> business_center </i>
-                              <input id="business" type="text" class="validate">
-                              <label for="business">Job Title</label>
-                            </div>
-                          </div>
-                          <div class="row">
-                            <div class="input-field col s12">
-                              <i class="material-icons prefix"> email </i>
-                              <input id="email" type="email" class="validate">
-                              <label for="email">Email</label>
-                            </div>
-                            <div class="input-field col s12">
-                              <i class="material-icons prefix"> call </i>
-                              <input id="phone" type="number" class="validate">
-                              <label for="phone">Phone</label>
-                            </div>
-                            <div class="input-field col s12">
-                              <i class="material-icons prefix"> note </i>
-                              <input id="notes" type="text" class="validate">
-                              <label for="notes">Notes</label>
-                            </div>
-                          </div>
-
-                        </form>
-                      </div>
-                    </div>
-                    <div class="modal-footer">
-                      <a class="btn modal-close waves-effect waves-light mr-2">Adicionar</a>
-                    </div>
-                  </div>
-                  <!-- Modal Structure Ends -->
-
-
                   <?php } ?>
 
                 </tbody>

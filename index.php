@@ -161,6 +161,10 @@
 		
 		User::verifyLogin();
 		$clientes = Clientes::listAll();
+		$tipo_despesa = Despesas::TiposDespesa();
+		$forma_pagamento = Despesas::forma_pagamento();
+		$rows = Despesas::rows();
+		$total = Despesas::totDespesas();
 		//$conta = count($despesas);
 
 		$parcial = new Parcial();
@@ -170,18 +174,90 @@
 		$page = new PageAdmin();
 		$page->setTpl("app-despesas", array(
 			"clientes"=>$clientes,
+			"tipo_despesa"=>$tipo_despesa,
+			"forma_pagamento"=>$forma_pagamento,
+			"anos"=>$anos,
 			"meses"=>$meses,
-			"anos"=>$anos
+			"rows"=>$rows,
+			"total"=>$total
 		));
 		
 	});
 
+	$app->get('/admin/despesas/novo/:id_cliente', function($id_cliente){
+		
+		User::verifyLogin();
+		$cliente = Clientes::listWhere($id_cliente);
+		$tipo_despesa = Despesas::TiposDespesa();
+		$forma_pagamento = Despesas::forma_pagamento();
+		//$conta = count($despesas);
+
+		$page = new PageAdmin();
+		$page->setTpl("app-despesas-novo", array(
+			"cliente"=>$cliente,
+			"tipo_despesa"=>$tipo_despesa,
+			"forma_pagamento"=>$forma_pagamento
+		));
+		
+	});
+
+	$app->get('/admin/despesas/editar/:id_despesa', function($id_despesa){
+		
+		User::verifyLogin();
+
+		$cliente = Despesas::clienteDespesaEdit($id_despesa);
+		$tipo_despesa = Despesas::TiposDespesa();
+		$forma_pagamento = Despesas::forma_pagamento();
+		//$conta = count($despesas);
+
+		$page = new PageAdmin();
+		$page->setTpl("app-despesas-editar", array(
+			"cliente"=>$cliente,
+			"tipo_despesa"=>$tipo_despesa,
+			"forma_pagamento"=>$forma_pagamento
+		));
+		
+	});
+	
+
 	$app->get('/admin/despesas/cliente/:id_cliente', function($id_cliente){
 
 
-		$page = new PageAdmin();
-		$page->setTpl("app-desp-indi");
 
+		$Despesas = new Despesas();
+		$cliente = $Despesas->selectCliente($id_cliente);
+		$despesas = $Despesas->clienteDespesa($id_cliente);
+		$rows = Despesas::rowsClientes($id_cliente);
+		$total = Despesas::totDespesasCliente($id_cliente);
+		$page = new PageAdmin();
+		$page->setTpl("app-desp-indi", array(
+			"cliente"=>$cliente,
+			"despesas"=>$despesas,
+			"rowsCliente"=>$rows,
+			"total"=>$total
+		));
+		
+
+	});
+
+	$app->post('/admin/despesas/novo', function(){
+
+		$despesas = new Despesas();
+		User::verifyLogin();
+		$despesas->setDados($_POST);
+		$id_cliente = $despesas->cadastrar();
+		header("Location: /admin/despesas/cliente/$id_cliente");
+		exit;
+	});
+
+	$app->post('/admin/despesas/editar', function(){
+
+		$despesas = new Despesas();
+		User::verifyLogin();
+		$despesas->setDados($_POST);
+		$id_cliente = $despesas->editar();
+		header("Location: /admin/despesas/cliente/$id_cliente");
+		exit;
 	});
 
 	$app->run();

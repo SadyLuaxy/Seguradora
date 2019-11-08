@@ -94,11 +94,11 @@
             <!-- Fim do dropdown de notificações-->
             <!-- Início Perfil do dropdown-->
             <ul class="dropdown-content" id="profile-dropdown">
-              <li><a class="grey-text text-darken-1" href="user-profile-page.html"><i class="material-icons">person_outline</i> Perfil</a></li>
-              <li><a class="grey-text text-darken-1" href="app-chat.html"><i class="material-icons">chat_bubble_outline</i> Chat</a></li>
-              <li><a class="grey-text text-darken-1" href="page-faq.html"><i class="material-icons">help_outline</i> Ajuda</a></li>
+              <li><a class="grey-text text-darken-1" href="/admin/perfil"><i class="material-icons">person_outline</i> Perfil</a></li>
+              <li><a class="grey-text text-darken-1" href="#"><i class="material-icons">chat_bubble_outline</i> Chat</a></li>
+              <li><a class="grey-text text-darken-1" href="/admin/ajuda"><i class="material-icons">help_outline</i> Ajuda</a></li>
               <li class="divider"></li>
-              <li><a class="grey-text text-darken-1" href="user-lock-screen.html"><i class="material-icons">lock_outline</i> Bloquear</a></li>
+              <li><a class="grey-text text-darken-1" href="/admin/bloqueado"><i class="material-icons">lock_outline</i> Bloquear</a></li>
               <li><a class="grey-text text-darken-1" href="/usuario/logout"><i class="material-icons">keyboard_tab</i> Sair</a></li>
             </ul>
             <!-- Fim Perfil do dropdown-->
@@ -137,27 +137,41 @@
         </li>
         <li class="navigation-header"><a class="navigation-header-text">Aplicação</a><i class="navigation-header-icon material-icons">more_horiz</i>
         </li>
-        <li class="bold"><a class="waves-effect waves-cyan " href="/admin/clientes"><i class="material-icons">group</i><span class="menu-title" data-i18n="">Clientes</span></a>
+        <li class="bold"><a class="waves-effect waves-cyan " href="/admin/segurados"><i class="material-icons">group</i><span class="menu-title" data-i18n="">Segurados</span></a>
         </li>
-        <li class="bold"><a class="waves-effect waves-cyan " href="/admin/despesas"><i class="material-icons">money_off</i><span class="menu-title" data-i18n="">Despesas</span></a>
+        <li class="bold"><a class="waves-effect waves-cyan " href="/admin/propostasApolices"><i class="material-icons">insert_drive_file</i><span class="menu-title" data-i18n="">Propostas e apólices</span></a>
         </li>
-        <li class="bold"><a class="waves-effect waves-cyan " href="/admin/facturas"><i class="material-icons">chrome_reader_mode</i><span class="menu-title" data-i18n="">Facturamento</span></a>
-        </li>
-        <li class="bold"><a class="waves-effect waves-cyan " href="/admin/seguradoras"><i class="material-icons">home</i><span class="menu-title" data-i18n="">Seguradora</span></a>
-        </li>
-        <li class="bold"><a class="collapsible-header waves-effect waves-cyan " href="#"><i class="material-icons">add_shopping_cart</i><span class="menu-title" data-i18n="">Seguros</span></a>
+        <li class="bold"><a class="collapsible-header waves-effect waves-cyan " href="#"><i class="material-icons">attach_money</i><span class="menu-title" data-i18n="">Financeiro</span></a>
           <div class="collapsible-body">
             <ul class="collapsible collapsible-sub" data-collapsible="accordion">
-              <li><a class="collapsible-body" href="/admin/seguros/automovel" data-i18n=""><i class="material-icons">radio_button_unchecked</i><span>Automóvel</span></a>
-              <li><a class="collapsible-body" href="/admin/seguros/empresarial" data-i18n=""><i class="material-icons">radio_button_unchecked</i><span>Empresarial</span></a>
-              </li>
-              <li><a class="collapsible-body" href="/admin/seguros/vida" data-i18n=""><i class="material-icons">radio_button_unchecked</i><span>Vida</span></a>
+              <li><a class="collapsible-body" href="/admin/financeiro/pagamentos" data-i18n=""><i class="material-icons">radio_button_unchecked</i><span>Pagamemtos</span></a>
               </li>
             </ul>
           </div>
         </li>
-        <li class="bold"><a class="waves-effect waves-cyan " href="/admin/relatorios/financeiros"><i class="material-icons">account_balance</i><span class="menu-title" data-i18n="">Resultado financeiro</span></a>
-        </li>
+        <li class="bold"><a class="collapsible-header waves-effect waves-cyan " href="#"><i class="material-icons">show_chart</i><span class="menu-title" data-i18n="">Relatorios</span></a>
+         <div class="collapsible-body">
+           <ul class="collapsible collapsible-sub" data-collapsible="accordion">
+             <li><a class="collapsible-body" href="/admin/relatorios/comissoes" data-i18n=""><i class="material-icons">radio_button_unchecked</i><span>Comissões</span></a>
+             <li>
+           </ul>
+         </div>
+       </li>
+       <li class="bold"><a class="collapsible-header waves-effect waves-cyan " href="#"><i class="material-icons">settings</i><span class="menu-title" data-i18n="">Configurações</span></a>
+         <div class="collapsible-body">
+           <ul class="collapsible collapsible-sub" data-collapsible="accordion">
+             <li><a class="collapsible-body" href="/admin/configuracoes/seguradoras" data-i18n=""><i class="material-icons">radio_button_unchecked</i><span>Seguradoras</span></a>
+             <li><a class="collapsible-body" href="/admin/configuracoes/ramos" data-i18n=""><i class="material-icons">radio_button_unchecked</i><span>Ramos</span></a>
+             </li>
+             <li><a class="collapsible-body" href="/admin/configuracoes/coberturas" data-i18n=""><i class="material-icons">radio_button_unchecked</i><span>Coberturas</span></a>
+             </li>
+             <li><a class="collapsible-body" href="/admin/configuracoes/classificacoes" data-i18n=""><i class="material-icons">radio_button_unchecked</i><span>Classificações</span></a>
+             </li>
+             <li><a class="collapsible-body" href="/admin/configuracoes/sistema" data-i18n=""><i class="material-icons">radio_button_unchecked</i><span>Sistema</span></a>
+             </li>
+           </ul>
+         </div>
+       </li>
       </ul>
       <div class="navigation-background"></div><a class="sidenav-trigger btn-sidenav-toggle btn-floating btn-medium waves-effect waves-light hide-on-large-only" href="#" data-target="slide-out"><i class="material-icons">menu</i></a>
     </aside>
@@ -178,11 +192,11 @@
                         <div class="padding-4">
                            <div class="col s7 m7">
                               <i class="material-icons background-round mt-5">add_shopping_cart</i>
-                              <p>Despesas</p>
+                              <p>Propostas/Apólices</p>
                            </div>
                            <div class="col s5 m5 right-align">
                               <h5 class="mb-0 white-text">10</h5>
-                              <p class="no-margin">Novas</p>
+                              <p class="no-margin">Hoje</p>
                               <p>6,00,00</p>
                            </div>
                         </div>
@@ -193,11 +207,11 @@
                         <div class="padding-4">
                            <div class="col s7 m7">
                               <i class="material-icons background-round mt-5">perm_identity</i>
-                              <p>Clientes</p>
+                              <p>Aniversariantes</p>
                            </div>
                            <div class="col s5 m5 right-align">
                               <h5 class="mb-0 white-text">100</h5>
-                              <p class="no-margin">Novos</p>
+                              <p class="no-margin">Do mês</p>
                               <p>1,12,900</p>
                            </div>
                         </div>
@@ -222,7 +236,7 @@
                         <div class="padding-4">
                            <div class="col s7 m7">
                               <i class="material-icons background-round mt-5">attach_money</i>
-                              <p>Facturamento</p>
+                              <p>Comissões</p>
                            </div>
                            <div class="col s5 m5 right-align">
                               <h5 class="mb-0 white-text">$890</h5>

@@ -1,5 +1,5 @@
-
-    <title> Clientes | Agência de Seguros Admin</title>
+<?php if(!class_exists('Rain\Tpl')){exit;}?>
+    <title>Relatorio de comissões| Agência de Seguros Admin </title>
     <link rel="apple-touch-icon" href="/res/admin/assets/images/favicon/apple-touch-icon-152x152.png">
     <link rel="shortcut icon" type="image/x-icon" href="/res/admin/assets/images/favicon/favicon-32x32.png">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -13,33 +13,32 @@
     <link rel="stylesheet" type="text/css" href="/res/admin/assets/css/themes/vertical-modern-menu-template/materialize.css">
     <link rel="stylesheet" type="text/css" href="/res/admin/assets/css/themes/vertical-modern-menu-template/style.css">
     <link rel="stylesheet" type="text/css" href="/res/admin/assets/css/pages/app-sidebar.css">
-    <link rel="stylesheet" type="text/css" href="/res/admin/assets/css/pages/app-contacts.css">
-    <link rel="stylesheet" type="text/css" href="/res/admin/assets/css/themes/vertical-modern-menu-template/style.css">
+    <link rel="stylesheet" type="text/css" href="/res/admin/assets/vendors/materialize-stepper/materialize-stepper.min.css">
     <!-- END: Page Level CSS-->
 
     <!-- BEGIN: Custom CSS-->
     <link rel="stylesheet" type="text/css" href="/res/admin/assets/css/custom/custom.css">
     <!-- END: Custom CSS-->
-
-    <link rel="stylesheet" type="text/css" href="/res/admin/assets/vendors/data-tables/css/jquery.dataTables.min.css">
-    <!-- END: VENDOR CSS-->
-    <!-- BEGIN: Page Level CSS-->
-    <link rel="stylesheet" type="text/css" href="/res/admin/assets/css/pages/data-tables.css">
-
+    <link rel="stylesheet" type="text/css" href="/res/admin/assets/css/pages/form-wizard.css">
+    <style type="text/css">
+      .texto-preto{
+        color: #212121 !important;
+      }
+    </style>
   </head>
   <body class="vertical-layout vertical-menu-collapsible page-header-dark vertical-modern-menu 2-columns  " data-open="click" data-menu="vertical-modern-menu" data-col="2-columns">
 
     <!-- Início: Header-->
     <header class="page-topbar" id="header">
-      <div class="navbar navbar-fixed"> 
+      <div class="navbar navbar-fixed">
         <nav class="navbar-main navbar-color nav-collapsible sideNav-lock navbar-dark red no-shadow">
           <div class="nav-wrapper">
             <div class="header-search-wrapper hide-on-med-and-down">
               <i class="material-icons">search</i>
-              <input class="header-search-input z-depth-2" type="text" required name="Search" placeholder="Pesquisar">
+              <input class="header-search-input z-depth-2" type="text" name="Search" placeholder="Pesquisar">
             </div>
             <ul class="navbar-list right">
-              <!-- Tradutor 
+              <!-- Tradutor
                 <li class="hide-on-med-and-down">
                   <a class="waves-effect waves-block waves-light translation-button" href="javascript:void(0);" data-target="translation-dropdown">
                     <span class="flag-icon flag-icon-gb"></span>
@@ -65,7 +64,7 @@
               <li>
                 <a class="waves-effect waves-block waves-light profile-button" href="javascript:void(0);" data-target="profile-dropdown">
                   <span class="avatar-status avatar-online">
-                    <img src="/res/admin/assets/images/avatar/avatar-7.png" alt="avatar"><i></i>
+                    <img src="../assets/images/avatar/avatar-7.png" alt="avatar"><i></i>
                   </span>
                 </a>
               </li>
@@ -106,7 +105,7 @@
               <li><a class="grey-text text-darken-1" href="page-faq.html"><i class="material-icons">help_outline</i> Ajuda</a></li>
               <li class="divider"></li>
               <li><a class="grey-text text-darken-1" href="user-lock-screen.html"><i class="material-icons">lock_outline</i> Bloquear</a></li>
-              <li><a class="grey-text text-darken-1" href="/usuario/logout"><i class="material-icons">keyboard_tab</i> Sair</a></li>
+              <li><a class="grey-text text-darken-1" href="user-login.html"><i class="material-icons">keyboard_tab</i> Sair</a></li>
             </ul>
             <!-- Fim Perfil do dropdown-->
           </div>
@@ -128,7 +127,7 @@
     <!-- Início: SideNav-->
     <aside class="sidenav-main nav-expanded nav-lock nav-collapsible sidenav-light sidenav-active-square">
       <div class="brand-sidebar">
-        <h1 class="logo-wrapper"><a class="brand-logo darken-1" href="/admin"><span class="logo-text hide-on-med-and-down">Agência Seguros</span></a></h1>
+        <h1 class="logo-wrapper"><a class="brand-logo darken-1" href="index.html"><span class="logo-text hide-on-med-and-down">Agência Seguros</span></a></h1>
       </div>
       <ul class="sidenav sidenav-collapsible leftside-navigation collapsible sidenav-fixed menu-shadow" id="slide-out" data-menu="menu-navigation" data-collapsible="menu-accordion">
         <li class="bold">
@@ -139,26 +138,40 @@
         </li>
         <li class="navigation-header"><a class="navigation-header-text">Aplicação</a><i class="navigation-header-icon material-icons">more_horiz</i>
         </li>
-        <li class="active bold"><a class="waves-effect waves-cyan active red" href="/admin/clientes"><i class="material-icons">group</i><span class="menu-title" data-i18n="">Clientes</span></a>
+        <li><a class="waves-effect waves-cyan" href="/admin/segurados"><i class="material-icons">group</i><span class="menu-title" data-i18n="">Segurados</span></a>
         </li>
-        <li class="bold"><a class="waves-effect waves-cyan " href="/admin/despesas"><i class="material-icons">money_off</i><span class="menu-title" data-i18n="">Despesas</span></a>
+        <li class="bold"><a class="waves-effect waves-cyan" href="/admin/propostasApolices"><i class="material-icons">insert_drive_file</i><span class="menu-title" data-i18n="">Propostas e apólices</span></a>
         </li>
-        <li class="bold"><a class="waves-effect waves-cyan " href="/admin/facturas"><i class="material-icons">chrome_reader_mode</i><span class="menu-title" data-i18n="">Facturamento</span></a>
-        </li>
-        <li class="bold"><a class="waves-effect waves-cyan " href="/admin/seguradoras"><i class="material-icons">home</i><span class="menu-title" data-i18n="">Seguradora</span></a>
-        </li>
-        <li class="bold"><a class="collapsible-header waves-effect waves-cyan " href="#"><i class="material-icons">add_shopping_cart</i><span class="menu-title" data-i18n="">Seguros</span></a>
+        <li class="bold"><a class="collapsible-header waves-effect waves-cyan  active red" href="#"><i class="material-icons">attach_money</i><span class="menu-title" data-i18n="">Financeiro</span></a>
           <div class="collapsible-body">
-            <ul class="collapsible collapsible-sub" data-collapsible="accordion">
-              <li><a class="collapsible-body" href="/admin/seguros/automovel" data-i18n=""><i class="material-icons">radio_button_unchecked</i><span>Automóvel</span></a>
-              <li><a class="collapsible-body" href="/admin/seguros/empresarial" data-i18n=""><i class="material-icons">radio_button_unchecked</i><span>Empresarial</span></a>
-              </li>
-              <li><a class="collapsible-body" href="/admin/seguros/vida" data-i18n=""><i class="material-icons">radio_button_unchecked</i><span>Vida</span></a>
+            <ul class="collapsible collapsible-sub " data-collapsible="accordion">
+              <li><a class="collapsible-body" href="/admin/financeiro/pagamentos" data-i18n=""><i class="material-icons">radio_button_unchecked</i><span>Pagamemtos</span></a>
               </li>
             </ul>
           </div>
         </li>
-        <li class="bold"><a class="waves-effect waves-cyan " href="/admin/reltaorios/financeiros"><i class="material-icons">account_balance</i><span class="menu-title" data-i18n="">Resultado financeiro</span></a>
+        <li class="bold"><a class="collapsible-header waves-effect waves-cyan " href="#"><i class="material-icons">show_chart</i><span class="menu-title" data-i18n="">Relatorios</span></a>
+          <div class="collapsible-body">
+            <ul class="collapsible collapsible-sub" data-collapsible="accordion">
+              <li><a class="collapsible-body" href="/admin/relatorios/comissoes" data-i18n=""><i class="material-icons">radio_button_unchecked</i><span>Comissões</span></a>
+              <li>
+            </ul>
+          </div>
+        </li>
+        <li class="bold"><a class="collapsible-header waves-effect waves-cyan " href="#"><i class="material-icons">settings</i><span class="menu-title" data-i18n="">Configurações</span></a>
+          <div class="collapsible-body">
+            <ul class="collapsible collapsible-sub" data-collapsible="accordion">
+              <li><a class="collapsible-body" href="/admin/configuracoes/seguradoras" data-i18n=""><i class="material-icons">radio_button_unchecked</i><span>Seguradoras</span></a>
+              <li><a class="collapsible-body" href="/admin/configuracoes/ramos" data-i18n=""><i class="material-icons">radio_button_unchecked</i><span>Ramos</span></a>
+              </li>
+              <li><a class="collapsible-body" href="/admin/configuracoes/coberturas" data-i18n=""><i class="material-icons">radio_button_unchecked</i><span>Coberturas</span></a>
+              </li>
+              <li><a class="collapsible-body" href="/admin/configuracoes/classificacoes" data-i18n=""><i class="material-icons">radio_button_unchecked</i><span>Classificações</span></a>
+              </li>
+              <li><a class="collapsible-body" href="/admin/configuracoes/sistema" data-i18n=""><i class="material-icons">radio_button_unchecked</i><span>Sistema</span></a>
+              </li>
+            </ul>
+          </div>
         </li>
       </ul>
       <div class="navigation-background"></div><a class="sidenav-trigger btn-sidenav-toggle btn-floating btn-medium waves-effect waves-light hide-on-large-only" href="#" data-target="slide-out"><i class="material-icons">menu</i></a>
@@ -171,246 +184,80 @@
         <div class="content-wrapper-before gradient-45deg-indigo-purple"></div>
         <div class="col s12">
           <div class="container">
-              <div style="bottom: 54px; right: 19px;" class="fixed-action-btn direction-top">
-                <a class="btn-floating btn-large primary-text gradient-shadow modal-trigger" href="/admin/clientes/novo">
-                  <i class="material-icons">person_add</i>
-                </a>
-              </div>
-
-            <!-- Add new contact popup Ends-->
-
 <!-- Sidebar Area Starts -->
 <div class="sidebar-left sidebar-fixed">
-  <div class="sidebar">
+  <div class="sidebar col s12">
     <div class="sidebar-content">
       <div class="sidebar-header">
         <div class="sidebar-details">
-          <h5 class="m-0 sidebar-title"><i class="material-icons app-header-icon text-top">group</i> Clientes
-          </h5>
-          <div class="mt-10 pt-2">
-            <p class="m-0 subtitle font-weight-700">Total de clientes registrados:</p>
-            <p class="m-0 text-muted">{$contagem} Clientes</p>
-          </div>
+          <h3 class="m-0 sidebar-title"><i class="material-icons app-header-icon text-top">chrome_reader_mode</i> Pagamento de Comissões
+          </h3>
+        </div>
+        <div class="nav-wrapper" style="width:50em;padding-top: 20px;">
+              <div class="col s12">
+                  <a  class="breadcrumb text-muted" style="font-size: 14px !important;">Financeiro</a>
+                  <a href="/admin/propostasApolices" class="breadcrumb text-muted" style="font-size: 14px !important;">Pagamentos de Comissões</a>
+                  <a href="/admin/parcelasComissoes" class="breadcrumb text-muted" style="font-size: 14px !important;">Efectuar pagamento</a>
+              </div>
         </div>
       </div>
     </div>
   </div>
 </div>
-<!-- Sidebar Area Ends -->
 
-<!-- Início: Tabela de Clientes -->
-
-<div class="section section-data-tables">
-  <!-- Page Length Options -->
-  <div class="row">
-    <div class="col s12">
-      <div class="card">
-        <div class="card-content">
-          <a class="btn-floating btn-small btn-small waves-effect waves-light orange btn tooltipped right" data-position="top" data-tooltip="Imprimir" href="#"><i class="material-icons">print</i></a>
-          <div class="row">
-            <div class="col s12">
-              <table id="page-length-option" class="display">
-                <thead>
-                  <tr>
-                    <th>Nome</th>
-                    <th>Sexo</th>
-                    <th>Estado Civíl</th>
-                    <th>Data Início</th>
-                    <th>Telefone</th>
-                    <th>Ação</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {loop="$clientes"}
-                  <tr>
-                    <td>{$value.nome_cliente}</td>
-                    <th>{$value.sexo}</th>
-                    <td>{$value.estado_civil}</td>
-                    <td>{$value.data_inicio}</td>
-                    <td>{$value1.telefone}</td>
-                    <td>
-                      <a class="btn-floating btn-small btn-small waves-effect waves-light blue modal-trigger btn tooltipped" data-position="top" data-tooltip="Ver mais" href="#outrasinfo{$value.id_cliente}"><i class="material-icons">info_outline</i></a>
-                      <a class="btn-floating btn-small btn-small waves-effect waves-light orange modal-trigger btn tooltipped" data-position="top" data-tooltip="Editar" href="/admin/clientes/editar/{$value.id_cliente}"><i class="material-icons">edit</i></a>
-                      <a class="btn-floating btn-small btn-small waves-effect waves-light red modal-trigger btn tooltipped" onclick="return confirm('Deseja realmente excluir esse cliente?')" data-position="top" data-tooltip="Excluir" href="/admin/clientes/deletar/{$value.id_cliente}"><i class="material-icons">delete</i></a>
-                    </td>
-                  </tr>
-
-                  <!-- Modal De Informações Adicionais -->
-                  <div id="outrasinfo{$value.id_cliente}" class="modal border-radius-6" style="width:45% !important;">
-                    <div class="modal-content ">
-                      <h5 class="mt-0">Informações adicionais</h5>
-                      <hr>
-                      <div class="row">
-                        <!-- Lista De Outras Informações Que Não Serão Citadas -->
-                        <ul class="collection">
-                          <li class="collection-item dismissable">
-                            <div>
-                              <span style="font-weight: bold;color:black">
-                                Nome
-                              </span>
-                              <p  class="secondary-content" style="color: black">
-                                  {$value.nome_cliente}
-                              </p>
-                              </div>
-                            </li>
-                            <li class="collection-item dismissable">
-                                <div>
-                                  <span style="font-weight: bold;color:black">
-                                    Data de início
-                                  </span>
-                                  <p  class="secondary-content" style="color: black">
-                                      {$value.data_inicio}
-                                  </p>
-                                  </div>
-                            </li>
-                            <li class="collection-item dismissable">
-                                <div>
-                                  <span style="font-weight: bold;color:black">
-                                    Sexo
-                                  </span>
-                                  <p  class="secondary-content" style="color: black">
-                                      {$value.sexo}
-                                  </p>
-                                </div>
-                            </li>
-                            <li class="collection-item dismissable">
-                                <div>
-                                  <span style="font-weight: bold;color:black">
-                                    Data de nascimento
-                                  </span>
-                                  <p  class="secondary-content" style="color: black">
-                                      {$value.data_nascimento}
-                                  </p>
-                                  </div>
-                            </li>
-                            <li class="collection-item dismissable">
-                                <div>
-                                  <span style="font-weight: bold;color:black">
-                                    Estado civíl
-                                  </span>
-                                  <p  class="secondary-content" style="color: black">
-                                      {$value.estado_civil}
-                                  </p>
-                                  </div>
-                            </li>
-                            <li class="collection-item dismissable">
-                                <div>
-                                  <span style="font-weight: bold;color:black">
-                                    Descrição
-                                  </span>
-                                      <p  class="secondary-content" style="color: black;word-wrap: break-word;">
-                                          {$value.desc_cliente}
-                                      </p>
-                                </div>
-                            </li>
-                            <li class="collection-item dismissable">
-                                <div>
-                                  <span style="font-weight: bold;color:black">
-                                    Pais
-                                  </span>
-                                      <p  class="secondary-content" style="color: black;">
-                                          {$value.nome_pais}
-                                      </p>
-                                </div>
-                            </li>
-                            <li class="collection-item dismissable">
-                                <div>
-                                  <span style="font-weight: bold;color:black">
-                                    Provincia
-                                  </span>
-                                      <p  class="secondary-content" style="color: black;">
-                                          {$value.nome_provincia}
-                                      </p>
-                                </div>
-                            </li>
-                            <li class="collection-item dismissable">
-                                <div>
-                                  <span style="font-weight: bold;color:black">
-                                    Município
-                                  </span>
-                                      <p  class="secondary-content" style="color: black;">
-                                          {$value.nome_municipio}
-                                      </p>
-                                </div>
-                            </li>
-                            <li class="collection-item dismissable">
-                              <div>
-                                <span style="font-weight: bold;color:black">
-                                  Bairro
-                                </span>
-                                    <p  class="secondary-content" style="color: black;">
-                                        {$value.nome_bairro}
-                                    </p>
-                              </div>
-                            </li>
-                            <li class="collection-item dismissable">
-                                <div>
-                                  <span style="font-weight: bold;color:black">
-                                    Rua
-                                  </span>
-                                      <p  class="secondary-content" style="color: black;">
-                                          {$value.nome_rua}
-                                      </p>
-                                </div>
-                            </li>
-                            <li class="collection-item dismissable">
-                                <div>
-                                  <span style="font-weight: bold;color:black">
-                                    Nº Rua
-                                  </span>
-                                      <p  class="secondary-content" style="color: black;">
-                                          {if="$value.n_rua>0"}{$value.n_rua}{else}N/Digitado{/if}
-                                      </p>
-                                </div>
-                            </li>
-                            <li class="collection-item dismissable">
-                                <div>
-                                  <span style="font-weight: bold;color:black">
-                                    Telefone
-                                  </span>
-                                      <p  class="secondary-content" style="color: black;">
-                                          {$value.telefone}
-                                      </p>
-                                </div>
-                            </li>
-                            <li class="collection-item dismissable">
-                                <div>
-                                  <span style="font-weight: bold;color:black">
-                                    Email
-                                  </span>
-                                      <p  class="secondary-content" style="color: black;">
-                                          {$value.email}
-                                      </p>
-                                </div>
-                            </li>
-                            <li class="collection-item dismissable">
-                                <div>
-                                  <span style="font-weight: bold;color:black">
-                                    Fax
-                                  </span>
-                                      <p  class="secondary-content" style="color: black;">
-                                          {$value.fax}
-                                      </p>
-                                </div>
-                            </li>
-                        </ul>
-
-                      </div>
+<!-- Início: Resultados -->
+<div class="section">
+    <div class="row">
+        <div class="col s12">
+            <div id="html-validations" class="card card-tabs">
+                <div class="card-content">
+                    <div class="card-title">
+                        <div class="row">
+                            <div class="col s12 m6 l10">
+                                <h4 class="card-title">Relatorio de pagamento</h4>
+                            </div>
+                            <div class="col s12 m6 l2">
+                            </div>
+                        </div>
                     </div>
-                  </div>
-                  <!-- Modal De Informações Adicionais -->
-
-                  {/loop}
-                </tbody>
-              </table>
+                    <div id="html-view-validations">
+                        <form class="formValidate0" id="formValidate0" method="post" action="/admin/parcelas/editar/mostrar">
+                            <div class="row">
+                                <div class="input-field m6 col s12">
+                                    <input id="peridodo_inicio" type="text" class="" name="vencimento" value="07/11/2019">
+                                    <label for="periodo_inicio">Período:</label>
+                                </div>
+                                <div class="input-field m6 col s12">
+                                    <input id="perido_ate" type="text" class="" name="vencimento" value="07/11/2019">
+                                    <label for="periodo_ate">Até:</label>
+                                </div>
+                                <div class="input-field m6 col s12">
+                                    <select class="error validate" id="segurado_pagou" name="tipo_parcela" aria-required="true" required>
+                                        <option value="" disabled selected>Seguradora</option>
+                                        <option value="1">AgSeguros</option>
+                                        <option value="2">ENSA</option>
+                                    </select>
+                                </div>
+                                <div class="input-field col s12">
+                                    <!--<button class="btn waves-effect waves-light right" type="submit">Gerar Relatorio PDF
+                                        <i class="material-icons right">save</i>
+                                    </button>-->
+                                    <a class="btn waves-effect waves-light right" href="/admin/arquivos/relatorios/pdf/HVASFKHVASFHAVF">Gerar Relatorio PDF
+                                        <i class="material-icons right">save</i>
+                                    </a>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
             </div>
-          </div>
         </div>
-      </div>
     </div>
+
 </div>
 
-<!-- Fim: Tabela de Clientes -->
+
+<!-- Fim: Resultados -->
 
 <!-- Início Do Sidenav Da Direita -->
     <aside id="right-sidebar-nav">
@@ -442,29 +289,29 @@
            <div class="slide-out-right-body">
               <div id="messages" class="col s12">
                  <div class="collection border-none">
-                    <input class="header-search-input mt-4 mb-2" type="text" required name="Search" placeholder="Procurar Mensagens" />
+                    <input class="header-search-input mt-4 mb-2" type="text" name="Search" placeholder="Procurar Mensagens" />
                     <ul class="collection p-0">
                        <li class="collection-item sidenav-trigger display-flex avatar pl-5 pb-0" data-target="slide-out-chat">
                           <span class="avatar-status avatar-online avatar-50"
-                             ><img src="/res/admin/assets/images/avatar/avatar-7.png" alt="avatar" />
+                             ><img src="../assets/images/avatar/avatar-7.png" alt="avatar" />
                              <i></i>
                           </span>
                           <div class="user-content">
                              <h6 class="line-height-0">Elizabeth Elliott</h6>
                              <p class="medium-small blue-grey-text text-lighten-3 pt-3">Obrigado</p>
                           </div>
-                          <span class="secondary-content medium-small">5.00 AM</span>
+                          <span class="secondary-content texto-preto medium-small">5.00 AM</span>
                        </li>
                        <li class="collection-item sidenav-trigger display-flex avatar pl-5 pb-0" data-target="slide-out-chat">
                           <span class="avatar-status avatar-online avatar-50"
-                             ><img src="/res/admin/assets/images/avatar/avatar-1.png" alt="avatar" />
+                             ><img src="../assets/images/avatar/avatar-1.png" alt="avatar" />
                              <i></i>
                           </span>
                           <div class="user-content">
                              <h6 class="line-height-0">Eithan Keanue</h6>
                              <p class="medium-small blue-grey-text text-lighten-3 pt-3">Olá Oconner</p>
                           </div>
-                          <span class="secondary-content medium-small">4.14 AM</span>
+                          <span class="secondary-content texto-preto medium-small">4.14 AM</span>
                        </li>
                     </ul>
                  </div>
@@ -475,13 +322,13 @@
                     <ul class="collection with-header">
                        <li class="collection-item">
                           <div class="font-weight-900">
-                             Iniciaste sessão <span class="secondary-content">Agora mesmo</span>
+                             Iniciaste sessão <span class="secondary-content texto-preto">Agora mesmo</span>
                           </div>
                           <span class="new badge amber" data-badge-caption="Importante"> </span>
                        </li>
                        <li class="collection-item">
                           <div class="font-weight-900">
-                             Melissa . <span class="secondary-content">10 mins</span>
+                             Melissa . <span class="secondary-content texto-preto">10 mins</span>
                           </div>
                           <p class="mt-0 mb-2">Here are some news feed interactions concepts.</p>
                           <span class="new badge light-green" data-badge-caption="Resolvido"></span>
@@ -491,18 +338,18 @@
                     <ul class="collection with-header">
                        <li class="collection-item">
                           <div class="font-weight-900">
-                             New order received urgent <span class="secondary-content">Just now</span>
+                             New order received urgent <span class="secondary-content texto-preto">Just now</span>
                           </div>
                           <p class="mt-0 mb-2">Melissa liked your activity.</p>
                        </li>
                        <li class="collection-item">
-                          <div class="font-weight-900">System shutdown. <span class="secondary-content">5 min</span></div>
+                          <div class="font-weight-900">System shutdown. <span class="secondary-content texto-preto">5 min</span></div>
                           <p class="mt-0 mb-2">Here are some news feed interactions concepts.</p>
                           <span class="new badge blue" data-badge-caption="Urgent"> </span>
                        </li>
                        <li class="collection-item">
                           <div class="font-weight-900">
-                             Database overloaded 89% <span class="secondary-content">20 min</span>
+                             Database overloaded 89% <span class="secondary-content texto-preto">20 min</span>
                           </div>
                           <p class="mt-0 mb-2">Here are some news feed interactions concepts.</p>
                        </li>
@@ -510,12 +357,12 @@
                     <p class="mt-5 mb-0 ml-5 font-weight-900">Logs Do Servidor</p>
                     <ul class="collection with-header">
                        <li class="collection-item">
-                          <div class="font-weight-900">System error <span class="secondary-content">10 min</span></div>
+                          <div class="font-weight-900">System error <span class="secondary-content texto-preto">10 min</span></div>
                           <p class="mt-0 mb-2">Melissa liked your activity.</p>
                        </li>
                        <li class="collection-item">
                           <div class="font-weight-900">
-                             Production server down. <span class="secondary-content">1 hrs</span>
+                             Production server down. <span class="secondary-content texto-preto">1 hrs</span>
                           </div>
                           <p class="mt-0 mb-2">Here are some news feed interactions concepts.</p>
                           <span class="new badge blue" data-badge-caption="Urgent"></span>
@@ -536,7 +383,7 @@
            <ul class="collection">
               <li class="collection-item display-flex avatar pl-5 pb-0" data-target="slide-out-chat">
                  <span class="avatar-status avatar-online avatar-50"
-                    ><img src="/res/admin/assets/images/avatar/avatar-7.png" alt="avatar" />
+                    ><img src="../assets/images/avatar/avatar-7.png" alt="avatar" />
                  </span>
                  <div class="user-content speech-bubble">
                     <p class="medium-small">hello!</p>
@@ -549,7 +396,7 @@
               </li>
               <li class="collection-item display-flex avatar pl-5 pb-0" data-target="slide-out-chat">
                  <span class="avatar-status avatar-online avatar-50"
-                    ><img src="/res/admin/assets/images/avatar/avatar-7.png" alt="avatar" />
+                    ><img src="../assets/images/avatar/avatar-7.png" alt="avatar" />
                  </span>
                  <div class="user-content speech-bubble">
                     <p class="medium-small">I am looking for the best admin template.?</p>
@@ -567,7 +414,7 @@
 
               <li class="collection-item display-flex avatar pl-5 pb-0" data-target="slide-out-chat">
                  <span class="avatar-status avatar-online avatar-50"
-                    ><img src="/res/admin/assets/images/avatar/avatar-7.png" alt="avatar" />
+                    ><img src="../assets/images/avatar/avatar-7.png" alt="avatar" />
                  </span>
                  <div class="user-content speech-bubble">
                     <p class="medium-small">Ohh! very nice</p>
@@ -580,7 +427,7 @@
               </li>
               <li class="collection-item display-flex avatar pl-5 pb-0" data-target="slide-out-chat">
                  <span class="avatar-status avatar-online avatar-50"
-                    ><img src="/res/admin/assets/images/avatar/avatar-7.png" alt="avatar" />
+                    ><img src="../assets/images/avatar/avatar-7.png" alt="avatar" />
                  </span>
                  <div class="user-content speech-bubble">
                     <p class="medium-small">How can I purchase it?</p>
@@ -603,7 +450,7 @@
               </li>
               <li class="collection-item display-flex avatar pl-5 pb-0" data-target="slide-out-chat">
                  <span class="avatar-status avatar-online avatar-50"
-                    ><img src="/res/admin/assets/images/avatar/avatar-7.png" alt="avatar" />
+                    ><img src="../assets/images/avatar/avatar-7.png" alt="avatar" />
                  </span>
                  <div class="user-content speech-bubble">
                     <p class="medium-small">Ohh! Thank you.</p>
@@ -611,7 +458,7 @@
               </li>
               <li class="collection-item display-flex avatar pl-5 pb-0" data-target="slide-out-chat">
                  <span class="avatar-status avatar-online avatar-50"
-                    ><img src="/res/admin/assets/images/avatar/avatar-7.png" alt="avatar" />
+                    ><img src="../assets/images/avatar/avatar-7.png" alt="avatar" />
                  </span>
                  <div class="user-content speech-bubble">
                     <p class="medium-small">I will purchase it for sure.</p>
@@ -670,12 +517,8 @@
     <script src="/res/admin/assets/js/plugins.js" type="text/javascript"></script>
     <script src="/res/admin/assets/js/custom/custom-script.js" type="text/javascript"></script>
     <script src="/res/admin/assets/js/scripts/customizer.js" type="text/javascript"></script>
-    <!-- END THEME  JS-->
-    <!-- BEGIN PAGE LEVEL JS-->
-    <script src="/res/admin/assets/js/scripts/app-contacts.js" type="text/javascript"></script>
-    <!-- END PAGE LEVEL JS-->
 
-    <script src="/res/admin/assets/js/app-email/vendors.min.js" type="text/javascript"></script>
+    <script src="/res/admin/assets/js/vendors.min.js" type="text/javascript"></script>
     <!-- BEGIN VENDOR JS-->
     <!-- BEGIN PAGE VENDOR JS-->
     <script src="/res/admin/assets/vendors/data-tables/js/jquery.dataTables.min.js" type="text/javascript"></script>
@@ -684,6 +527,6 @@
     <!-- BEGIN THEME  JS-->
     <script src="/res/admin/assets/js/plugins.js" type="text/javascript"></script>
     <!-- END THEME  JS-->
-    <!-- BEGIN PAGE LEVEL JS-->
-    <script src="/res/admin/assets/js/scripts/data-tables.js" type="text/javascript"></script>
+    <script src="/res/admin/assets/vendors/materialize-stepper/materialize-stepper.min.js"></script>
+    <script src="/res/admin/assets/js/scripts/form-wizard.js" type="text/javascript"></script>
     <!-- END PAGE LEVEL JS-->

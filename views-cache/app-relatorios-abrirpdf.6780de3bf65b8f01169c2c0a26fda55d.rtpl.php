@@ -1,0 +1,8 @@
+<?php if(!class_exists('Rain\Tpl')){exit;}?><html>
+<head>
+    <title>Comissão</title>
+</head>
+<body>
+        <iframe src="/arquivos/pdf/relatorio/comissao.pdf" height="1300" style="border: none;width:100%;"></iframe>
+</body>
+</html>

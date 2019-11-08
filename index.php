@@ -1,35 +1,47 @@
 <?php
+    //Iniciamos Uma Sessão
 	session_start();
+
+	//Requerimos O Processamento Automático
 	require_once("vendor/autoload.php");
 
+	//Usamos As Classes Do Namespace Segurado
 	use \Slim\slim;
 	use \Seguradora\Page;
 	use \Seguradora\PageAdmin;
 	use \Seguradora\Model\User;
-	use \Seguradora\Model\Clientes;
+	use \Seguradora\Model\Segurados;
 	use \Seguradora\Model\Parcial;
 	use \Seguradora\Model\Despesas;
 	use \Seguradora\Model\Seguradoras;
-	
+    use mikehaertl\wkhtmlto\Pdf;
 
+
+	//Instaciamos O Slim
 	$app = new \Slim\Slim();
 
+	//Habilitamos O Debug Do Slim
 	$app->config('debug', true);
 
+	//Aqui Nós Exibimos A Página Inicial
 	$app->get('/', function() {
 
 		$page = new Page();
 		$page->setTpl("index");
 
 	});
+	//Fim De Exibição
 
+	//Aqui Nós Mostramos O Erro De 404
 	$app->get('/er/manutencao', function(){
 		$page = new Page([
 			"footer" =>false
 		]);
 		$page->setTpl("manutencao");
 	});
+    //Fim De Exibição
 
+	//Aqui Nós Iniciamos Exibindo A Área Do Admin Demo
 	$app->get('/admin', function() {
 
 		User::verifyLogin();
@@ -38,17 +50,20 @@
 		$page->setTpl("index");
 
 	});
+	//Fim De Exibição
 
+	//Aqui Nós Exibimos O Layout De Login
 	$app->get('/usuario/login', function(){
 
-		
 		User::verifyLogado();
 
 		$page = new PageAdmin();
 		$page->setTpl("user-login");
 
 	});
+	//Fim De Exibição
 
+	//Aqui Nós Fazemos O Login
 	$app->post('/usuario/login', function(){
 
 		User::login($_POST["user"], $_POST["senha"]);
@@ -56,26 +71,30 @@
 		exit;
 		
 	});
+	//Fim De Login
 
+	//Aqui Nós Fazemos O LogOut
 	$app->get('/usuario/logout', function(){
 
 		User::logout();
 
 		header("Location: /usuario/login");
 		exit;
-
 	});
+	//Fim De LogOut
 
+	//Aqui Nós Mostramos O Layout De Cadastro De Usuário Demo
 	$app->get('/usuario/novo', function(){
 
 		$page = new PageAdmin();
 		$page->setTpl("user-cadastro");
 
 	});
+	//Fim De Exibição
 
+	//Aqui Nós Recebemos Os Dados Pelo Método Post E Cadastramos O Usuário Demo
 	$app->post('/usuario/novo', function(){
 		//var_dump($_POST);
-
 
 		$user = new User();
 		$user->setDados($_POST);
@@ -83,85 +102,212 @@
 		header("Location: /usuario/login");
 		exit;
 	});
+	//Fim De Cadastro
 
-	$app->get('/admin/clientes', function(){
+	//Aqui Nós Exibimos Todos Os Segurados
+	$app->get('/admin/segurados', function(){
 
 		User::verifyLogin();
-		$clientes = Clientes::listAll();
-		$conta = count($clientes);
+		$segurados = Segurados::listAll();
+		$conta = count($segurados);
 
 		$page = new PageAdmin();
-		$page->setTpl("app-clientes", array(
-			"clientes"=>$clientes,
-			"contagem"=>$conta
-		));
+		$page->setTpl("app-segurados");
 	});
+	//Fim De Exibição
 
-	$app->get('/admin/clientes/novo', function(){
-
+	//Aqui Nós Exibimos O Segurado Selecionado
+	$app->get('/admin/segurados/mostrar', function(){
 		User::verifyLogin();
-		$bairros = Parcial::bairrosList();
 		$page = new PageAdmin();
-		$page->setTpl("app-clientes-novo", array(
-			"bairros"=>$bairros
-		));
+		$page->setTpl("app-segurados-mostrar");
 	});
+	//Fim De Exibição
 
-	$app->get('/admin/clientes/editar/:id_cliente', function($id_cliente){
+	//Aqui Recebemos O Id Do Segurado E Enviamos Para Eliminá-lo
+	$app->get('/admin/segurados/deletar/:id_segurado', function($id_segurado){
 
 		User::verifyLogin();
-		$clientes = new Clientes();
-		$clientes->get((int)$id_cliente);
-		
-		$bairros = Parcial::bairrosList();
+		$cliente = new Segurados();
 
-		$page = new PageAdmin();
-		$page->setTpl("app-clientes-editar", array(
-			"clientes"=>$clientes->getValues(),
-			"bairros"=>$bairros
-		));
-	});
-
-	$app->get('/admin/clientes/deletar/:id_cliente', function($id_cliente){
-
-		User::verifyLogin();
-		$cliente = new Clientes();
-
-		$cliente->get((int)$id_cliente);
+		$cliente->get((int)$id_segurado);
 
 		$cliente->deletar();
-		header("Location: /admin/clientes");
+		header("Location: /admin/segurados");
 		exit;
 	});
+	//Fim De Eliminação
 
-	$app->post('/admin/clientes/novo', function(){
+	//Aqui Nós Recebemos Os Dados De Cadastro Do Segurado Pelo Método Post E Enviamos Para Cadastrá-los
+	$app->post('/admin/segurados/novo', function(){
 
 		User::verifyLogin();
 
-		$clientes = new Clientes();
-		$clientes->setDados($_POST);
-		$clientes->cadastrar();
-		header("Location: /admin/clientes");
+		$segurados = new Segurados();
+		$segurados->setDados($_POST);
+		$segurados->cadastrar();
+		header("Location: /admin/segurados");
 		exit;
 
-
 	});
+	//Fim Do Cadastro
 
-	$app->post('/admin/clientes/editar/:id_cliente', function($id_cliente){
+	//Aqui Nós Recebemos Os Dados Do Segurado Com O Método Post E Enviamos Para Serem Editados
+	$app->post('/admin/segurados/editar/:id_segurado', function($id_segurado){
 
 		User::verifyLogin();
-		$clientes = new Clientes();
-		$clientes->get((int)$id_cliente);
-		$clientes->setDados($_POST);
-		$clientes->editar();
-		header("Location: /admin/clientes");
+		$segurados = new Segurados();
+		$segurados->get((int)$id_segurado);
+		$segurados->setDados($_POST);
+		$segurados->editar();
+		header("Location: /admin/segurados");
 		exit;
 	});
+	//Fim Da Edição
+
+	//Aqui Nós Exibimos As Propostas E Ou As Apolices
+	$app->get('/admin/propostasApolices', function(){
+		User::verifyLogin();
+
+		$page = new PageAdmin();
+		$page->setTpl("app-propostasApolices");
+	});
+	//Fim De Exibição
+
+	//Aqui Nós Exibimos A Proposta E Ou Apólice Selecionada
+    $app->get('/admin/propostasApolices/mostrar', function(){
+        User::verifyLogin();
+
+        $page = new PageAdmin();
+        $page->setTpl("app-propostasApolices-mostrar");
+
+    });
+    //Fim Da Exibição
+
+    //Aqui Nós Exibimos As Parcelas E Comissões Da Apólice Selecionada
+    $app->get('/admin/parcelas/mostrar', function(){
+        User::verifyLogin();
+
+        $page = new PageAdmin();
+        $page->setTpl("app-parcelasComissoes");
+
+    });
+    //Fim Da Exibição
+
+    //Aqui Nós Exibimos A Página de cadastro de Parcelas E Comissões Da Apólice Selecionada
+    $app->get('/admin/parcelas/novo/mostrar', function(){
+        User::verifyLogin();
+
+        $page = new PageAdmin();
+        $page->setTpl("app-parcelasComissoes-novo");
+
+    });
+    //Fim Da Exibição
+
+    //Aqui Nós Exibimos A Página de edição de Parcelas E Comissões Da Apólice Selecionada
+    $app->get('/admin/parcelas/editar/mostrar', function(){
+        User::verifyLogin();
+
+        $page = new PageAdmin();
+        $page->setTpl("app-parcelasComissoes-editar");
+
+    });
+    //Fim Da Exibição
+
+    //Aqui Nós Vamos Usar O Método Post Para Trazer Os Arquivos E Por Sua Vez, Enviamos Para Editar
+    $app->post('/admin/propostasApolices/editar/:id_propostasApolices', function($id_propostasApolices){
+
+        User::verifyLogin();
+
+
+    });
+    //Fim Da Edição
+
+    //
+    $app->post('/admin/propostasApolices/novo', function(){
+
+        User::verifyLogin();
+
+
+    });
+    //
+
+    //
+    $app->post('/admin/parcelas/novo', function(){
+
+        User::verifyLogin();
+
+
+    });
+    //
+
+    //
+    $app->post('/admin/parcelas/editar/mostrar', function(){
+
+        User::verifyLogin();
+
+
+    });
+    //
+
+    //
+    $app->get('/admin/parcelas/apagar/mostrar', function(){
+
+        User::verifyLogin();
+
+
+    });
+    //
+
+    //
+    $app->get('/admin/financeiro/pagamentos', function(){
+
+        User::verifyLogin();
+
+        $page = new PageAdmin();
+        $page->setTpl("app-financeiro");
+
+    });
+    //
+
+    //
+    $app->get('/admin/financeiro/efectuarPagamento', function(){
+
+        User::verifyLogin();
+
+        $page = new PageAdmin();
+        $page->setTpl("app-fazer-pagamento");
+
+    });
+    //
+
+
+    //
+    $app->get('/admin/relatorios/comissoes', function(){
+
+        User::verifyLogin();
+
+        $page = new PageAdmin();
+        $page->setTpl("app-relatorios-comissoes");
+
+    });
+    //
+
+    //
+    $app->get('/admin/arquivos/relatorios/pdf/HVASFKHVASFHAVF', function(){
+
+        User::verifyLogin();
+
+        $page = new PageAdmin();
+        $page->setTpl("app-relatorios-abrirpdf");
+
+    });
+    //
 
 	$app->get('/admin/despesas', function(){
 		
 		User::verifyLogin();
-		$clientes = Clientes::listAll();
+		$segurados = Segurados::listAll();
 		$tipo_despesa = Despesas::TiposDespesa();
 		$forma_pagamento = Despesas::forma_pagamento();
 		$rows = Despesas::rows();
@@ -169,12 +315,12 @@
 		//$conta = count($despesas);
 
 		$parcial = new Parcial();
-		$meses = $parcial->meses($clientes);
-		$anos = $parcial->anos($clientes);
+		$meses = $parcial->meses($segurados);
+		$anos = $parcial->anos($segurados);
 
 		$page = new PageAdmin();
 		$page->setTpl("app-despesas", array(
-			"clientes"=>$clientes,
+			"segurados"=>$segurados,
 			"tipo_despesa"=>$tipo_despesa,
 			"forma_pagamento"=>$forma_pagamento,
 			"anos"=>$anos,
@@ -188,7 +334,7 @@
 	$app->get('/admin/despesas/novo/:id_cliente', function($id_cliente){
 		
 		User::verifyLogin();
-		$cliente = Clientes::listWhere($id_cliente);
+		$cliente = Segurados::listWhere($id_cliente);
 		$tipo_despesa = Despesas::TiposDespesa();
 		$forma_pagamento = Despesas::forma_pagamento();
 		//$conta = count($despesas);
@@ -241,7 +387,7 @@
 		$Despesas = new Despesas();
 		$cliente = $Despesas->selectCliente($id_cliente);
 		$despesas = $Despesas->clienteDespesa($id_cliente);
-		$rows = Despesas::rowsClientes($id_cliente);
+		$rows = Despesas::rowsSegurados($id_cliente);
 		$total = Despesas::totDespesasCliente($id_cliente);
 		$page = new PageAdmin();
 		$page->setTpl("app-desp-indi", array(
@@ -318,9 +464,9 @@
 
 		User::verifyLogin();
 
-		$clientes = new Seguradoras();
-		$clientes->setDados($_POST);
-		$clientes->cadastrar();
+		$segurados = new Seguradoras();
+		$segurados->setDados($_POST);
+		$segurados->cadastrar();
 		header("Location: /admin/seguradoras");
 		exit;
 

@@ -1,5 +1,5 @@
 
-    <title> Clientes | Agência de Seguros Admin</title>
+    <title> Segurados | Agência de Seguros Admin</title>
     <link rel="apple-touch-icon" href="/res/admin/assets/images/favicon/apple-touch-icon-152x152.png">
     <link rel="shortcut icon" type="image/x-icon" href="/res/admin/assets/images/favicon/favicon-32x32.png">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -36,7 +36,7 @@
           <div class="nav-wrapper">
             <div class="header-search-wrapper hide-on-med-and-down">
               <i class="material-icons">search</i>
-              <input class="header-search-input z-depth-2" type="text" required name="Search" placeholder="Pesquisar">
+              <input class="header-search-input z-depth-2" type="text"  name="Search" placeholder="Pesquisar">
             </div>
             <ul class="navbar-list right">
               <!-- Tradutor 
@@ -114,7 +114,7 @@
             <div class="nav-wrapper">
               <form>
                 <div class="input-field">
-                  <input class="search-box-sm" type="search" required="">
+                  <input class="search-box-sm" type="search" id="search">
                   <label class="label-icon" for="search"><i class="material-icons search-sm-icon">search</i></label><i class="material-icons search-sm-close">close</i>
                 </div>
               </form>
@@ -131,36 +131,50 @@
         <h1 class="logo-wrapper"><a class="brand-logo darken-1" href="/admin"><span class="logo-text hide-on-med-and-down">Agência Seguros</span></a></h1>
       </div>
       <ul class="sidenav sidenav-collapsible leftside-navigation collapsible sidenav-fixed menu-shadow" id="slide-out" data-menu="menu-navigation" data-collapsible="menu-accordion">
-        <li class="bold">
-          <a class="waves-effect waves-cyan" href="/admin">
-            <i class="material-icons">home</i>
-            <span class="menu-title">Início</span>
-          </a>
-        </li>
-        <li class="navigation-header"><a class="navigation-header-text">Aplicação</a><i class="navigation-header-icon material-icons">more_horiz</i>
-        </li>
-        <li class="active bold"><a class="waves-effect waves-cyan active red" href="/admin/clientes"><i class="material-icons">group</i><span class="menu-title" data-i18n="">Clientes</span></a>
-        </li>
-        <li class="bold"><a class="waves-effect waves-cyan " href="/admin/despesas"><i class="material-icons">money_off</i><span class="menu-title" data-i18n="">Despesas</span></a>
-        </li>
-        <li class="bold"><a class="waves-effect waves-cyan " href="/admin/facturas"><i class="material-icons">chrome_reader_mode</i><span class="menu-title" data-i18n="">Facturamento</span></a>
-        </li>
-        <li class="bold"><a class="waves-effect waves-cyan " href="/admin/seguradoras"><i class="material-icons">home</i><span class="menu-title" data-i18n="">Seguradora</span></a>
-        </li>
-        <li class="bold"><a class="collapsible-header waves-effect waves-cyan " href="#"><i class="material-icons">add_shopping_cart</i><span class="menu-title" data-i18n="">Seguros</span></a>
-          <div class="collapsible-body">
-            <ul class="collapsible collapsible-sub" data-collapsible="accordion">
-              <li><a class="collapsible-body" href="/admin/seguros/automovel" data-i18n=""><i class="material-icons">radio_button_unchecked</i><span>Automóvel</span></a>
-              <li><a class="collapsible-body" href="/admin/seguros/empresarial" data-i18n=""><i class="material-icons">radio_button_unchecked</i><span>Empresarial</span></a>
-              </li>
-              <li><a class="collapsible-body" href="/admin/seguros/vida" data-i18n=""><i class="material-icons">radio_button_unchecked</i><span>Vida</span></a>
-              </li>
-            </ul>
-          </div>
-        </li>
-        <li class="bold"><a class="waves-effect waves-cyan " href="/admin/reltaorios/financeiros"><i class="material-icons">account_balance</i><span class="menu-title" data-i18n="">Resultado financeiro</span></a>
-        </li>
-      </ul>
+            <li class="bold">
+              <a class="waves-effect waves-cyan" href="/admin">
+                <i class="material-icons">home</i>
+                <span class="menu-title">Início</span>
+              </a>
+            </li>
+            <li class="navigation-header"><a class="navigation-header-text">Aplicação</a><i class="navigation-header-icon material-icons">more_horiz</i>
+            </li>
+            <li class="active bold"><a class="waves-effect waves-cyan active red" href="/admin/segurados"><i class="material-icons">group</i><span class="menu-title" data-i18n="">Segurados</span></a>
+            </li>
+            <li class="bold"><a class="waves-effect waves-cyan " href="/admin/propostasApolices"><i class="material-icons">insert_drive_file</i><span class="menu-title" data-i18n="">Propostas e apólices</span></a>
+            </li>
+            <li class="bold"><a class="collapsible-header waves-effect waves-cyan " href="#"><i class="material-icons">attach_money</i><span class="menu-title" data-i18n="">Financeiro</span></a>
+              <div class="collapsible-body">
+                <ul class="collapsible collapsible-sub" data-collapsible="accordion">
+                  <li><a class="collapsible-body" href="/admin/financeiro/pagamentos" data-i18n=""><i class="material-icons">radio_button_unchecked</i><span>Pagamemtos</span></a>
+                  </li>
+                </ul>
+              </div>
+            </li>
+            <li class="bold"><a class="collapsible-header waves-effect waves-cyan " href="#"><i class="material-icons">show_chart</i><span class="menu-title" data-i18n="">Relatorios</span></a>
+             <div class="collapsible-body">
+               <ul class="collapsible collapsible-sub" data-collapsible="accordion">
+                 <li><a class="collapsible-body" href="/admin/relatorios/comissoes" data-i18n=""><i class="material-icons">radio_button_unchecked</i><span>Comissões</span></a>
+                 <li>
+               </ul>
+             </div>
+           </li>
+           <li class="bold"><a class="collapsible-header waves-effect waves-cyan " href="#"><i class="material-icons">settings</i><span class="menu-title" data-i18n="">Configurações</span></a>
+             <div class="collapsible-body">
+               <ul class="collapsible collapsible-sub" data-collapsible="accordion">
+                 <li><a class="collapsible-body" href="/admin/configuracoes/seguradoras" data-i18n=""><i class="material-icons">radio_button_unchecked</i><span>Seguradoras</span></a>
+                 <li><a class="collapsible-body" href="/admin/configuracoes/ramos" data-i18n=""><i class="material-icons">radio_button_unchecked</i><span>Ramos</span></a>
+                 </li>
+                 <li><a class="collapsible-body" href="/admin/configuracoes/coberturas" data-i18n=""><i class="material-icons">radio_button_unchecked</i><span>Coberturas</span></a>
+                 </li>
+                 <li><a class="collapsible-body" href="/admin/configuracoes/classificacoes" data-i18n=""><i class="material-icons">radio_button_unchecked</i><span>Classificações</span></a>
+                 </li>
+                 <li><a class="collapsible-body" href="/admin/configuracoes/sistema" data-i18n=""><i class="material-icons">radio_button_unchecked</i><span>Sistema</span></a>
+                 </li>
+               </ul>
+             </div>
+           </li>
+          </ul>
       <div class="navigation-background"></div><a class="sidenav-trigger btn-sidenav-toggle btn-floating btn-medium waves-effect waves-light hide-on-large-only" href="#" data-target="slide-out"><i class="material-icons">menu</i></a>
     </aside>
     <!-- Fim: SideNav-->
@@ -173,18 +187,25 @@
           <div class="container">
 
 <!-- Sidebar Area Starts -->
-<div class="sidebar-left sidebar-fixed">
-  <div class="sidebar">
-    <div class="sidebar-content">
-      <div class="sidebar-header">
-        <div class="sidebar-details">
-          <h5 class="m-0 sidebar-title"><i class="material-icons app-header-icon text-top">group</i> Adicionar clientes
-          </h5>
+   <div class="sidebar-left sidebar-fixed" style="padding-bottom:10px;">
+      <div class="sidebar" style="width: auto !important">
+        <div class="sidebar-content">
+          <div class="sidebar-header">
+            <div class="sidebar-details col s12">
+              <h3 class="m-0 sidebar-title"><i class="material-icons app-header-icon text-top">security</i> Segurados
+              </h3>
+            </div>
+            <div class="nav-wrapper" style="padding-top: 20px;">
+              <div class="col s12">
+                <a  class="breadcrumb" style="font-size: 14px !important;">Negócios</a>
+                <a href="/admin/segurados" class="breadcrumb" style="font-size: 14px !important;">Pesquisar</a>
+                <a href="/admin/segurados/id_usuario" class="breadcrumb" style="font-size: 14px !important;">Segurados</a>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-  </div>
-</div>
+   </div>
 <!-- Sidebar Area Ends -->
 
 <!-- Início: Tabela de Clientes -->
@@ -193,92 +214,206 @@
 
     <div class="row">
         <div class="col s12">
-          <div id="html-validations" class="card card-tabs">
+          <div  class="card card-tabs">
             <div class="card-content">
-              <div class="card-title">
-                <div class="row">
-                  <div class="col s12 m6 l10">
-                    <h4 class="card-title">Cadastrar novo cliente</h4>
-                  </div>
-                  <div class="col s12 m6 l2">
-                  </div>
-                </div>
-              </div>
-              <div id="html-view-validations">
-                <form class="formValidate0" id="formValidate0" method="post" action="/admin/clientes/novo">
+              <div>
+                <form class="formValidate0" id="formValidate0" method="post" action="/admin/clientes/novo" enctype="multipart/form-data">
                   <div class="row">
-                    <div class="input-field col s12">
-                      <label for="uname0">Nome completo*</label>
-                      <input class="validate" required aria-required="true" id="nome0" name="nome_cliente" type="text">
+                    <div class="input-field col s5">
+                      <label for="nome_razao">Nome ou razão social</label>
+                      <input class="validate"  id="nome0" name="nome_segurado" required aria-required="true" type="text" id="nome_razao">
                     </div>
-                    <div class="input-field m6 col s12">
-                        <select class="error validate" id="sexo" name="sexo" aria-required="true" required>
-                            <option value="" aria-required="true" disabled selected>Sexo</option>
-                            <option value="Masculino">Masculino</option>
-                            <option value="Feminino">Feminino</option>
-                          </select>
-                          <label>Sexo</label>
+                    <div class="input-field col s3">
+                      <label for="uname0">Status</label>
+                      <input class="validate" style="color: darkred;"  disabled id="uname0" required aria-required="true" name="status" type="text" value="Inativo">
                     </div>
-                    <div class="input-field m6 col s12">
-                        <select class="error validate" id="estado_civil" name="estado_civil" aria-required="true" required>
-                            <option value="" required aria-required="true" disabled selected>Estado civil</option>
-                            <option value="Solteiro">Solteiro</option>
-                            <option value="Casado">Casado</option>
-                          </select>
-                          <label>Estao civil</label>
+                    <div class="col s4 m4">
+                       <div class="row">
+                          <div class="col s3">
+                              <a href="/admin/propostasApolices/id_segurado" class="btn waves-effect waves-light red btn-small tooltipped" data-position="top" data-tooltip="Prospostas">
+                                 <i class="material-icons">insert_drive_file</i><br>
+                              </a>
+                          </div>
+                          <div class="col s3">
+                              <a href="/admin/prospeccoes/id_segurado" class="btn waves-effect waves-light red btn-small tooltipped" data-position="top" data-tooltip="Prospecções">
+                                 <i class="material-icons">assignment</i><br>
+                              </a>
+                          </div>
+                       </div>
                     </div>
-                    <div class="input-field col s12">
-                        <textarea id="descricao" name="desc_cliente" class="materialize-textarea validate" aria-required="true"
-                        required></textarea>
-                      <label for="descricao">Descrição*</label>
-                    </div>
-                    <div class="input-field m6 col s12">
-                        <input placeholder="01/01/2019" id="data" type="text" class="" name="data_nascimento">
-                        <label for="date-demo1">Data de nascimento</label>
-                    </div>
-                    <div class="input-field m6 col s12">
-                      <label for="rua">Rua *</label>
-                      <input class="validate" required aria-required="true" id="rua" type="text" name="nome_rua">
-                    </div>
-                    <div class="input-field m6 col s12">
-                        <label for="n_rua">Nº Rua</label>
-                        <input type="number" name="n_rua" id="n_rua">
-                    </div>
-                        
-                    <div class="input-field m6 col s12">
-                        <label for="bairro"></label>
-                        <select class="error validate" id="bairro" name="bairro" aria-required="true" required>
-                            <option value="" disabled selected>Escolha o bairro</option>
-                            {loop="$bairros"}
-                            <option value="{$value.id_bairro}">{$value.nome_bairro}</option>
-                            {/loop}
-                        </select>
-                    </div>
-                    <div class="input-field m6 col s12">
-                        <label for="telefone"> Telefone *</label>
-                        <input class="validate" required aria-required="true" id="telefone" type="number" name="telefone">
-                    </div>
-                    <div class="input-field m6 col s12">
-                        <label for="email"> Email *</label>
-                        <input class="validate" required aria-required="true" id="email" type="email" name="email">
-                    </div>
-                    <div class="input-field m6 col s12">
-                        <label for="fax"> FAX</label>
-                        <input id="fax" type="text" name="fax">
-                     </div>
-                    </div>
-                    <div class="input-field col s12">
-                      <button class="btn waves-effect waves-light right" type="submit">Cadastrar
-                        <i class="material-icons right">person_add</i>
-                      </button>
-                    </div>
-                  </div>
-                </form>
+               </div>
+               <div class="row">
+                     <div class="input-field m4 col s4">
+                           <select class="error validate" id="pessoa" required aria-required="true" name="pessoa" aria-="true" >
+                               <option value="" aria-="true" disabled selected>Pessoa</option>
+                               <option value="pf">Física</option>
+                               <option value="pj">Jurídica</option>
+                             </select>
+                             <label>Pessoa</label>
+                       </div>
+                        <div class="input-field col s4">
+                           <label for="nif">NIF</label>
+                           <input class="validate"  id="nif" name="nif" type="text">
+                        </div>
+                        <div class="input-field col s4">
+                           <div class="row right">
+                                 <div class="col s12">
+                                       <button type="submit" class="waves-effect waves-light  btn btn-small green"><i class="material-icons left">save</i> Salvar</button>
+                                       <a href="/admin/segurados/excluir/id_segurado" class="waves-effect waves-light  btn btn-small red"><i class="material-icons left">delete</i> Excluir</a>
+                                 </div>
+                           </div>
+                        </div>
+               </div>
               </div>
             </div>
           </div>
         </div>
       </div>
+      <div class="row">
+        <div class="col s6">
+            <div class="card card-tabs">
+                <div class="card-content">
+                    <div class="card-title">
+                        <div class="row">
+                            <div class="col s12 m6 l10">
+                                <h4 class="card-title">Dados pessoais</h4>
+                            </div>
+                            <div class="col s12 m6 l2">
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="row">
+                            <div class="input-field m6 col s12">
+                                <input placeholder="01/01/2019" id="data" type="text" class="" name="data_nascimento" id="data_nascimento">
+                                <label for="data_nascimento">Data de nascimento</label>
+                            </div>
+                            <div class="input-field m6 col s12">
+                                <select class="error validate" id="sexo" name="sexo" aria-="true">
+                                    <option value="" aria-="true" disabled selected>Sexo</option>
+                                    <option value="m">Masculino</option>
+                                    <option value="f">Feminino</option>
+                                </select>
+                                <label>Sexo</label>
+                            </div>
+                            <div class="input-field m6 col s12">
+                                <select class="error validate" id="estado_civil" name="estado_civil" aria-="true">
+                                    <option value="" disabled selected>Estado civil</option>
+                                    <option value="1">Solteiro</option>
+                                    <option value="2">Casado</option>
+                                </select>
+                                <label>Estao civil</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col s6">
+            <div class="card card-tabs">
+                <div class="card-content">
+                    <div class="card-title">
+                        <div class="row">
+                            <div class="col s12 m6 l10">
+                                <h4 class="card-title">Contato</h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="row">
+                            <div class="input-field m6 col s12">
+                                <label for="telefone"> Telefone </label>
+                                <input class="validate" id="telefone" type="number" name="telefone">
+                            </div>
+                            <div class="input-field m6 col s12">
+                                <label for="email"> E-mail </label>
+                                <input class="validate" id="email" type="email" name="email">
+                            </div>
+                            <div class="input-field m6 col s12">
+                                <label for="fax"> Endereço </label>
+                                <input id="fax" type="text" name="endereco">
+                            </div>
+                            <div class="input-field m6 col s12">
+                                <label for="bairro"> Bairro </label>
+                                <input id="bairro" type="text" name="bairro">
+                            </div>
+                            <div class="input-field m12 col s12">
+                                <label for="provincia"></label>
+                                <select class="error validate" id="provincia" name="provincia" aria-="true">
+                                    <option value="" disabled selected>Escolha a Província</option>
+                                    <option value="1">Luanda</option>
+                                    <option value="2">Malanje</option>
+                                    <option value="3">Lubango</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col s8">
+            <div class="card card-tabs">
+                <div class="card-content">
+                    <div class="card-title">
+                        <div class="row">
+                            <div class="col s12 m7 l10">
+                                <h4 class="card-title">Descrição</h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="row">
+                            <div class="input-field m12 col s6">
+                                <label for="descricao">Descrição</label><textarea id="descricao" name="descricao" class="materialize-textarea validate" aria-="true"
+                                ></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </form>
+            </div>
+        </div>
+        <div class="col s4">
+            <div  class="card card-tabs">
+                <div class="card-content">
+                    <div class="card-title">
+                        <div class="row">
+                            <div class="file-field input-field col s12">
+                                <div class="btn">
+                                    <span>Arquivo</span>
+                                    <input type="file" multiple>
+                                </div>
+                                <div class="file-path-wrapper">
+                                    <label>
+                                        <input class="file-path validate" type="text" name="documentos" placeholder="Anexar arquivos">
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="chip">
+                                <i class="material-icons" style="font-size: 15px;">photo</i>
+                                <a href="x">Imagem</a>
+                                <a href="x">
+                                    <i class="close material-icons">delete</i>
+                                </a>
+                            </div>
+                            <div class="chip">
+                                <i class="material-icons" style="font-size: 15px;">picture_as_pdf</i>
+                                <a href="x">PDF</a>
+                                <a href="x">
+                                    <i class="close material-icons">delete</i>
+                                </a>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+       </div>
 
 <!-- Fim: Tabela de Clientes -->
 
@@ -312,7 +447,7 @@
            <div class="slide-out-right-body">
               <div id="messages" class="col s12">
                  <div class="collection border-none">
-                    <input class="header-search-input mt-4 mb-2" type="text" required name="Search" placeholder="Procurar Mensagens" />
+                    <input class="header-search-input mt-4 mb-2" type="text"  name="Search" placeholder="Procurar Mensagens" />
                     <ul class="collection p-0">
                        <li class="collection-item sidenav-trigger display-flex avatar pl-5 pb-0" data-target="slide-out-chat">
                           <span class="avatar-status avatar-online avatar-50"

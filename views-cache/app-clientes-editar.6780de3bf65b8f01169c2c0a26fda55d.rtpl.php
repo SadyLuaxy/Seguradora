@@ -1,5 +1,5 @@
-
-    <title>Pagamentos e Comissões | Agência de Seguros Admin </title>
+<?php if(!class_exists('Rain\Tpl')){exit;}?>
+    <title> Clientes | Agência de Seguros Admin</title>
     <link rel="apple-touch-icon" href="/res/admin/assets/images/favicon/apple-touch-icon-152x152.png">
     <link rel="shortcut icon" type="image/x-icon" href="/res/admin/assets/images/favicon/favicon-32x32.png">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -25,11 +25,7 @@
     <!-- END: VENDOR CSS-->
     <!-- BEGIN: Page Level CSS-->
     <link rel="stylesheet" type="text/css" href="/res/admin/assets/css/pages/data-tables.css">
-    <style type="text/css">
-      .texto-preto{
-        color: #212121 !important;
-      }
-    </style>
+
   </head>
   <body class="vertical-layout vertical-menu-collapsible page-header-dark vertical-modern-menu 2-columns  " data-open="click" data-menu="vertical-modern-menu" data-col="2-columns">
 
@@ -40,7 +36,7 @@
           <div class="nav-wrapper">
             <div class="header-search-wrapper hide-on-med-and-down">
               <i class="material-icons">search</i>
-              <input class="header-search-input z-depth-2" type="text" name="Search" placeholder="Pesquisar">
+              <input class="header-search-input z-depth-2" type="text" required name="Search" placeholder="Pesquisar">
             </div>
             <ul class="navbar-list right">
               <!-- Tradutor 
@@ -69,7 +65,7 @@
               <li>
                 <a class="waves-effect waves-block waves-light profile-button" href="javascript:void(0);" data-target="profile-dropdown">
                   <span class="avatar-status avatar-online">
-                    <img src="../assets/images/avatar/avatar-7.png" alt="avatar"><i></i>
+                    <img src="/res/admin/assets/images/avatar/avatar-7.png" alt="avatar"><i></i>
                   </span>
                 </a>
               </li>
@@ -110,7 +106,7 @@
               <li><a class="grey-text text-darken-1" href="page-faq.html"><i class="material-icons">help_outline</i> Ajuda</a></li>
               <li class="divider"></li>
               <li><a class="grey-text text-darken-1" href="user-lock-screen.html"><i class="material-icons">lock_outline</i> Bloquear</a></li>
-              <li><a class="grey-text text-darken-1" href="user-login.html"><i class="material-icons">keyboard_tab</i> Sair</a></li>
+              <li><a class="grey-text text-darken-1" href="/usuario/logout"><i class="material-icons">keyboard_tab</i> Sair</a></li>
             </ul>
             <!-- Fim Perfil do dropdown-->
           </div>
@@ -132,7 +128,7 @@
     <!-- Início: SideNav-->
     <aside class="sidenav-main nav-expanded nav-lock nav-collapsible sidenav-light sidenav-active-square">
       <div class="brand-sidebar">
-        <h1 class="logo-wrapper"><a class="brand-logo darken-1" href="index.html"><span class="logo-text hide-on-med-and-down">Agência Seguros</span></a></h1>
+        <h1 class="logo-wrapper"><a class="brand-logo darken-1" href="/admin"><span class="logo-text hide-on-med-and-down">Agência Seguros</span></a></h1>
       </div>
       <ul class="sidenav sidenav-collapsible leftside-navigation collapsible sidenav-fixed menu-shadow" id="slide-out" data-menu="menu-navigation" data-collapsible="menu-accordion">
         <li class="bold">
@@ -143,40 +139,26 @@
         </li>
         <li class="navigation-header"><a class="navigation-header-text">Aplicação</a><i class="navigation-header-icon material-icons">more_horiz</i>
         </li>
-        <li><a class="waves-effect waves-cyan" href="/admin/segurados"><i class="material-icons">group</i><span class="menu-title" data-i18n="">Segurados</span></a>
+        <li class="active bold"><a class="waves-effect waves-cyan active red" href="/admin/clientes"><i class="material-icons">group</i><span class="menu-title" data-i18n="">Clientes</span></a>
         </li>
-        <li class="bold"><a class="waves-effect waves-cyan" href="/admin/propostasApolices"><i class="material-icons">insert_drive_file</i><span class="menu-title" data-i18n="">Propostas e apólices</span></a>
+        <li class="bold"><a class="waves-effect waves-cyan " href="app-despesas.html"><i class="material-icons">money_off</i><span class="menu-title" data-i18n="">Despesas</span></a>
         </li>
-        <li class="bold"><a class="collapsible-header waves-effect waves-cyan  active red" href="#"><i class="material-icons">attach_money</i><span class="menu-title" data-i18n="">Financeiro</span></a>
-          <div class="collapsible-body">
-            <ul class="collapsible collapsible-sub " data-collapsible="accordion">
-              <li><a class="collapsible-body" href="/admin/financeiro/pagamentos" data-i18n=""><i class="material-icons">radio_button_unchecked</i><span>Pagamemtos</span></a>
-              </li>
-            </ul>
-          </div>
+        <li class="bold"><a class="waves-effect waves-cyan " href="app-facturas.html"><i class="material-icons">chrome_reader_mode</i><span class="menu-title" data-i18n="">Facturamento</span></a>
         </li>
-        <li class="bold"><a class="collapsible-header waves-effect waves-cyan " href="#"><i class="material-icons">show_chart</i><span class="menu-title" data-i18n="">Relatorios</span></a>
+        <li class="bold"><a class="waves-effect waves-cyan " href="/admin/seguradoras"><i class="material-icons">home</i><span class="menu-title" data-i18n="">Seguradora</span></a>
+        </li>
+        <li class="bold"><a class="collapsible-header waves-effect waves-cyan " href="#"><i class="material-icons">add_shopping_cart</i><span class="menu-title" data-i18n="">Seguros</span></a>
           <div class="collapsible-body">
             <ul class="collapsible collapsible-sub" data-collapsible="accordion">
-              <li><a class="collapsible-body" href="/admin/relatorios/comissoes" data-i18n=""><i class="material-icons">radio_button_unchecked</i><span>Comissões</span></a>
-              <li>
+              <li><a class="collapsible-body" href="app-seguro-auto.html" data-i18n=""><i class="material-icons">radio_button_unchecked</i><span>Automóvel</span></a>
+              <li><a class="collapsible-body" href="app-seguro-emp.html" data-i18n=""><i class="material-icons">radio_button_unchecked</i><span>Empresarial</span></a>
+              </li>
+              <li><a class="collapsible-body" href="app-seguro-vida.html" data-i18n=""><i class="material-icons">radio_button_unchecked</i><span>Vida</span></a>
+              </li>
             </ul>
           </div>
         </li>
-        <li class="bold"><a class="collapsible-header waves-effect waves-cyan " href="#"><i class="material-icons">settings</i><span class="menu-title" data-i18n="">Configurações</span></a>
-          <div class="collapsible-body">
-            <ul class="collapsible collapsible-sub" data-collapsible="accordion">
-              <li><a class="collapsible-body" href="/admin/configuracoes/seguradoras" data-i18n=""><i class="material-icons">radio_button_unchecked</i><span>Seguradoras</span></a>
-              <li><a class="collapsible-body" href="/admin/configuracoes/ramos" data-i18n=""><i class="material-icons">radio_button_unchecked</i><span>Ramos</span></a>
-              </li>
-              <li><a class="collapsible-body" href="/admin/configuracoes/coberturas" data-i18n=""><i class="material-icons">radio_button_unchecked</i><span>Coberturas</span></a>
-              </li>
-              <li><a class="collapsible-body" href="/admin/configuracoes/classificacoes" data-i18n=""><i class="material-icons">radio_button_unchecked</i><span>Classificações</span></a>
-              </li>
-              <li><a class="collapsible-body" href="/admin/configuracoes/sistema" data-i18n=""><i class="material-icons">radio_button_unchecked</i><span>Sistema</span></a>
-              </li>
-            </ul>
-          </div>
+        <li class="bold"><a class="waves-effect waves-cyan " href="app-financeiro.html"><i class="material-icons">account_balance</i><span class="menu-title" data-i18n="">Resultado financeiro</span></a>
         </li>
       </ul>
       <div class="navigation-background"></div><a class="sidenav-trigger btn-sidenav-toggle btn-floating btn-medium waves-effect waves-light hide-on-large-only" href="#" data-target="slide-out"><i class="material-icons">menu</i></a>
@@ -189,85 +171,15 @@
         <div class="content-wrapper-before gradient-45deg-indigo-purple"></div>
         <div class="col s12">
           <div class="container">
+
 <!-- Sidebar Area Starts -->
 <div class="sidebar-left sidebar-fixed">
-  <div class="sidebar col s12">
+  <div class="sidebar">
     <div class="sidebar-content">
       <div class="sidebar-header">
         <div class="sidebar-details">
-          <h3 class="m-0 sidebar-title"><i class="material-icons app-header-icon text-top">chrome_reader_mode</i> Pagamento de Comissões
-          </h3>
-          <br>
-          <div class="row">
-            <div class="col s6">
-              <a href="/admin/financeiro/efectuarPagamento" class="btn btn-small orange">Pagamento</a>
-            </div>
-            <div class="col s6" style="background-color: #fff; border-radius: 2px;transition: box-shadow .25s, -webkit-box-shadow .25s">
-              <select class="icons">
-                <option value="" disabled selected>Selecione o ano</option>
-                <option value="" class="left">2019
-                </option>
-                <option value="" class="left">2018
-                </option>
-                <option value="" class="left">2017
-                </option>
-              </select>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </div>
-</div>
-<div class="sidebar-right sidebar-fixed center-left" style="margin-top: -15px !important;">
-  <div class="sidebar  m-0">
-    <div class="sidebar-content">
-      <div class="sidebar-header">
-        <div class="sidebar-details">
-          <h5 class="m-0 sidebar-title center-align">
-            Total Anual
+          <h5 class="m-0 sidebar-title"><i class="material-icons app-header-icon text-top">group</i> Adicionar clientes
           </h5>
-          <div class="row">
-            <div class="mt-0 pt-0 col s6">
-              <p class="m-0 subtitle font-weight-700">Pendente:</p>
-            </div>
-            <div class="mt-0 pt-0 col s6">
-              <p class="m-0 subtitle ">100.000.00Kz</p>
-            </div>
-          </div>
-          <div class="row">
-            <div class="mt-0 pt-0 col s6">
-              <p class="m-0 subtitle font-weight-700">Recebido:</p>
-            </div>
-            <div class="mt-0 pt-0 col s6">
-              <p class="m-0 subtitle ">100.000.00Kz</p>
-            </div>
-          </div>
-          <div class="row">
-            <div class="mt-0 pt-0 col s6">
-              <p class="m-0 subtitle font-weight-700">Pendente + Recebido:</p>
-            </div>
-            <div class="mt-0 pt-0 col s6">
-              <p class="m-0 subtitle ">100.000.00Kz</p>
-            </div>
-          </div>
-          <div class="row">
-            <div class="mt-0 pt-0 col s6">
-              <p class="m-0 subtitle font-weight-700">Cancelado/recusado:</p>
-            </div>
-            <div class="mt-0 pt-0 col s6">
-              <p class="m-0 subtitle ">100.000.00Kz</p>
-            </div>
-          </div>
-          <div class="row">
-            <div class="mt-0 pt-0 col s6">
-              <p class="m-0 subtitle font-weight-700">Resultado:</p>
-            </div>
-            <div class="mt-0 pt-0 col s6">
-              <p class="m-0 subtitle ">100.000.00Kz</p>
-            </div>
-          </div>
         </div>
       </div>
     </div>
@@ -275,54 +187,100 @@
 </div>
 <!-- Sidebar Area Ends -->
 
-<!-- Início: Resultados -->
+<!-- Início: Tabela de Clientes -->
+
 <div class="section">
-  <div class="row">
-    <div class="col s12">
-      <div class="col s12 m12">
-        <div class="card subscriber-list-card animate fadeRight">
-          <div class="card-content pb-1">
-            <h4 class="card-title mb-0">Parcelas</h4>
+
+    <div class="row">
+        <div class="col s12">
+          <div id="html-validations" class="card card-tabs">
+            <div class="card-content">
+              <div class="card-title">
+                <div class="row">
+                  <div class="col s12 m6 l10">
+                    <h4 class="card-title">Editar cliente</h4>
+                  </div>
+                  <div class="col s12 m6 l2">
+                  </div>
+                </div>
+              </div>
+              <div id="html-view-validations">
+                <form class="formValidate0" id="formValidate0" method="post" action="/admin/clientes/editar/<?php echo htmlspecialchars( $clientes["id_cliente"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
+                  <div class="row">
+                    <div class="input-field col s12">
+                      <label for="uname0">Nome completo</label>
+                      <input class="validate" required aria-required="true" value="<?php echo htmlspecialchars( $clientes["nome_cliente"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" id="nome0" name="nome_cliente" type="text">
+                    </div>
+                    <div class="input-field m6 col s12">
+                        <select class="error validate" id="sexo" name="sexo" aria-required="true" required>
+                            <option value="<?php echo htmlspecialchars( $clientes["sexo"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" aria-required="true" selected><?php echo htmlspecialchars( $clientes["sexo"], ENT_COMPAT, 'UTF-8', FALSE ); ?></option>
+                            <option value="Masculino">Masculino</option>
+                            <option value="Feminino">Feminino</option>
+                          </select>
+                          <label>Sexo</label>
+                    </div>
+                    <div class="input-field m6 col s12">
+                        <select class="error validate" id="estado_civil" name="estado_civil" aria-required="true" required>
+                            <option value="<?php echo htmlspecialchars( $clientes["estado_civil"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" required aria-required="true" selected><?php echo htmlspecialchars( $clientes["estado_civil"], ENT_COMPAT, 'UTF-8', FALSE ); ?></option>
+                            <option value="Solteiro">Solteiro</option>
+                            <option value="Casado">Casado</option>
+                          </select>
+                          <label>Estado civil</label>
+                    </div>
+                    <div class="input-field col s12">
+                        <textarea id="descricao" name="desc_cliente" class="materialize-textarea validate" aria-required="true"
+                        required><?php echo htmlspecialchars( $clientes["desc_cliente"], ENT_COMPAT, 'UTF-8', FALSE ); ?></textarea>
+                      <label for="descricao">Descrição</label>
+                    </div>
+                    <div class="input-field m6 col s12">
+                        <input placeholder="01/01/2019" id="data" type="text" class="" name="data_nascimento" value="<?php echo htmlspecialchars( $clientes["data_nascimento"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
+                        <label for="date-demo1">Data de nascimento</label>
+                    </div>
+                    <div class="input-field m6 col s12">
+                      <label for="rua">Rua</label>
+                      <input class="validate" required aria-required="true" id="rua" type="text" name="nome_rua" value="<?php echo htmlspecialchars( $clientes["nome_rua"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
+                    </div>
+                    <div class="input-field m6 col s12">
+                        <label for="n_rua">Nº Rua</label>
+                        <input type="number" name="n_rua" id="n_rua" value="<?php echo htmlspecialchars( $clientes["n_rua"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
+                    </div>
+                        
+                    <div class="input-field m6 col s12">
+                        <label for="bairro"></label>
+                        <select class="error validate" id="bairro" name="bairro" aria-required="true" required>
+                            <option value="<?php echo htmlspecialchars( $clientes["id_bairro"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" selected><?php echo htmlspecialchars( $clientes["nome_bairro"], ENT_COMPAT, 'UTF-8', FALSE ); ?></option>
+                            <?php $counter1=-1;  if( isset($bairros) && ( is_array($bairros) || $bairros instanceof Traversable ) && sizeof($bairros) ) foreach( $bairros as $key1 => $value1 ){ $counter1++; ?>
+                            <option value="<?php echo htmlspecialchars( $clientes["id_bairro"], ENT_COMPAT, 'UTF-8', FALSE ); ?>"><?php echo htmlspecialchars( $clientes["nome_bairro"], ENT_COMPAT, 'UTF-8', FALSE ); ?></option>
+                            <?php } ?>
+                        </select>
+                    </div>
+                    <div class="input-field m6 col s12">
+                        <label for="telefone"> Telefone</label>
+                        <input class="validate" required aria-required="true" id="telefone" type="number" name="telefone" value="<?php echo htmlspecialchars( $clientes["telefone"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
+                    </div>
+                    <div class="input-field m6 col s12">
+                        <label for="email"> Email</label>
+                        <input class="validate" required aria-required="true" id="email" type="email" name="email" value="<?php echo htmlspecialchars( $clientes["email"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
+                    </div>
+                    <div class="input-field m6 col s12">
+                        <label for="fax"> FAX</label>
+                        <input id="fax" type="text" name="fax" value="<?php echo htmlspecialchars( $clientes["fax"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
+                     </div>
+                    </div>
+                    <div class="input-field col s12">
+                      <button class="btn waves-effect waves-light right" type="submit">Editar
+                        <i class="material-icons right">update</i>
+                      </button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
           </div>
-
-
-
-          <table class="subscription-table responsive-table highlight centered">
-            <thead>
-            <tr>
-              <th>Vencimento</th>
-              <th>Dt. Recebimento</th>
-              <th>Segurado</th>
-              <th>Ramo</th>
-              <th>Apólice</th>
-              <th>Endosso</th>
-              <th>Parcela</th>
-              <th>Comssião</th>
-              <th>Status</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-              <td>12/09/2019</td>
-              <td>12/09/2019</td>
-              <td>Sady Luaxy</td>
-              <td>Auto</td>
-              <td>23/2019</td>
-              <td>1234</td>
-              <td>1/10</td>
-              <td>50,00 (Kz)</td>
-              <td><span class="badge green lighten-5 green-text text-accent-2">Recebido</span></td>
-            </tr>
-            </tbody>
-          </table>
         </div>
       </div>
-    </div><!-- START RIGHT SIDEBAR NAV -->
-  </div>
-</div>
 
-
-<!-- Fim: Resultados -->
+<!-- Fim: Tabela de Clientes -->
 
 <!-- Início Do Sidenav Da Direita -->
     <aside id="right-sidebar-nav">
@@ -354,29 +312,29 @@
            <div class="slide-out-right-body">
               <div id="messages" class="col s12">
                  <div class="collection border-none">
-                    <input class="header-search-input mt-4 mb-2" type="text" name="Search" placeholder="Procurar Mensagens" />
+                    <input class="header-search-input mt-4 mb-2" type="text" required name="Search" placeholder="Procurar Mensagens" />
                     <ul class="collection p-0">
                        <li class="collection-item sidenav-trigger display-flex avatar pl-5 pb-0" data-target="slide-out-chat">
                           <span class="avatar-status avatar-online avatar-50"
-                             ><img src="../assets/images/avatar/avatar-7.png" alt="avatar" />
+                             ><img src="/res/admin/assets/images/avatar/avatar-7.png" alt="avatar" />
                              <i></i>
                           </span>
                           <div class="user-content">
                              <h6 class="line-height-0">Elizabeth Elliott</h6>
                              <p class="medium-small blue-grey-text text-lighten-3 pt-3">Obrigado</p>
                           </div>
-                          <span class="secondary-content texto-preto medium-small">5.00 AM</span>
+                          <span class="secondary-content medium-small">5.00 AM</span>
                        </li>
                        <li class="collection-item sidenav-trigger display-flex avatar pl-5 pb-0" data-target="slide-out-chat">
                           <span class="avatar-status avatar-online avatar-50"
-                             ><img src="../assets/images/avatar/avatar-1.png" alt="avatar" />
+                             ><img src="/res/admin/assets/images/avatar/avatar-1.png" alt="avatar" />
                              <i></i>
                           </span>
                           <div class="user-content">
                              <h6 class="line-height-0">Eithan Keanue</h6>
                              <p class="medium-small blue-grey-text text-lighten-3 pt-3">Olá Oconner</p>
                           </div>
-                          <span class="secondary-content texto-preto medium-small">4.14 AM</span>
+                          <span class="secondary-content medium-small">4.14 AM</span>
                        </li>
                     </ul>
                  </div>
@@ -387,13 +345,13 @@
                     <ul class="collection with-header">
                        <li class="collection-item">
                           <div class="font-weight-900">
-                             Iniciaste sessão <span class="secondary-content texto-preto">Agora mesmo</span>
+                             Iniciaste sessão <span class="secondary-content">Agora mesmo</span>
                           </div>
                           <span class="new badge amber" data-badge-caption="Importante"> </span>
                        </li>
                        <li class="collection-item">
                           <div class="font-weight-900">
-                             Melissa . <span class="secondary-content texto-preto">10 mins</span>
+                             Melissa . <span class="secondary-content">10 mins</span>
                           </div>
                           <p class="mt-0 mb-2">Here are some news feed interactions concepts.</p>
                           <span class="new badge light-green" data-badge-caption="Resolvido"></span>
@@ -403,18 +361,18 @@
                     <ul class="collection with-header">
                        <li class="collection-item">
                           <div class="font-weight-900">
-                             New order received urgent <span class="secondary-content texto-preto">Just now</span>
+                             New order received urgent <span class="secondary-content">Just now</span>
                           </div>
                           <p class="mt-0 mb-2">Melissa liked your activity.</p>
                        </li>
                        <li class="collection-item">
-                          <div class="font-weight-900">System shutdown. <span class="secondary-content texto-preto">5 min</span></div>
+                          <div class="font-weight-900">System shutdown. <span class="secondary-content">5 min</span></div>
                           <p class="mt-0 mb-2">Here are some news feed interactions concepts.</p>
                           <span class="new badge blue" data-badge-caption="Urgent"> </span>
                        </li>
                        <li class="collection-item">
                           <div class="font-weight-900">
-                             Database overloaded 89% <span class="secondary-content texto-preto">20 min</span>
+                             Database overloaded 89% <span class="secondary-content">20 min</span>
                           </div>
                           <p class="mt-0 mb-2">Here are some news feed interactions concepts.</p>
                        </li>
@@ -422,12 +380,12 @@
                     <p class="mt-5 mb-0 ml-5 font-weight-900">Logs Do Servidor</p>
                     <ul class="collection with-header">
                        <li class="collection-item">
-                          <div class="font-weight-900">System error <span class="secondary-content texto-preto">10 min</span></div>
+                          <div class="font-weight-900">System error <span class="secondary-content">10 min</span></div>
                           <p class="mt-0 mb-2">Melissa liked your activity.</p>
                        </li>
                        <li class="collection-item">
                           <div class="font-weight-900">
-                             Production server down. <span class="secondary-content texto-preto">1 hrs</span>
+                             Production server down. <span class="secondary-content">1 hrs</span>
                           </div>
                           <p class="mt-0 mb-2">Here are some news feed interactions concepts.</p>
                           <span class="new badge blue" data-badge-caption="Urgent"></span>
@@ -448,7 +406,7 @@
            <ul class="collection">
               <li class="collection-item display-flex avatar pl-5 pb-0" data-target="slide-out-chat">
                  <span class="avatar-status avatar-online avatar-50"
-                    ><img src="../assets/images/avatar/avatar-7.png" alt="avatar" />
+                    ><img src="/res/admin/assets/images/avatar/avatar-7.png" alt="avatar" />
                  </span>
                  <div class="user-content speech-bubble">
                     <p class="medium-small">hello!</p>
@@ -461,7 +419,7 @@
               </li>
               <li class="collection-item display-flex avatar pl-5 pb-0" data-target="slide-out-chat">
                  <span class="avatar-status avatar-online avatar-50"
-                    ><img src="../assets/images/avatar/avatar-7.png" alt="avatar" />
+                    ><img src="/res/admin/assets/images/avatar/avatar-7.png" alt="avatar" />
                  </span>
                  <div class="user-content speech-bubble">
                     <p class="medium-small">I am looking for the best admin template.?</p>
@@ -479,7 +437,7 @@
 
               <li class="collection-item display-flex avatar pl-5 pb-0" data-target="slide-out-chat">
                  <span class="avatar-status avatar-online avatar-50"
-                    ><img src="../assets/images/avatar/avatar-7.png" alt="avatar" />
+                    ><img src="/res/admin/assets/images/avatar/avatar-7.png" alt="avatar" />
                  </span>
                  <div class="user-content speech-bubble">
                     <p class="medium-small">Ohh! very nice</p>
@@ -492,7 +450,7 @@
               </li>
               <li class="collection-item display-flex avatar pl-5 pb-0" data-target="slide-out-chat">
                  <span class="avatar-status avatar-online avatar-50"
-                    ><img src="../assets/images/avatar/avatar-7.png" alt="avatar" />
+                    ><img src="/res/admin/assets/images/avatar/avatar-7.png" alt="avatar" />
                  </span>
                  <div class="user-content speech-bubble">
                     <p class="medium-small">How can I purchase it?</p>
@@ -515,7 +473,7 @@
               </li>
               <li class="collection-item display-flex avatar pl-5 pb-0" data-target="slide-out-chat">
                  <span class="avatar-status avatar-online avatar-50"
-                    ><img src="../assets/images/avatar/avatar-7.png" alt="avatar" />
+                    ><img src="/res/admin/assets/images/avatar/avatar-7.png" alt="avatar" />
                  </span>
                  <div class="user-content speech-bubble">
                     <p class="medium-small">Ohh! Thank you.</p>
@@ -523,7 +481,7 @@
               </li>
               <li class="collection-item display-flex avatar pl-5 pb-0" data-target="slide-out-chat">
                  <span class="avatar-status avatar-online avatar-50"
-                    ><img src="../assets/images/avatar/avatar-7.png" alt="avatar" />
+                    ><img src="/res/admin/assets/images/avatar/avatar-7.png" alt="avatar" />
                  </span>
                  <div class="user-content speech-bubble">
                     <p class="medium-small">I will purchase it for sure.</p>
@@ -570,7 +528,7 @@
     </footer>
 
     <!-- Fim: Footer-->
-
+    
     <!-- BEGIN VENDOR JS-->
     <script src="/res/admin/assets/js/app-email/vendors.min.js" type="text/javascript"></script>
     <!-- BEGIN VENDOR JS-->
@@ -588,10 +546,6 @@
     <!-- END PAGE LEVEL JS-->
 
     <script src="/res/admin/assets/js/app-email/vendors.min.js" type="text/javascript"></script>
-    <!-- BEGIN VENDOR JS-->
-    <!-- BEGIN PAGE VENDOR JS-->
-    <script src="/res/admin/assets/vendors/data-tables/js/jquery.dataTables.min.js" type="text/javascript"></script>
-    <script src="/res/admin/assets/vendors/data-tables/extensions/responsive/js/dataTables.responsive.min.js" type="text/javascript"></script>
     <!-- END PAGE VENDOR JS-->
     <!-- BEGIN THEME  JS-->
     <script src="/res/admin/assets/js/plugins.js" type="text/javascript"></script>
@@ -599,3 +553,5 @@
     <!-- BEGIN PAGE LEVEL JS-->
     <script src="/res/admin/assets/js/scripts/data-tables.js" type="text/javascript"></script>
     <!-- END PAGE LEVEL JS-->
+    <script src="/res/admin/assets/js/scripts/form-masks.js" type="text/javascript"></script>
+    <script src="/res/admin/assets/vendors/formatter/jquery.formatter.min.js"></script>

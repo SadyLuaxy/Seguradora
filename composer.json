@@ -12,7 +12,8 @@
     "require": {
         "slim/slim":"2.0",
         "rain/raintpl":"3.0.0",
-        "mpdf/mpdf":"8.0.2"
+        "mpdf/mpdf":"8.0.2",
+        "mikehaertl/phpwkhtmltopdf":"*"
     },
     "autoload": {
         "psr-4": {
